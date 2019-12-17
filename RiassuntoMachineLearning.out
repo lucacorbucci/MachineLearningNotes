@@ -1,0 +1,116 @@
+\BOOKMARK [0][-]{chapter.1}{Lezione 1 - Knn}{}% 1
+\BOOKMARK [1][-]{section.1.1}{K-nn}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Formula per il K-nn}{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Lezione 3 - Probabilistic Inference}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Refresh: }{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.2}{MLE: Ottimizzare la funzione Likelihood}{chapter.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.1}{Ottimizzare}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.2}{Problemi della MLE}{section.2.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Bayesian Inference}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.3.1}{Bayes Formula}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{Problema}{section.2.3}% 11
+\BOOKMARK [1][-]{section.2.4}{MAP: Maximum A Posterior Estimation}{chapter.2}% 12
+\BOOKMARK [2][-]{subsection.2.4.1}{Scegliere la prior distribution}{section.2.4}% 13
+\BOOKMARK [2][-]{subsection.2.4.2}{Calcolare la MAP}{section.2.4}% 14
+\BOOKMARK [1][-]{section.2.5}{Estimate the posterior distribution}{chapter.2}% 15
+\BOOKMARK [2][-]{subsection.2.5.1}{Vantaggi del calcolo completo della posterior distribution}{section.2.5}% 16
+\BOOKMARK [1][-]{section.2.6}{Previsione del prossimo lancio}{chapter.2}% 17
+\BOOKMARK [0][-]{chapter.3}{Linear Regression}{}% 18
+\BOOKMARK [1][-]{section.3.1}{Loss Function}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.2}{NonLinear Dependency in data}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.3}{Come scegliere il grado del polinomio}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.3.1}{Regularization}{section.3.3}% 22
+\BOOKMARK [1][-]{section.3.4}{Bias - Variance tradeoff}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.5}{Probabilistic Linear Regression}{chapter.3}% 24
+\BOOKMARK [2][-]{subsection.3.5.1}{Bayesian Network}{section.3.5}% 25
+\BOOKMARK [1][-]{section.3.6}{Probabilistic Formulation of Linear Regression}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.6.1}{Calcolare la Likelihood}{section.3.6}% 27
+\BOOKMARK [2][-]{subsection.3.6.2}{Calcolare la posterior Distribution}{section.3.6}% 28
+\BOOKMARK [2][-]{subsection.3.6.3}{Fully Bayesian Approach}{section.3.6}% 29
+\BOOKMARK [2][-]{subsection.3.6.4}{Sequential Bayesian Linear Regression}{section.3.6}% 30
+\BOOKMARK [2][-]{subsection.3.6.5}{Fare previsioni su nuovi dati}{section.3.6}% 31
+\BOOKMARK [0][-]{chapter.4}{Linear Classification}{}% 32
+\BOOKMARK [1][-]{subsection.4.0.1}{Come capire se le previsioni sono corrette?}{chapter.4}% 33
+\BOOKMARK [2][-]{subsection.4.0.2}{Usare l'iperpiano come decision boundary}{subsection.4.0.1}% 34
+\BOOKMARK [2][-]{subsection.4.0.3}{Least Squares per la classificazione}{subsection.4.0.1}% 35
+\BOOKMARK [2][-]{subsection.4.0.4}{Perceptron Algorithm}{subsection.4.0.1}% 36
+\BOOKMARK [1][-]{section.4.1}{Classi non linearmente separabili}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.1.1}{Altre limitazioni}{section.4.1}% 38
+\BOOKMARK [1][-]{section.4.2}{Probabilistic Model}{chapter.4}% 39
+\BOOKMARK [2][-]{subsection.4.2.1}{Generative Model}{section.4.2}% 40
+\BOOKMARK [2][-]{subsection.4.2.2}{LDA - Linear Discriminant Analysis}{section.4.2}% 41
+\BOOKMARK [2][-]{subsection.4.2.3}{Naive Bayes}{section.4.2}% 42
+\BOOKMARK [1][-]{section.4.3}{Probabilistic Discriminative Models for linear classification}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.3.1}{Logistic Regression}{section.4.3}% 44
+\BOOKMARK [2][-]{subsection.4.3.2}{Likelihood della logistic Regression}{section.4.3}% 45
+\BOOKMARK [2][-]{subsection.4.3.3}{Logistic Regressione e Weights regularization}{section.4.3}% 46
+\BOOKMARK [2][-]{subsection.4.3.4}{Multiclass logistic regression}{section.4.3}% 47
+\BOOKMARK [1][-]{section.4.4}{Conclusioni}{chapter.4}% 48
+\BOOKMARK [0][-]{chapter.5}{Optimization}{}% 49
+\BOOKMARK [1][-]{subsection.5.0.1}{Convexity}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.0.2}{Propriet\340 delle convex function}{subsection.5.0.1}% 51
+\BOOKMARK [2][-]{subsection.5.0.3}{First Order Convexity Condition}{subsection.5.0.1}% 52
+\BOOKMARK [2][-]{subsection.5.0.4}{Vertex}{subsection.5.0.1}% 53
+\BOOKMARK [2][-]{subsection.5.0.5}{Convex hull}{subsection.5.0.1}% 54
+\BOOKMARK [1][-]{section.5.1}{Maximization Problem}{chapter.5}% 55
+\BOOKMARK [2][-]{subsection.5.1.1}{Come verificare che una funzione \350 convessa}{section.5.1}% 56
+\BOOKMARK [2][-]{subsection.5.1.2}{Verificare che un set \350 convesso}{section.5.1}% 57
+\BOOKMARK [2][-]{subsection.5.1.3}{Problemi semplici}{section.5.1}% 58
+\BOOKMARK [2][-]{subsection.5.1.4}{Coordinate descent}{section.5.1}% 59
+\BOOKMARK [1][-]{section.5.2}{Gradient Descent}{chapter.5}% 60
+\BOOKMARK [1][-]{section.5.3}{Line search}{chapter.5}% 61
+\BOOKMARK [2][-]{subsection.5.3.1}{Un algoritmo pi\371 veloce}{section.5.3}% 62
+\BOOKMARK [1][-]{section.5.4}{Discussione e altri metodi}{chapter.5}% 63
+\BOOKMARK [2][-]{subsection.5.4.1}{Metodo di Newton}{section.5.4}% 64
+\BOOKMARK [2][-]{subsection.5.4.2}{Stochastic Gradient Descent}{section.5.4}% 65
+\BOOKMARK [2][-]{subsection.5.4.3}{Esempio con il Perceptron}{section.5.4}% 66
+\BOOKMARK [2][-]{subsection.5.4.4}{Ottimizzazione per la logistic regression}{section.5.4}% 67
+\BOOKMARK [2][-]{subsection.5.4.5}{Distributed Learning}{section.5.4}% 68
+\BOOKMARK [0][-]{chapter.6}{Constrained Optimization}{}% 69
+\BOOKMARK [1][-]{subsection.6.0.1}{Problemi standard}{chapter.6}% 70
+\BOOKMARK [1][-]{section.6.1}{Usare il Gradient Descent per risolvere problemi di Constrained Optimization}{chapter.6}% 71
+\BOOKMARK [2][-]{subsection.6.1.1}{Calcolare le proiezioni}{section.6.1}% 72
+\BOOKMARK [2][-]{subsection.6.1.2}{Note}{section.6.1}% 73
+\BOOKMARK [1][-]{section.6.2}{Lagrangian e Duality}{chapter.6}% 74
+\BOOKMARK [2][-]{subsection.6.2.1}{Single Inequality Constraint}{section.6.2}% 75
+\BOOKMARK [2][-]{subsection.6.2.2}{Multiple Inequality Constraints}{section.6.2}% 76
+\BOOKMARK [0][-]{chapter.7}{SVM}{}% 77
+\BOOKMARK [1][-]{section.7.1}{Classificazione binaria}{chapter.7}% 78
+\BOOKMARK [1][-]{section.7.2}{SVM con Hard Margin}{chapter.7}% 79
+\BOOKMARK [1][-]{section.7.3}{Soft Margin Support Vector Machine}{chapter.7}% 80
+\BOOKMARK [1][-]{section.7.4}{Kernel}{chapter.7}% 81
+\BOOKMARK [2][-]{subsection.7.4.1}{Esempi di Kernel}{section.7.4}% 82
+\BOOKMARK [1][-]{section.7.5}{Classificare un nuovo punto con SVM e Kernel}{chapter.7}% 83
+\BOOKMARK [1][-]{section.7.6}{SVM con classi multiple}{chapter.7}% 84
+\BOOKMARK [0][-]{chapter.8}{Deep Learning}{}% 85
+\BOOKMARK [1][-]{section.8.1}{Introduzione}{chapter.8}% 86
+\BOOKMARK [2][-]{subsection.8.1.1}{Perch\350 usiamo i Deep Feedforward Network?}{section.8.1}% 87
+\BOOKMARK [1][-]{section.8.2}{Il dataset dello XOR}{chapter.8}% 88
+\BOOKMARK [2][-]{subsection.8.2.1}{Esempio}{section.8.2}% 89
+\BOOKMARK [2][-]{subsection.8.2.2}{Spiegazione e confronto con Logistic Regression}{section.8.2}% 90
+\BOOKMARK [2][-]{subsection.8.2.3}{Universal Approximation Theorem}{section.8.2}% 91
+\BOOKMARK [2][-]{subsection.8.2.4}{Usare pi\371 layer}{section.8.2}% 92
+\BOOKMARK [1][-]{section.8.3}{Parameter Learning}{chapter.8}% 93
+\BOOKMARK [1][-]{section.8.4}{Minimizzazione della cost function}{chapter.8}% 94
+\BOOKMARK [2][-]{subsection.8.4.1}{Come calcoliamo il gradiente?}{section.8.4}% 95
+\BOOKMARK [2][-]{subsection.8.4.2}{Computational Graph}{section.8.4}% 96
+\BOOKMARK [2][-]{subsection.8.4.3}{Example of BackPropagation}{section.8.4}% 97
+\BOOKMARK [2][-]{subsection.8.4.4}{Computational Graph}{section.8.4}% 98
+\BOOKMARK [1][-]{section.8.5}{Note}{chapter.8}% 99
+\BOOKMARK [0][-]{chapter.9}{Deep Learning 2}{}% 100
+\BOOKMARK [1][-]{subsection.9.0.1}{Altri utilizzi per le NN}{chapter.9}% 101
+\BOOKMARK [1][-]{section.9.1}{Layer e CNN}{chapter.9}% 102
+\BOOKMARK [2][-]{subsection.9.1.1}{CNN}{section.9.1}% 103
+\BOOKMARK [0][-]{chapter.10}{Math Refresh}{}% 104
+\BOOKMARK [1][-]{section.10.1}{Loss function}{chapter.10}% 105
+\BOOKMARK [1][-]{section.10.2}{0-1 Loss}{chapter.10}% 106
+\BOOKMARK [1][-]{section.10.3}{Lagrange Multipliers}{chapter.10}% 107
+\BOOKMARK [1][-]{section.10.4}{Probability Distribution}{chapter.10}% 108
+\BOOKMARK [2][-]{subsection.10.4.1}{Bernoulli Distribution}{section.10.4}% 109
+\BOOKMARK [2][-]{subsection.10.4.2}{Normal Distribution}{section.10.4}% 110
+\BOOKMARK [2][-]{subsection.10.4.3}{Beta Distribution}{section.10.4}% 111
+\BOOKMARK [2][-]{subsection.10.4.4}{Categorical Distribution}{section.10.4}% 112
+\BOOKMARK [1][-]{section.10.5}{Propriet\340 dei logaritmi}{chapter.10}% 113
+\BOOKMARK [1][-]{section.10.6}{Derivate}{chapter.10}% 114
+\BOOKMARK [1][-]{section.10.7}{Integrali}{chapter.10}% 115
+\BOOKMARK [1][-]{section.10.8}{Derivate di matrici e Vettori}{chapter.10}% 116
