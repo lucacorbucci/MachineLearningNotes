@@ -5122,7 +5122,7 @@ Quindi riassumendo:
 	Poi viene calcolato lo stato attuale, qua si usa la tangente perchè mi riduce l'output tra 0 e 1, è solamente un best practice ma possiamo anche scegliere altro.
 	Poi si calcola l'output $o^{(t)}$, notare bene che qua quando moltiplichiamo i parametri V per la $h^{(t)}$ abbiamo che la $h^{(t)}$ include già la $x^{(t)}$.
 	Alla fine si applica di nuovo softmax per ottenere l'output definitivo.
-	Due cose da notare, la V viene usata per l'output mentre la W viene usata per aggiornare lo stato.
+	Due cose da notare, la V viene usata per l'output mentre la W viene usata per aggiornare lo stato, entrambe sono condivise tra tutti i time step.
 	Se abbiamo una sequenza in input molto lunga allora il gradiente esplode o scompare del tutto.
 	\begin{figure}[H]
 	\centering
@@ -5130,22 +5130,180 @@ Quindi riassumendo:
 	\end{figure}
 \end{itemize}
 
+Possiamo rappresentare di nuovo la RNN in questa figura, simile ad una precedente, in cui però si vede meglio l'unfolding e il modo in cui si utilizzano anche i parametri V e W:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{419.jpeg}
+\end{figure}
+
+Ogni blocco di questa figura ($x_i$, $h_i$ e $o_i$) può essere visto come un layer di una neural network.
+Vediamo che ad ogni step prendiamo la $x_i$ e la moltiplichiamo per i parametri U, poi prendiamo lo stato precedente e lo moltiplichiamo per la matrice 
+$W$. Dalla moltiplicazione dello stato precedente e dell'input di ora otteniamo l'hidden status $h_i$ che viene moltiplicato per il parametro $V$ per ottenere l'output.
+Quello che possiamo notare è che qua non abbiamo una esplosione dei paraemtri perchè U e W sono condivise tra tutti i vari step che eseguiamo.
+Potrebbe essere possibile ottenere lo stesso modello anche con una nn classica e non RNN ma devi essere veramente molto fortunato.
 
 
+\subsection{RNN e training}
+
+Ci sono differenti tipologie di Neural Network e vari "design pattern" che possiamo utilizzare per la costruzione di una NN:
+
+\begin{itemize}
+\item Ad ogni step produciamo un output e abbiamo una connessione tra due hidden units.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{420.jpeg}
+	\end{figure}
+\item Ad ogni step produciamo un output e lo stato successivo dipende dall'output dello step precedente e non dall'hidden status dello step precedente.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{421.jpeg}
+	\end{figure}
+\item Produco solamente un output dopo aver visto tutta la sequenza e le hidden units sono collegate tra loro e quindi ogni volta dipende dalle precedenti.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{422.jpeg}
+	\end{figure}
+\end{itemize}
+
+\subsubsection{Training}
+
+L'algoritmo che viene utilizzato per la back propagation nel grafo della RNN è chiamato back-propagation through time.
+
+Quello che si fa è una back-propagation del gradiente attraverso il tempo, si parte dal tempo massimo $t=\tau - 1$ e si arriva a $t=1$.
+Una volta che abbiamo ottenuto il gradiente per i nodi interni del computational graph, possiamo ottenere anche il gradiente sui parametri.
+Dato che i parametri sono condivisi tra molti step dobbiamo stare attenti quando eseguiamo delle operazioni che prendono in considerazione questi parametri.
+
+Questo algoritmo di backpropagation può comportare una esplosione del gradiente o una scomparsa del gradiente, un metodo usato per cercare di diminuire questo problema
+è chiamato Long Short Term Memory network.
+
+\subsubsection{Weight Sharing}
+
+Sia le RNN che le CNN possono essere viste come forward neural network dove i pesi sono condivisi tra certi nodi del grafo e solamente alcuni nodi interagiscono.
+Ci sono alcuni vantaggio per questo tipo di modello:
+\begin{itemize}
+	\item Dobbiamo fare il learning di meno parametri e questo comporta che diminuisce il rischio di overfitting
+	\item Utilizziamo un inductive bias che forza il modello a lavorare con i nostri dati e considerare la struttura dei nostri dati sfruttandone quindi le caratteristiche. Noi non vogliamo estrarre manualmente le feature dei dati che ci interessano ma abbiamo un bias ovvero una 
+	conoscenza pregressa ed è meglio rispetto all'estrazione manuale delle feature.
+	L'inductive bias che possiamo utilizzare dipende dal tipo di modello che abbiamo.
+	\end{itemize}
 
 
+\section{Training Deep Neural Networks}
+
+Quando parliamo del training delle reti neurali dobbiamo considerare il fatto che spesso le funzioni che dobbiamo ottimizzare non sono convesse e questo vuol dire che 
+diventa fondamentale scegliere nel modo giusto i pesi iniziali per il training del nostro modello.
+L'inizializzazione dei pesi quindi è cruciale, si verificano due problemi se scegliamo male i pesi:
+\begin{itemize}
+\item Weight simmetry: Se inizializziamo tutte le matrici con lo stesso valore quello che succede è che due hidden units avranno esattamente lo stesso bias e gli stessi pesi in ingresso e in uscita.
+Questo è estremamente negativo per la NN perchè il gradiente sarà quindi sempre uguale e anche eseguendo un update step avremo lo stesso gradiente. Quindi la soluzione è eseguire una inizializzazione random dei nostri 
+pesi, ad esempio utilizzando una gaussiana.
+\item Weight scale: Supponiamo di eseguire l'inizializzazione con valori molto grandi e abbiamo tanti layer all'interno della nostra rete neurale.
+Quando calcoliamo $x_2 = Wx_1$ e abbiamo in $W$ numeri grandi, l'output $x_2$ sarà molto più grande di $x_1$.
+Se abbiamo tanti layer poi ad ogni layer l'output sarà più grande del precedente e questo è un problema perchè poi dobbiamo applicare anche delle activation function e se il valore che passiamo è alto
+il gradiente potrà tendere a 0 o diventare estremamente grande.
+\end{itemize}
+
+\subsubsection{Xavier Glorot Initialization}
+
+Dal tipo di distribuzione dei nostri pesi dipende anche il calcolo della activation function e l'esplosione/sparizione del gradiente.
+Consideriamo ad esempio la seguente figura:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{423.jpeg}
+	\end{figure}
+
+Nella figura abbiamo una nn con 4 layer (1000 units in ogni layer) e facciamo il training della nn.
+Sull'asse delle X abbiamo le iterazioni che vengono svolte e sulla Y abbiamo il valore dell'activation function.
+Possiamo vedere che per i layer 1, 2 e 3 abbiamo valori accettabili per l'activation function mentre per il quarto layer
+abbiamo un valore basso per l'activation function che quindi tende a 0.
+Questo è quello che succede se scegliamo in modo non corretto i pesi.
+
+Un altro esempio di ottimizzazione non buona la possiamo vedere in questa immagine:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{424.jpeg}
+	\end{figure}
+
+Nell'istogramma rappresentiamo la variazione dell'activation value nei vari layer, non abbiamo una normalizzazione qua e il problema principale è che 
+abbiamo fatto il learning di una funzione che nella maggior parte dei casi produce 0 e questo non è buono.
+
+La situazione migliore la otteniamo se inizializziamo i pesi usando la Xavier Glorot inizialization.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{425.jpeg}
+	\end{figure}
+Come possiamo vedere dalla foto abbiamo valori in input che sono più variabili e questo lo preferiamo.
+
+Una possibilità per la scelta dei pesi consiste nella scelta di una matrice di pesi che abbia 
+media 0 e varianza pari a:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{427.jpeg}
+	\end{figure}
 
 
+Questa è chiamata Xavier (o Glorot) inizialization
 
+\section{Regularization}
 
+Lavorando con questi modelli possiamo trovarci ad affrontare il problema 
+dell'overfitting e vorremmo avere un modo per prevenirlo.
 
+Uno dei metodi classici per prevenire l'overfitting è la Regularization, in questo metodo
+quello che si fa è aggiungere un nuovo parametro che fa da penalty all'objective function.
 
+Uno dei metodi più semplici per la regolarizzazione è l'utilizzo della norm penalty $L^2$
+chiamato anche weight decay o ridge regression o Tikhonov Regularization.
+Questa strategia di regolarizzazione porta il peso il più vicino possibile all'origine e 
+il termine che viene aggiunto all'objective function è $\Omega(\Theta) = \frac{1}{2}||w||_2?2$.
 
+Un'alternativa consiste nell'uso della $L_1$ norm penalty.
 
+Ci sono anche altri metodi che possono essere utilizzati per avere un modello che possa generalizzare meglio:
 
+\begin{itemize}
+	\item Dataset Augmentation: si tratta di uno dei metodi migliori per fare in modo 
+	che si generalizzi bene. Quello che si fa qua è andare a creare dei dati fake che vengono aggiunti al 
+	nostro dataset di partenza in modo che il training possa essere svolto su più dati.
+	Un approccio di questo genere può essere applicato con alcuni tipi di dati, ad esempio con le immagini si può 
+	perchè potremmo ruotare, ritagliare, rimpicciolire, cambiare la quantità di luce dell'immagine per avere un aumento del
+	numero di dati all'interno del training set. Chiaramente non sempre è possibile, ad esempio non possiamo usare una rotazione di 180 gradi 
+	se abbiamo una immagine con un 6 e vogliamo riconoscere il numero perchè altrimenti il numero diventa 9.
+	\item Injecting Noise: un altro metodo, simile al precedente, consiste nell'aggiungere del rumore artificiale all'interno del 
+	dataset. È un po' come aggiungere nuovi dati, la differenza è che qua sono dati rumorosi che quindi dovrebbero permettermi di generalizzare meglio.
+	Il rumore può essere aggiunto ai dati del training set o anche alle varie input unit interne ai vari layer.
+	\item Parameter Tying: qua noi vogliamo mettere dei vincoli sui parametri per cui va fatto il learning. In particolare se sappiamo che i parametri devono 
+	essere simili ai parametri di un altro modello possiamo utilizzare questo vincolo e fare in modo che i parametri che trovo siano i più simili possibile ai parametri 
+	dell'altro modello.
+	\item Dropout: si tratta di un metodo per la regolarizzazione che ci permette di fare il training di un gran numero di nn con architetture differenti in parallelo.
+	In particolare quello che si fa è non considerare alcuni degli output dei layer che abbiamo nella nn.
+	In pratica non consideriamo alcune delle hidden unit che abbiamo nella nostra rete neurale, per scegliere quali delle hidden unit non va considerata
+	assegnamo ad ogni hidden unit una probabilità di essere considerata.
+	Il dropout permette quindi di avere un processo di training più rumoroso forzando un nodo all'interno di un layer a prendersi più o meno responsabilità per quell'input.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{428.jpeg}
+		\end{figure}
+	Quello che facciamo quindi è fare un sampling tra le $2^H$ possibili architetture che possiamo avere nella nostra nn.
+\end{itemize}
 
+\subsubsection{Ottimizzazione degli iperparametri}
 
+Ci sono altri dettagli che possiamo andare a modificare per ottenere il massimo dalla nostra nn:
+\begin{itemize}
+	\item Il numero di hidden layer.
+	\item Il numero di hidden units presenti nei vari hidden layer.
+	\item Il tipo di activation function che vogliamo usare.
+	\item Il tipo di ottimizzatore (Stochastic Gradient Descent, Adam,...).
+	\item Se fare data preprocessing o data augmentation.
+	\end{itemize}
 
+Possiamo o partire con vari valori random e trovare la soluzione migliore per i parametri o in alternativa possiamo usare una ottimizzazione degli iperparametri.
+
+\section{Modern Architecture and Tricks}
 
 
 
