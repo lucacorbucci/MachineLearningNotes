@@ -4874,8 +4874,11 @@ Quali sono i punti di forza delle CNN:
 	Nell'esempio sopra abbiamo in grassetto l'utilizzo di un particolare parametro e possiamo vedere come viene usato quel parametro nei due differenti modelli.
 	La seconda nn è una classica nn e quindi l'elemento centrale della matrice dei pesi $W$ viene utilizzato solamente una volta perchè non c'è il parameter sharing.
 	Al contrario possiamo vedere che lo stesso parametro w viene usato per il calcolo di ciascun output nel momento in cui vinee utilizzata una CNN. 
-	\item Equivariance: 
+	\item Equivariance: due funzioni si dicono equivarianti se, al variare dell'input, l'output varia nello stesso modo ovvero se $f(g(x)) = g(f(x))$.
+	Nel caso delle CNN a causa del parameter sharing i layer hanno anche la proprietà di equivariance.
 \end{itemize}
+
+
 
 \subsubsection{Come è definita la CNN}
 
@@ -5008,7 +5011,25 @@ dimensione degli strides abbiamo che la dimensione dell'output varia in questo m
 
 $$D_{l+1} = \frac{D_l+P-K}{S} + 1$$
 
-\subsubsection{Non linear filter}
+\subsubsection{Pooling}
+
+Tipicamente un layer di una CNN è formato da tre stages:
+\begin{itemize}
+	\item Il primo stage il layer esegue alcune convolutions in parallelo per produrre un set di linear activations
+	\item Nel secondo stage ogni linear activation viene eseguita tramite una non linear activation function
+	Questo stage è chiamato detector.
+	\item Nel terzo stage utilizziamo una pooling function per modificare l'output del layer. La pooling function sostituisce l'output della rete in una certa posizione con
+	una media degli output che sono vicini. Ad esempio il max pooling prende il massimo nel vicinato, un'alternativa è la media nel rettangolo del vicinato. 
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{413.jpeg}
+	\end{figure}
+
+In ogni caso il pooling ci aiuta a rendere la rappresentazione praticamente inviariante rispetto ai cambiamenti dell'input, se ad esempio spostiamo l'input di poco allora
+i valori dell'output non dovrebbero cambiare. Questa capacità è particolarmente utile se siamo interessati a vedere se una feature è presente e non dove questa feature si trova.
+
 
 Se vogliamo utilizzare un filtro non lineare possiamo usare una tecnica chiamata Pooling. In questo caso abbiamo la possibilità di applicare delle
 funzioni non lineari ai dati in input. Ad esempio possiamo applicare un filtro ad una parte di immagine che mi estrae il valore massimo da quella
@@ -5029,7 +5050,85 @@ Ci sono delle guidelines per lo sviluppo di una CNN? NO
 Se consideriamo la figura sopra possiamo vedere come nella parte rossa ci siano 4 channel, in particolare vengono applicati dei filtri che mi
 permettono di estrarre le feature dall'immagine e alla fine riusciamo ad ottenere un fully connected network.
 
+\section{RNN: Recurrent Neural Networks}
 
+Si tratta di nn adatte soprattutto a processare dei dati sequenziali, abbiamo ad esempio un input del tipo $x^{(1)},.....,x^{(\tau)}$ dove ogni elemento viene identificato dal 
+tempo $t$ in cui è stato registrato.
+Le RNN funzionano indipendentemente dalla dimensione della sequenza che dobbiamo considerare e questo è possibile perchè si utilizza la condivisione dei parametri tra le varie parti del modello e questo
+mi permette quindi di applicare il modello a forme di input differente e generalizzare comunque.
+
+Il parameter sharing delle RNN è diverso da quello delle CNN, in particolare nelle CNN abbiamo che ogni elemento dell'output dipende solamente da una piccola quantità di vicini dell'input, 
+qua invece abbiamo che ogni elemento in output è funzione dell'elemento dell'output precedente e ogni elemento dell'output è prodotto con la stessa update rule usata per l'output precedente.
+Questa formulazione mi permette di condividere i parametri in un computational graph che diventa molto profondo, abbiamo cicli nel grafo che rappresentano l'influenza del valore presente di una variabile sul valore 
+futuro in uno step successivo.
+
+\subsection{Unfolding computational Graph}
+
+Abbiamo già parlato di computational graph, ora vogliamo utilizzare questo concetto anche con le RNN e per farlo dobbiamo parlare di unfolding in un computational graph che ha una struttura ripetitiva.
+Ad esempio possiamo avere una funzione definita nel modo seguente:
+$$s^{(t)} = f(s^{(t-1)}; \Theta)$$
+
+qua $s^{(t)}$ è lo stato del sistema e abbiamo che ad ogni tempo t dobbiamo considerare tutti i precedenti valori della s per calcolare lo stato attuale.
+
+Se ad esempio abbiamo $t=3$ il nostro stato viene calcolato in questo modo, questo è l'unfolding ovvero cerchiamo di rappresentare l'espressione senza che questa equazione utilizzi la ricorrenza.
+Possiamo anche rappresentare questa espressione all'interno di un grafo aciclico:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{414.jpeg}
+	\end{figure}
+
+Quando si parla di RNN lo stato che calcoliamo è nascosto quindi possiamo indicarlo con h e la funzione che mi permette di calcolare lo stato h è la seguente:
+
+$$h^{(t)} = f(h^{(t-1)}, x^{(t)}, \Theta)$$
+
+Quando vogliamo usare la RNN per predire il futuro basandoci su una serie di dati dal passato la nn utilizzerà questa $h^{t}$ per capire quali sono gli aspetti rilevanti del passato sulla sequenza in input che stiamo considerando.
+
+Un esempio di rappresentazione della RNN, qua abbiamo che per ogni nuovo input che arriva, viene utilizzato lo stato precedente per calcolare lo stato attuale:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{415.jpeg}
+\end{figure}
+
+Ogni variabile in ognuno degli step temperali viene rappresentata come un nuovo nodo all'interno del computational graph, quello che chiamiamo unfolding è il passaggio da un 
+computational graph come quello a sinistra ad uno come quello a destra in cui abbiamo delle parti che vengono ripetute di continuo.
+
+Possiamo rappresentare la $h^{(t)}$ anche in questo modo:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{416.jpeg}
+	\end{figure}
+
+Le cose positive di questo approccio sono le seguenti:
+\begin{itemize}
+	\item Indipendentemente dalla lunghezza della sequenza il modello ha sempre la stessa dimensione dell'input.
+	\item È possibile usare la stessa funzione f di transizione in ognuno degli step.
+	\end{itemize} 
+
+In questo modo riusciamo a fare il learning di un solo modello f che può lavorare sempre ed indipendentemente dalla lunghezza della sequenza.
+
+Quindi riassumendo:
+
+\begin{itemize}
+	\item I dati in input sono del tipo $x^{1},...,x^{n}$.
+	\item Gli output sono del tipo $y^{1},..., y^{n}$.
+	\item Ad ogni step viene calcolato uno stato nascosto $h^{(t)}$ predendo l'input attuale $x^{(t)}$ e $h^{(t-1)}$
+	\item L'output viene calcolato nel modo seguente:
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.7\linewidth]{417.jpeg}
+		\end{figure}
+	Qua in particolare abbiamo la $z^{(t)}$ che viene calcolata usando una trasformazione lineare con la moltiplicazione di $W$ con lo stato attuale e sommando con il bias b e con la linear trasformation dei dati in input moltiplicati per i parametri U.
+	Poi viene calcolato lo stato attuale, qua si usa la tangente perchè mi riduce l'output tra 0 e 1, è solamente un best practice ma possiamo anche scegliere altro.
+	Poi si calcola l'output $o^{(t)}$, notare bene che qua quando moltiplichiamo i parametri V per la $h^{(t)}$ abbiamo che la $h^{(t)}$ include già la $x^{(t)}$.
+	Alla fine si applica di nuovo softmax per ottenere l'output definitivo.
+	Due cose da notare, la V viene usata per l'output mentre la W viene usata per aggiornare lo stato.
+	Se abbiamo una sequenza in input molto lunga allora il gradiente esplode o scompare del tutto.
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{418.jpeg}
+	\end{figure}
+\end{itemize}
 
 
 
