@@ -169,17 +169,23 @@
 \contentsline {subsubsection}{Weight Sharing}{245}{section*.427}% 
 \contentsline {section}{\numberline {9.3}Training Deep Neural Networks}{245}{section.9.3}% 
 \contentsline {subsubsection}{Xavier Glorot Initialization}{246}{section*.428}% 
-\contentsline {chapter}{\numberline {10}Math Refresh}{248}{chapter.10}% 
-\contentsline {section}{\numberline {10.1}Loss function}{248}{section.10.1}% 
-\contentsline {section}{\numberline {10.2}0-1 Loss}{248}{section.10.2}% 
-\contentsline {section}{\numberline {10.3}Lagrange Multipliers}{250}{section.10.3}% 
-\contentsline {subsubsection}{Lagrange multiplier con vincoli $\geq $}{251}{section*.436}% 
-\contentsline {section}{\numberline {10.4}Probability Distribution}{252}{section.10.4}% 
-\contentsline {subsection}{\numberline {10.4.1}Bernoulli Distribution}{253}{subsection.10.4.1}% 
-\contentsline {subsection}{\numberline {10.4.2}Normal Distribution}{253}{subsection.10.4.2}% 
-\contentsline {subsection}{\numberline {10.4.3}Beta Distribution}{254}{subsection.10.4.3}% 
-\contentsline {subsection}{\numberline {10.4.4}Categorical Distribution}{255}{subsection.10.4.4}% 
-\contentsline {section}{\numberline {10.5}Propriet\IeC {\`a} dei logaritmi}{255}{section.10.5}% 
-\contentsline {section}{\numberline {10.6}Derivate}{255}{section.10.6}% 
-\contentsline {section}{\numberline {10.7}Integrali}{256}{section.10.7}% 
-\contentsline {section}{\numberline {10.8}Derivate di matrici e Vettori}{257}{section.10.8}% 
+\contentsline {section}{\numberline {9.4}Regularization}{248}{section.9.4}% 
+\contentsline {subsubsection}{Ottimizzazione degli iperparametri}{250}{section*.434}% 
+\contentsline {section}{\numberline {9.5}Modern Architecture and Tricks}{251}{section.9.5}% 
+\contentsline {subsection}{\numberline {9.5.1}Batch Normalization}{251}{subsection.9.5.1}% 
+\contentsline {subsection}{\numberline {9.5.2}Attention}{253}{subsection.9.5.2}% 
+\contentsline {subsection}{\numberline {9.5.3}Tips and Tricks}{255}{subsection.9.5.3}% 
+\contentsline {chapter}{\numberline {10}Math Refresh}{256}{chapter.10}% 
+\contentsline {section}{\numberline {10.1}Loss function}{256}{section.10.1}% 
+\contentsline {section}{\numberline {10.2}0-1 Loss}{256}{section.10.2}% 
+\contentsline {section}{\numberline {10.3}Lagrange Multipliers}{258}{section.10.3}% 
+\contentsline {subsubsection}{Lagrange multiplier con vincoli $\geq $}{259}{section*.442}% 
+\contentsline {section}{\numberline {10.4}Probability Distribution}{260}{section.10.4}% 
+\contentsline {subsection}{\numberline {10.4.1}Bernoulli Distribution}{261}{subsection.10.4.1}% 
+\contentsline {subsection}{\numberline {10.4.2}Normal Distribution}{261}{subsection.10.4.2}% 
+\contentsline {subsection}{\numberline {10.4.3}Beta Distribution}{262}{subsection.10.4.3}% 
+\contentsline {subsection}{\numberline {10.4.4}Categorical Distribution}{263}{subsection.10.4.4}% 
+\contentsline {section}{\numberline {10.5}Propriet\IeC {\`a} dei logaritmi}{263}{section.10.5}% 
+\contentsline {section}{\numberline {10.6}Derivate}{263}{section.10.6}% 
+\contentsline {section}{\numberline {10.7}Integrali}{264}{section.10.7}% 
+\contentsline {section}{\numberline {10.8}Derivate di matrici e Vettori}{265}{section.10.8}% 

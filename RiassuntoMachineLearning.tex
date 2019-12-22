@@ -5305,6 +5305,115 @@ Possiamo o partire con vari valori random e trovare la soluzione migliore per i 
 
 \section{Modern Architecture and Tricks}
 
+\subsection{Batch Normalization}
+
+La Batch normalization è un metodo che possiamo utilizzare per migliorare il training di
+una deep neural network. In particolare l'idea è quella di stabilizzare (quindi di normalizzare) 
+la distribuzione di ognuno dei layer della nostra rete neurale. Possiamo notare che questo metodo può
+essere utile se consideriamo l'input layer, se abbiamo una serie di parametri con valore compreso tra 0 e 1 
+e una serie di parametri con valore compreso tra 0 e 1000 vediamo che normalizzando le performance del modello migliorano.
+
+Prima di parlare di Batch Normalization vediamo un esempio:
+\begin{itemize}
+\item Abbiamo un training set di gatti neri e creiamo una nn che riconosca gatti
+\item Se consideriamo altre foto di gatti, in questo caso colorati, possiamo vedere che la distribuzione
+dei dati in input sarà in questo caso differente rispetto a quella dei gatti neri.
+\item Questo vuol dire che la nn che ho usato per il primo training set non funzionerà bene sul secondo set di dati
+\item Questa idea del cambiamento della distribuzione prende il nome di "Covariate Shift" e se abbiamo 
+un mapping $x->y$ e la distribuzione della x cambia dovremo eseguire di nuovo il training del nostro modello per 
+farlo funzionare correttamente.
+\end{itemize}
+
+Possiamo considerare questo problema del "Covariant Shift" direttamente in una neural network:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{429.jpeg}
+\end{figure}
+
+Prendiamo ad esempio il terzo layer di questa neural network, in questo layer noi vorremmo calcolare i parametri
+$w^3$ e $b^3$ utilizzando ad esempio il gradient descent. Il calcolo di questi parametri e dei parametri dei 
+layer successivi dipende dagli input che arrivano dal layer precedente. 
+Gli input che arrivano dal layer precedente però sono dipendenti dai parametri $w^1$ e $w^2$ dei layer 
+precedenti e quindi questo vuol dire che se questi parametri cambiano, anche gli output del livello precedente cambieranno.
+Questo è il problema del covariant shifting perchè se cambia la distribuzione dei dati cambiano i parametri e gli output.
+
+La Batch Normalization cerca di ridurre la variazione del valore degli output dell'hidden layer.
+Quello che possiamo notare è che anche se il valore dell'input cambia, la media e la varianza di questi dati non cambia 
+e quindi la Batch Normalization sfrutta questo per cercare di limitare la variazione del valore dell'output.
+
+L'idea del Batch normalization quindi è quella di considerare ogni minibatch e per ogni minibatch utilizziamo 
+la media e la varianza di quello specifico minibatch per modificare la distribuzione dell'activation di quel layer.
+Quindi noi abbiamo la media e la varianza di quel minibatch e calcoliamo:
+
+$$x^{'} = \frac{x-E_B[x]}{\sqrt{Var_B[x]+\epsilon}}$$
+
+Introduciamo inoltre un parametro $\gamma$ che permette di scalare e un offset $\beta$ che vengono studiati tramite backpropagation:
+$$y = \gamma x^{'} + \beta$$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{430.jpeg}
+\end{figure}
+
+Applicando la Batch Normalization accade quello che vediamo nella figura, la parte blu è quella
+in cui viene usata la Batch Normalization e vediamo che il gradiente è più basso come valore e quindi è più stabile.
+
+
+\subsection{Attention}
+
+L'attention è una tecnica che sta assumendo una importanza sempre maggiore per il language processing e nel campo del computer vision
+L'idea è che noi quando guardiamo una immagine o leggiamo una frase poniamo una maggiore attenzione ad una parte dell'immagine o a parole che sono
+più correlate tra loro.
+Dal punto di vista del deep learning l'attention può essere interpretata come un vettore di pesi dell'importanza di quell'input
+per predire o inferire un certo elemento.
+
+Per il calcolo dell'attention dobbiamo considerare le varie coppie di input elements e per ognuna calcolare
+la corrispondente $y_i$:
+
+$$y_i = \frac{1}{C(x)}\sum_{j=1}^M a(x_i,x_j)f(x_j)$$
+
+All'interno della formula abbiamo $C(X)$ che è il normalization factor, poi abbiamo la sommatoria che ci serve per fare in modo che la somma totale sia sempre
+uguale a 1. Gli elementi in input possono essere ad esempio pixel o parole.
+
+L'attention $a$ che troviamo nella formula può essere modellata in vari modi differenti:
+\begin{itemize}
+\item Dot product: abbiamo la formula $$a(x_i, x_j) = \Theta(x_i)^T\delta(x_j)$$ dove $\Theta$ e $\delta$ sono due funzioni
+e la $C(X)$ è uguale a M.
+\item Un'alternativa per modellare l'attention è usare il metodo query-key-value.
+In questo caso abbiamo la query $q(x_i) = W_qx_i$, la chiave $k(x_j)=W_kx_j$ e il valore $f(x_j)$.
+Definiamo poi la $a(x_i,x_j) = e^{q(x_i)^Tk(x_j)}$ e la $C(X)=\sum_ja(x_i, x_j)$.
+Mettendo insieme tutte le formule otteniamo la softmax:
+
+$$y_i = \sum_j softmax(q(x_i)^Tk(x_j))f(x_j)$$
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{431.jpeg}
+\end{figure}
+
+Quindi alla fine l'attention ci permette di pesare in modo differente le varie parti dell'input 
+e ci permette di usare informazioni provenienti da distanze maggiori.
+Con self attention invece indichiamo l'attention attraverso tutti gli input, incluso l'elemento $x_i$ stesso.
+
+\subsection{Tips and Tricks}
+
+Quando usiamo una RNN vogliamo fare la backpropagation sempre e attraverso tutti i nostri parametri.
+La cosa migliore da fare è usare solamente layer differenziabili.
+Quando cerchiamo di sviluppare una deep learning Architecture dovremmo seguire i seguenti passaggi:
+\begin{itemize}
+\item Il primo step consiste nel fare overfit, quindi prendiamo un singolo batch di training.
+\item Poi cerchiamo di regularizzare 
+\item Inizialmente si parte con poca complessità del modello e poi si cerca di aggiungere complessità.
+\item È una sorta di debugging, aggiungiamo di step in step della complessità e vediamo come le performance variano
+
+\end{itemize}
+
+A seconda del modello che stiamo creando e dei dati di training che abbiamo possiamo anche utilizzare l'early stopping durante il training, questo
+non serve per le CNN.
+
+
 
 
 
