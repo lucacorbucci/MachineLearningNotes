@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{hyperref}
+\usepackage{listings}
 \begin{document}
 
 
@@ -4030,8 +4031,8 @@ Deep Feedforward Network perchè le informazioni viaggiano da $x$ attraverso una
 Solitamente in questo spostamento di dati non ci sono feedback da un livello al precedente ma se esistono allora abbiamo un recurrent neural network.
 
 I Deep Feedforward Network sono chiamati network perchè sono rappresentati in un grafo in cui componiamo varie differenti funzioni, ad esempio se
-abbiamo tre funzioni $f^(1)$, $f^(2)$ e $f^(3)$ allora l'idea è di comporle in questa struttura che è il network per ottenere la funzione $f$ finale:
-$$f(x) = f^(3)(f^(2)(f^(1)(x)))$$
+abbiamo tre funzioni $f^{(1)}$, $f^{(2)}$ e $f^{(3)}$ allora l'idea è di comporle in questa struttura che è il network per ottenere la funzione $f$ finale:
+$$f(x) = f^{(3)}(f^{(2)}(f^{(1)}(x)))$$
 
 In questa funzione abbiamo:
 \begin{itemize}
@@ -4094,18 +4095,18 @@ in input in cui calcoliamo la trasformazione dei punti e poi il layer di output 
 Se vediamo il grafico qua sopra possiamo notare che il vettore di dati di input $x$ viene trasformato in un vettore di dati $h$ che sono differenti
 rispetto ai dati di input e la classificazione la facciamo su questi dati $h$ che abbiamo trasformato.
 
-Possiamo assegnare a ciascuno dei livello una funzione che deve essere calcolata:
+Possiamo assegnare a ciascuno dei livelli una funzione che deve essere calcolata:
 \begin{itemize}
 \item L'hidden layer che prende in input il vettore x deve calcolare la h, quindi calcola prima $x^TW$ dove $W$ è una matrice che indica il mapping
 tra $x$ e $h$ ma poi deve anche aggiungere un bias term e applicare una funzione $g$ che effettua l'affine transformation. Quindi complessivamente
 possiamo dire che l'hidden layer mi genera $h = f^1(x) = g(W^Tx+c)$ dove $g$ è la funzione dell'affine transformation. Solitamente l'affine
-transformation che si usa nelle nn moderne è ReLU definita con l'activation function $g(z) = max{0,z}$
+transformation che si usa nelle nn moderne è ReLU definita con l'activation function $g(z) = max\{0,z\}$
 \item Una volta che abbiamo trovato la $h$ possiamo applicare una seconda funzione che prende in input la $h$ e mi produce l'output. Questa seconda
 funzione è $f^2(h)=h^Tw$
 \end{itemize}
 
 
-Possiamo specificare il network complessivamente come: $$f(x, W, c, w, b) = w^T max{0, W^Tx+c}+b$$
+Possiamo specificare il network complessivamente come: $$f(x, W, c, w, b) = w^T max\{0, W^Tx+c\}+b$$
 
 Esempio completo:
 
@@ -4217,11 +4218,11 @@ Dove la $w_{iyz}$ viene definita in questo modo:
 \begin{itemize}
 \item Il primo parametro $i$ indica il layer che stiamo prendendo in considerazione, quindi ad esempio per i parametri $w_{100}$ e $w_{110}$ è 1
 perchè siamo nel primo layer (quello hidden)
-\item Il parametro $j$ mi indca in nodo in input, ad esempio $w_{021}$ indica che stiamo considerando il nodo 2.
+\item Il parametro $j$ mi indica in nodo in input, ad esempio $w_{021}$ indica che stiamo considerando il nodo 2.
 \item Il parametro z mi indica il nodo in output, ad esempio $w_{001}$ indica che il nodo in output è il primo. 
 \end{itemize}
 
-La funzione che rappresenta il nostor grafo quindi diventa la seguente e per il calcolo della $W$ abbiamo il solito problema di minimizzazione in cui
+La funzione che rappresenta il nostro grafo quindi diventa la seguente e per il calcolo della $W$ abbiamo il solito problema di minimizzazione in cui
 cerchiamo di massimizzare la previsione corretta dei dati.
 
 \begin{figure}[H]
@@ -4238,7 +4239,7 @@ sono i dati in input.
 \includegraphics[width=0.4\linewidth]{367.jpeg}
 \end{figure}
 
-Questa che otteniamo è una semplice Deep Feedforward Network con 1 solo hidden layer e due funzioni $\alpha_0$ e $\alpha_1$ che sopno due arbitrarie
+Questa che otteniamo è una semplice Deep Feedforward Network con 1 solo hidden layer e due funzioni $\alpha_0$ e $\alpha_1$ che sono due arbitrarie
 activation functions.
 
 
@@ -4494,7 +4495,7 @@ possibili punti e questo è il motivo per cui questo metodo non è buono. Altro 
 volte gli stessi parametri e questo è un problema perchè potremmo riutilizzarli ma in realtà li calcoliamo ogni volta di nuovo.
 \item Automatic differentiation: l'idea che abbiamo qua è quella di decomporre una computazione grande in una sequenza di computazioni più piccole.
 Questo metodo nel caso delle Neural Network prende il nome di BackPropagation e mi permette di calcolare il gradiente della cost function ($\nabla_W
-E$) in modo efficiente. L'efficienza è data dal fatto che ogni neurone qua viene visitato solamente due vole e quindi abbiamo una complessità di
+E$) in modo efficiente. L'efficienza è data dal fatto che ogni neurone qua viene visitato solamente due volte e quindi abbiamo una complessità di
 $O(W)$. Questo metodo permette di trovaare automaticamente il gradiente in una specifica posizione.
 \end{itemize}
 
@@ -4525,11 +4526,11 @@ Per calcolare le derivate parziali in modo efficiente possiamo usare la "Chain R
 \item Consideriamo un primo caso, abbiamo x, y, z $\in R$ quindi sono scalari. In particolare possiamo definire:
 $$y = f(x)$$
 $$z = g(y)$$
-$$z = g(f(x))$$ Ora cerchiamo di derivate la formula per il calcolo della derivata di z rispetto a x:
+$$z = g(f(x))$$ Ora cerchiamo di derivare la formula per il calcolo della derivata di z rispetto a x:
 
 $$\frac{dz}{dx}=\frac{d(g(f((x)))}{d(f(x))}*\frac{d(f(x))}{dx} = \frac{dz}{dx}*\frac{dy}{dx}$$ Il primo passaggio è giustificato dal fatto che qua
 abbiamo una funzione composta e quindi stiamo calcolando la derivata della funzione composta e per farlo calcoliamo la derivata di tutta la funzione
-moltiplicata però per la derivata della parte interna alla funzione. poi il passaggio successivo è solamente un passaggio di sostituzione dei vari
+moltiplicata però per la derivata della parte interna alla funzione. Poi il passaggio successivo è solamente un passaggio di sostituzione dei vari
 valori.
 \item Possiamo considerare lo stesso problema anche con dei vettori: $z \in R^m$, $y \in R^n$, $z \in R$. Definiamo la funzione $f:R^m -> R^n$, e $y =
 f(x)$ e vogliamo trovare la derivata di z rispetto alla $x_i$. Quindi una possibilità è utilizzare questa formula \begin{figure}[H]
@@ -4646,14 +4647,14 @@ Vediamo come fare tutta la procedura per il calcolo:
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{394.jpeg}
+\includegraphics[width=0.7\linewidth]{432.jpeg}
 \end{figure}
 
 \subsection{Computational Graph}
 
 Consideriamo una rete neurale con un solo layer nascosto, per fare il training del modello vogliamo utilizzare lo stochastic gradient descent, in
 particolare utilizzeremo l'algoritmo back-propagation per calcolare il gradiente del costo di ogni singolo minibatch. Ogni minibatch è rappresentato
-con una matrice $X$ e per ogni minibatch abbiamo anche un vettore di output $y$. L'hidden layer calcolerà la funzione $H = max{0, XW}$ quindi usa
+con una matrice $X$ e per ogni minibatch abbiamo anche un vettore di output $y$. L'hidden layer calcolerà la funzione $H = max\{0, XW\}$ quindi usa
 Relu, le previsioni del modello poi sono date da $HW$ dove $W$ sono i pesi che vogliamo calcolare con questo algoritmo.
 
 La cost function viene calcolata utilizzando la cross entropy considerando anche un termine di regolarizzazione.
@@ -4827,7 +4828,7 @@ Questa operazione viene chiamata convolution, la w deve essere una probability d
 viene pesato nel modo corretto e deve essere 0 se la a è maggiore di t ovvero se stiamo considerando una posizione nel futuro.
 In generale la convolution è definita per qualsiasi funzione per cui l'integrale sopra è definito.
 Il primo argomento dell'integrale è chiamato input, il secondo è chiamato kernel mentre l'output è la feature map.
-Solitamente se consideriamo problemi di machine learning sbbiamo che l'input è un array di dati e il kernel è un array di parametri 
+Solitamente se consideriamo problemi di machine learning abbiamo che l'input è un array di dati e il kernel è un array di parametri 
 che devono essere trovati dall'algoritmo di learning. Questi array multidimensionali che rappresentano i parametri e che devono essere calcolati
 durante l'esecuzione dell'algoritmo vengono chiamati tensor.
 
@@ -4998,7 +4999,7 @@ $D_{l+1} = (D_l - K) + 1$ dove $D_l$ è la dimensione dell'input.
 Un secondo approccio si chiama SAME e qua aggiungiamo del padding su ognuno dei bordi dell'immagine, l'output in questo caso avrà la stessa dimensione
 dell'input. Quindi in pratica riempiamo l'immagine e poi usiamo il filtro anche sulla parte esterna all'immagine.
 
-Un'ultima possibilità si chiama FULL e consiste nell'aggiungere un padding di dimensione pari a $K-1$ dove $K$ è la dimensione del filtro, in uquesto
+Un'ultima possibilità si chiama FULL e consiste nell'aggiungere un padding di dimensione pari a $K-1$ dove $K$ è la dimensione del filtro, in questo
 modo riusciamo ad aumentare la dimensione dell'immagine e in particolare l'output sarà più grande rispetto all'input.
 
 
@@ -5413,6 +5414,172 @@ Quando cerchiamo di sviluppare una deep learning Architecture dovremmo seguire i
 A seconda del modello che stiamo creando e dei dati di training che abbiamo possiamo anche utilizzare l'early stopping durante il training, questo
 non serve per le CNN.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter{Introduction to PyTorch}
+
+PyTorch è una libreria per il deep learning che ci permette di creare con facilità una deep neural Network
+utilizzando le API messe a disposizione.
+Vediamo in questo capitolo qualche funzione interessante di PyTorch partendo da un esempio.
+Abbiamo il dataset MNIST in cui sono presenti 60.000 immagini di cifre scritte a mano e vogliamo cercare di 
+classificare queste cifre. Ogni immagine ha una dimensione 28*28.
+La prima cosa che dobbiamo fare è scaricare il dataset e dividerlo in dev set e test set, poi possiamo 
+iniziare a lavorare sui nostri dati.
+
+Possiamo notare fin da subito che la struttura dati che viene utilizzata da PyTorch è il tensor che è una sorta
+di numpy array e mi permette di effettuare calcoli sulla GPU facilmente, inoltre mi consente anche di memorizzare
+le informazioni riguardanti il gradiente quindi possiamo poi eseguire più facilmente la backpropagation.
+
+\section{Manually Setup the Affine Layer}
+
+La prima cosa che possiamo provare a fare è creare manualmente il nostro affine layer, sin tratta di un layer che
+svolge la logistic regression e all'interno dobbiamo ogni volta aggiornare i pesi utilizzando la backpropagation.
+Quando definiamo i pesi $weight$ e il bias $bias$ dobbiamo utilizzare la funzione $requiresgrad$ (in alternativa 
+passiamo $requiresgrad = True$ quando creiamo la variabile) in modo che PyTorch sappia che questi pesi
+necessitano del gradiente e quindi la backpropagation potrà essere svolta in automatico.
+
+\begin{lstlisting}[language=Python]
+weight.requires_grad_()
+bias = torch.zeros(num_classes, requires_grad=True)
+\end{lstlisting}
+
+Quando abbiamo calcolato poi la previsione del nostro modello e la loss, potremo poi calcolare la 
+backward sulla loss utilizzando la funzione 
+
+\begin{lstlisting}[language=Python]
+loss.backward()
+\end{lstlisting}
+
+Questa funzione calcolerà $\frac{\nabla loss}{\nabla weight}$ e $\frac{\nabla loss}{\nabla bias}$ ovvero 
+calcolerà il gradiente della loss rispetto ai due parametri per cuin è necessario il gradiente (quelli che 
+abbiamo indicato usando $requiresgrad()$).
+
+\begin{lstlisting}[language=Python]
+with torch.no_grad():
+	weight -= learning_rate * weight.grad
+    bias -= learning_rate * bias.grad
+\end{lstlisting}
+
+Quando eseguiamo il passaggio di ottimizzazione e aggiorniamo i pesi dobbiamo anche chiamare la funzione 
+$torch.nograd()$, questa la utilizziamo prima dell'assegnamento delle variabili perchè le due variabili 
+sono segnate come $requiresgrad$ e quindi non possono essere aggiornate senza mettere questo wrapper.
+
+\section{Declare the layer using PyTorch}
+
+La maggior parte delle funzioni che abbiamo definito a mano sono contenute all'interno della libreria 
+$torch.nn.functional$. Ad esempio per calcolare la loss abbiamo la funzione $F.crossentropy$ che è una funzione 
+che combina la $logsoftmax$ e la $neg_loglikelihood$.
+
+All'interno della libreria $nn$ di PyTorch ci sono poi $Module$ e $Parameter$ che sono due utility che possiamo 
+usare per definire in modo più chiaro e conciso il training loop.
+Usando $nn.Module$ dobbiamo definire una classe per la logistic regression e passiamo come parametro $nn.Module$.
+All'interno della funzione $init$ della classe dobbiamo chiamare il metodo super della superclasse.
+
+Definire il nostro layer in questo modo ci serve perchè in questo modo riusciamo ad avere due funzioni utili:
+
+\begin{itemize}
+	\item $Parameters()$: possiamo usare questa funzione per l'inizializzazione dei parametri
+	\item $zero_grad()$: possiamo chiamare questa funzione prima della fase di backpropagation perchè 
+	PyTorch accumula il gradiente dei vari passi di backward e quindi quando iniziamo il training loop 
+	dobbiamo chiamare questa funzione per azzerare il gradiente.
+\end{itemize}
+
+\subsection{nn.Linear}
+
+$nn.Linear$ è un'altra soluzione per definire un affine layer invece di definirlo manualmente.
+Possiamo definire il nostro modello usando questa funzione, in particolare passiamo i parametri e poi definiamo 
+una funzione per inizializzare i pesi.
+
+Una volta che abbiamo definito il modello possiamo utilizzarlo, per questo dobbiamo chiamare
+la funzione $apply$.
+
+\subsection{Torch.optim}
+
+Questa funzione viene utilizzata per dichiarare il tipo di ottimizzazione che vogliamo utilizzare all'interno
+del nostro modello (ad esempio potremmo usare SGD).
+Quando siamo all'interno del training process poi potremo semplicemente chiamarte la funzione $optimizer.zero grad()$ e $optimizer.step()$ per eseguire velocemente la parte di ottimizzazione del processo di training.
+
+\subsection{DataLoader}
+
+Per semplificare ancora di più l'utilizzo del dataset e in particolare la fase di training loop possiamo utilizzare la funzione $DataLoader$ che mi permette di dividere in automatico il dataset nei vari mini batch.
+
+\section{Validation}
+
+Una volta che abbiamo finito di scrivere il training loop possiamo passare a scrivere il validation loop.
+Possiamo usare DataLoader per dividere meglio i dati in dati di training e dati validation.
+La cosa che dobbiamo notare è che prima di eseguire il training è necessario chiamare la funzione $model.train$ e prima di eseguire la valutazione del modello è necessario chiamare la funzione $model.eval()$.
+
+\section{Implement a CNN using PyTorch}
+
+La logistic regression non è abbastanza per lavorare su immagini perchè viene del tutto ignorata la struttura dell'immagine. QUindi una soluzione migliore la possiamo ottenere passando ad utilizzare una CNN.
+Potremmo usare una CNN con 3 convolutional layer, ogni layer viene definito utilizzando il layer Conv2d di PyTorch.
+Quando definiamo i vari layer della CNN utilizziamo la funzione $Conv2d$ e passiamo come parametri il numero di input e il numero di output.
+Ad esempio nel primo layer abbiamo in input 1 solo elemento mentre nell'ultimo layer abbiamo in output un numero di elementi pari al numero delle classi in cui classichiamo le varie immagini.
+Poi gli altri parametri che passiamo sono:
+\begin{itemize}
+	\item KernelSize: la dimensione del convolving kernel
+	\item Stride: dimensione della stride della convolution
+	\item Padding: il padding che vogliamo usare nelle immagini 
+\end{itemize}
+
+Per velocizzare il training possiamo anche utilizzare il momentum che è una tecnica che viene usata per aumentare la velocità di esecuzione del training e anche le performance del modello.
+
+Conv2d assume un input del tipo $[batchSize, numChannels, height, width]$ quindi ci serve anche una funzione che me lo genera e la utilizzeremo anche all'interno del modello.
+
+\subsection{nn.Sequential}
+
+Visto che il nostro modello è una sequenza di layer messi uno dopo l'altro possiamo definirlo utilizzando
+la classe $nn.Sequential$ di PyTorch.
+Quando definiamo il modello dobbiamo usare come primo "layer" un layer che mi permette di restituire in output l'input del Conv2d, quindi definiamo questo qua:
+
+\begin{lstlisting}[language=Python]
+class Lambda(nn.Module):
+    def __init__(self, func):
+        super().__init__()
+        self.func = func
+
+    def forward(self, x):
+        return self.func(x)
+\end{lstlisting}
+
+Poi il modello lo definiamo nel modo seguente:
+
+\begin{lstlisting}[language=Python]
+model = nn.Sequential(
+	Lambda(lambda x: x.view(-1, 1, 28, 28)),
+	nn.Conv2d(1, 16, kernel_size=3, stride=2, padding=1),
+	nn.ReLU(),
+	nn.Conv2d(16, 16, kernel_size=3, stride=2, padding=1),
+	nn.ReLU(),
+	nn.Conv2d(16, 10, kernel_size=3, stride=2, padding=1),
+	nn.ReLU(),
+	nn.AdaptiveAvgPool2d(1),
+	Lambda(lambda x: x.view(x.size(0), -1)),
+)
+\end{lstlisting}
+
+In pratica mettiamo un layer dopo l'altro.
 
 
 
