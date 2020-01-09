@@ -1,200 +1,226 @@
-\contentsline {chapter}{\numberline {1}Lezione 1 - Knn}{7}{chapter.1}% 
-\contentsline {section}{\numberline {1.1}K-nn}{9}{section.1.1}% 
-\contentsline {section}{\numberline {1.2}Formula per il K-nn}{11}{section.1.2}% 
-\contentsline {chapter}{\numberline {2}Lezione 3 - Probabilistic Inference}{12}{chapter.2}% 
-\contentsline {section}{\numberline {2.1}Refresh: }{12}{section.2.1}% 
-\contentsline {section}{\numberline {2.2}MLE: Ottimizzare la funzione Likelihood}{13}{section.2.2}% 
-\contentsline {subsection}{\numberline {2.2.1}Ottimizzare}{16}{subsection.2.2.1}% 
-\contentsline {subsection}{\numberline {2.2.2}Problemi della MLE}{18}{subsection.2.2.2}% 
-\contentsline {section}{\numberline {2.3}Bayesian Inference}{19}{section.2.3}% 
-\contentsline {subsection}{\numberline {2.3.1}Bayes Formula}{21}{subsection.2.3.1}% 
-\contentsline {subsection}{\numberline {2.3.2}Problema}{23}{subsection.2.3.2}% 
-\contentsline {section}{\numberline {2.4}MAP: Maximum A Posterior Estimation}{24}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Scegliere la prior distribution}{24}{subsection.2.4.1}% 
-\contentsline {subsection}{\numberline {2.4.2}Calcolare la MAP}{26}{subsection.2.4.2}% 
-\contentsline {section}{\numberline {2.5}Estimate the posterior distribution}{28}{section.2.5}% 
-\contentsline {subsection}{\numberline {2.5.1}Vantaggi del calcolo completo della posterior distribution}{31}{subsection.2.5.1}% 
-\contentsline {subsubsection}{Soluzioni viste fino ad ora}{31}{section*.33}% 
-\contentsline {subsubsection}{Visualizzare la posterior distribution}{32}{section*.35}% 
-\contentsline {section}{\numberline {2.6}Previsione del prossimo lancio}{33}{section.2.6}% 
-\contentsline {chapter}{\numberline {3}Linear Regression}{37}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Loss Function}{38}{section.3.1}% 
-\contentsline {section}{\numberline {3.2}NonLinear Dependency in data}{40}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Come scegliere il grado del polinomio}{44}{section.3.3}% 
-\contentsline {subsection}{\numberline {3.3.1}Regularization}{46}{subsection.3.3.1}% 
-\contentsline {section}{\numberline {3.4}Bias - Variance tradeoff}{48}{section.3.4}% 
-\contentsline {section}{\numberline {3.5}Probabilistic Linear Regression}{51}{section.3.5}% 
-\contentsline {subsection}{\numberline {3.5.1}Bayesian Network}{51}{subsection.3.5.1}% 
-\contentsline {section}{\numberline {3.6}Probabilistic Formulation of Linear Regression}{53}{section.3.6}% 
-\contentsline {subsection}{\numberline {3.6.1}Calcolare la Likelihood}{54}{subsection.3.6.1}% 
-\contentsline {subsection}{\numberline {3.6.2}Calcolare la posterior Distribution}{57}{subsection.3.6.2}% 
-\contentsline {subsubsection}{Scegliere la prior distribution}{58}{section*.88}% 
-\contentsline {subsubsection}{Massimizzare la posterior distribution: MAP}{59}{section*.90}% 
-\contentsline {subsection}{\numberline {3.6.3}Fully Bayesian Approach}{60}{subsection.3.6.3}% 
-\contentsline {subsection}{\numberline {3.6.4}Sequential Bayesian Linear Regression}{62}{subsection.3.6.4}% 
-\contentsline {subsubsection}{Un esempio di Sequential Bayesian Linear Regression}{62}{section*.100}% 
-\contentsline {subsection}{\numberline {3.6.5}Fare previsioni su nuovi dati}{65}{subsection.3.6.5}% 
-\contentsline {chapter}{\numberline {4}Linear Classification}{69}{chapter.4}% 
-\contentsline {subsection}{\numberline {4.0.1}Come capire se le previsioni sono corrette?}{70}{subsection.4.0.1}% 
-\contentsline {subsection}{\numberline {4.0.2}Usare l'iperpiano come decision boundary}{71}{subsection.4.0.2}% 
-\contentsline {subsubsection}{Multiple Classes}{73}{section*.115}% 
-\contentsline {subsection}{\numberline {4.0.3}Least Squares per la classificazione}{74}{subsection.4.0.3}% 
-\contentsline {subsection}{\numberline {4.0.4}Perceptron Algorithm}{75}{subsection.4.0.4}% 
-\contentsline {section}{\numberline {4.1}Classi non linearmente separabili}{78}{section.4.1}% 
-\contentsline {subsection}{\numberline {4.1.1}Altre limitazioni}{79}{subsection.4.1.1}% 
-\contentsline {section}{\numberline {4.2}Probabilistic Model}{80}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Generative Model}{82}{subsection.4.2.1}% 
-\contentsline {subsubsection}{Scegliere la prior distribution}{83}{section*.134}% 
-\contentsline {subsubsection}{Class conditionals}{86}{section*.142}% 
-\contentsline {subsubsection}{Posterior distribution}{88}{section*.149}% 
-\contentsline {subsection}{\numberline {4.2.2}LDA - Linear Discriminant Analysis}{89}{subsection.4.2.2}% 
-\contentsline {subsubsection}{Estensione a pi\IeC {\`u} classi}{91}{section*.159}% 
-\contentsline {subsubsection}{Softmax function}{92}{section*.163}% 
-\contentsline {subsection}{\numberline {4.2.3}Naive Bayes}{93}{subsection.4.2.3}% 
-\contentsline {section}{\numberline {4.3}Probabilistic Discriminative Models for linear classification}{95}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}Logistic Regression}{96}{subsection.4.3.1}% 
-\contentsline {subsection}{\numberline {4.3.2}Likelihood della logistic Regression}{98}{subsection.4.3.2}% 
-\contentsline {subsection}{\numberline {4.3.3}Logistic Regressione e Weights regularization}{99}{subsection.4.3.3}% 
-\contentsline {subsection}{\numberline {4.3.4}Multiclass logistic regression}{100}{subsection.4.3.4}% 
-\contentsline {subsubsection}{Loss nel caso della Multiclass logistic regression}{100}{section*.182}% 
-\contentsline {section}{\numberline {4.4}Conclusioni}{101}{section.4.4}% 
-\contentsline {chapter}{\numberline {5}Optimization}{102}{chapter.5}% 
-\contentsline {subsection}{\numberline {5.0.1}Convexity}{104}{subsection.5.0.1}% 
-\contentsline {subsubsection}{Convex Set}{104}{section*.186}% 
-\contentsline {subsubsection}{Convex Function}{104}{section*.188}% 
-\contentsline {subsection}{\numberline {5.0.2}Propriet\IeC {\`a} delle convex function}{105}{subsection.5.0.2}% 
-\contentsline {subsection}{\numberline {5.0.3}First Order Convexity Condition}{105}{subsection.5.0.3}% 
-\contentsline {subsection}{\numberline {5.0.4}Vertex}{108}{subsection.5.0.4}% 
-\contentsline {subsection}{\numberline {5.0.5}Convex hull}{108}{subsection.5.0.5}% 
-\contentsline {section}{\numberline {5.1}Maximization Problem}{109}{section.5.1}% 
-\contentsline {subsubsection}{Non con vex Set}{111}{section*.203}% 
-\contentsline {subsection}{\numberline {5.1.1}Come verificare che una funzione \IeC {\`e} convessa}{111}{subsection.5.1.1}% 
-\contentsline {subsection}{\numberline {5.1.2}Verificare che un set \IeC {\`e} convesso}{112}{subsection.5.1.2}% 
-\contentsline {subsection}{\numberline {5.1.3}Problemi semplici}{113}{subsection.5.1.3}% 
-\contentsline {subsection}{\numberline {5.1.4}Coordinate descent}{113}{subsection.5.1.4}% 
-\contentsline {section}{\numberline {5.2}Gradient Descent}{114}{section.5.2}% 
-\contentsline {subsubsection}{Convergenza}{115}{section*.211}% 
-\contentsline {section}{\numberline {5.3}Line search}{116}{section.5.3}% 
-\contentsline {subsubsection}{Note}{118}{section*.217}% 
-\contentsline {subsubsection}{Parallel implementation}{118}{section*.219}% 
-\contentsline {subsection}{\numberline {5.3.1}Un algoritmo pi\IeC {\`u} veloce}{119}{subsection.5.3.1}% 
-\contentsline {subsubsection}{Possibili soluzioni per la scelta del learning rate}{121}{section*.224}% 
-\contentsline {subsubsection}{Adam: Adaptive Moment Estimation}{122}{section*.227}% 
-\contentsline {section}{\numberline {5.4}Discussione e altri metodi}{123}{section.5.4}% 
-\contentsline {subsection}{\numberline {5.4.1}Metodo di Newton}{124}{subsection.5.4.1}% 
-\contentsline {subsubsection}{Note}{125}{section*.235}% 
-\contentsline {subsection}{\numberline {5.4.2}Stochastic Gradient Descent}{126}{subsection.5.4.2}% 
-\contentsline {subsubsection}{Funzionamento}{126}{section*.236}% 
-\contentsline {subsection}{\numberline {5.4.3}Esempio con il Perceptron}{127}{subsection.5.4.3}% 
-\contentsline {subsubsection}{Risolviamo con SGD}{129}{section*.245}% 
-\contentsline {subsection}{\numberline {5.4.4}Ottimizzazione per la logistic regression}{130}{subsection.5.4.4}% 
-\contentsline {subsection}{\numberline {5.4.5}Distributed Learning}{130}{subsection.5.4.5}% 
-\contentsline {subsubsection}{Full gradient descent}{131}{section*.250}% 
-\contentsline {subsubsection}{Stochastic Gradient Descent}{132}{section*.253}% 
-\contentsline {chapter}{\numberline {6}Constrained Optimization}{133}{chapter.6}% 
-\contentsline {subsection}{\numberline {6.0.1}Problemi standard}{134}{subsection.6.0.1}% 
-\contentsline {subsubsection}{Linear Programming}{134}{section*.258}% 
-\contentsline {subsubsection}{Quadratic Programming}{135}{section*.261}% 
-\contentsline {section}{\numberline {6.1}Usare il Gradient Descent per risolvere problemi di Constrained Optimization}{136}{section.6.1}% 
-\contentsline {subsection}{\numberline {6.1.1}Calcolare le proiezioni}{138}{subsection.6.1.1}% 
-\contentsline {subsection}{\numberline {6.1.2}Note}{139}{subsection.6.1.2}% 
-\contentsline {section}{\numberline {6.2}Lagrangian e Duality}{139}{section.6.2}% 
-\contentsline {subsection}{\numberline {6.2.1}Single Inequality Constraint}{139}{subsection.6.2.1}% 
-\contentsline {subsection}{\numberline {6.2.2}Multiple Inequality Constraints}{143}{subsection.6.2.2}% 
-\contentsline {subsubsection}{Lagrangian}{145}{section*.278}% 
-\contentsline {subsubsection}{Esempio dal video}{147}{section*.282}% 
-\contentsline {subsubsection}{Lagrange dual function}{148}{section*.285}% 
-\contentsline {subsubsection}{Duality}{149}{section*.287}% 
-\contentsline {subsubsection}{Slater's constraint qualification}{151}{section*.290}% 
-\contentsline {subsubsection}{Soluzione di un constrained optimization problem}{152}{section*.292}% 
-\contentsline {subsubsection}{KKT Condition}{153}{section*.294}% 
-\contentsline {chapter}{\numberline {7}SVM}{155}{chapter.7}% 
-\contentsline {section}{\numberline {7.1}Classificazione binaria}{155}{section.7.1}% 
-\contentsline {subsubsection}{Iperpiani}{156}{section*.297}% 
-\contentsline {section}{\numberline {7.2}SVM con Hard Margin}{158}{section.7.2}% 
-\contentsline {subsubsection}{Trovare w e b}{160}{section*.301}% 
-\contentsline {subsubsection}{Calcolo del margine come problema di ottimizzazione}{161}{section*.302}% 
-\contentsline {subsubsection}{Risolvere il problema di ottimizzazione della SVM}{162}{section*.303}% 
-\contentsline {subsubsection}{Risolvere il problema duale}{164}{section*.310}% 
-\contentsline {subsubsection}{Trovare w e b dalla soluzione duale}{165}{section*.312}% 
-\contentsline {section}{\numberline {7.3}Soft Margin Support Vector Machine}{167}{section.7.3}% 
-\contentsline {subsubsection}{Slack Variables}{168}{section*.314}% 
-\contentsline {subsubsection}{Hinge Loss}{175}{section*.326}% 
-\contentsline {section}{\numberline {7.4}Kernel}{176}{section.7.4}% 
-\contentsline {subsubsection}{Kernel Matrix (Gram Matrix)}{179}{section*.338}% 
-\contentsline {subsubsection}{Valid Kernel}{180}{section*.341}% 
-\contentsline {subsubsection}{Kernel Preserving Operations}{180}{section*.342}% 
-\contentsline {subsection}{\numberline {7.4.1}Esempi di Kernel}{180}{subsection.7.4.1}% 
-\contentsline {section}{\numberline {7.5}Classificare un nuovo punto con SVM e Kernel}{181}{section.7.5}% 
-\contentsline {subsubsection}{Nota importante}{182}{section*.347}% 
-\contentsline {section}{\numberline {7.6}SVM con classi multiple}{184}{section.7.6}% 
-\contentsline {chapter}{\numberline {8}Deep Learning}{185}{chapter.8}% 
-\contentsline {section}{\numberline {8.1}Introduzione}{185}{section.8.1}% 
-\contentsline {subsection}{\numberline {8.1.1}Perch\IeC {\`e} usiamo i Deep Feedforward Network?}{186}{subsection.8.1.1}% 
-\contentsline {section}{\numberline {8.2}Il dataset dello XOR}{187}{section.8.2}% 
-\contentsline {subsection}{\numberline {8.2.1}Esempio}{188}{subsection.8.2.1}% 
-\contentsline {subsection}{\numberline {8.2.2}Spiegazione e confronto con Logistic Regression}{191}{subsection.8.2.2}% 
-\contentsline {subsubsection}{Trovare la basis function}{194}{section*.361}% 
-\contentsline {subsubsection}{Neural Network pi\IeC {\`u} complicate}{196}{section*.364}% 
-\contentsline {subsubsection}{Activation Function}{198}{section*.367}% 
-\contentsline {subsection}{\numberline {8.2.3}Universal Approximation Theorem}{200}{subsection.8.2.3}% 
-\contentsline {subsection}{\numberline {8.2.4}Usare pi\IeC {\`u} layer}{200}{subsection.8.2.4}% 
-\contentsline {section}{\numberline {8.3}Parameter Learning}{202}{section.8.3}% 
-\contentsline {subsubsection}{Esempio 1: Binary classification}{203}{section*.371}% 
-\contentsline {subsubsection}{Example 2: Multi-class classification}{204}{section*.373}% 
-\contentsline {subsubsection}{Esempio 3: Regressione}{205}{section*.376}% 
-\contentsline {section}{\numberline {8.4}Minimizzazione della cost function}{205}{section.8.4}% 
-\contentsline {subsection}{\numberline {8.4.1}Come calcoliamo il gradiente?}{206}{subsection.8.4.1}% 
-\contentsline {subsubsection}{Jacobian}{209}{section*.380}% 
-\contentsline {subsection}{\numberline {8.4.2}Computational Graph}{211}{subsection.8.4.2}% 
-\contentsline {subsection}{\numberline {8.4.3}Example of BackPropagation}{214}{subsection.8.4.3}% 
-\contentsline {subsection}{\numberline {8.4.4}Computational Graph}{217}{subsection.8.4.4}% 
-\contentsline {subsubsection}{Ancora sulla BackPropagation}{220}{section*.396}% 
-\contentsline {section}{\numberline {8.5}Note}{221}{section.8.5}% 
-\contentsline {chapter}{\numberline {9}Deep Learning 2}{223}{chapter.9}% 
-\contentsline {subsection}{\numberline {9.0.1}Altri utilizzi per le NN}{223}{subsection.9.0.1}% 
-\contentsline {section}{\numberline {9.1}Layer e CNN}{224}{section.9.1}% 
-\contentsline {subsection}{\numberline {9.1.1}CNN}{225}{subsection.9.1.1}% 
-\contentsline {subsubsection}{Motivation}{227}{section*.403}% 
-\contentsline {subsubsection}{Come \IeC {\`e} definita la CNN}{230}{section*.406}% 
-\contentsline {subsubsection}{Un esempio}{231}{section*.409}% 
-\contentsline {subsubsection}{Come ci comportiamo sui bordi dell'immagine?}{233}{section*.411}% 
-\contentsline {subsubsection}{Strides}{234}{section*.412}% 
-\contentsline {subsubsection}{Pooling}{234}{section*.413}% 
-\contentsline {subsubsection}{Summary}{236}{section*.415}% 
-\contentsline {section}{\numberline {9.2}RNN: Recurrent Neural Networks}{236}{section.9.2}% 
-\contentsline {subsection}{\numberline {9.2.1}Unfolding computational Graph}{237}{subsection.9.2.1}% 
-\contentsline {subsection}{\numberline {9.2.2}RNN e training}{241}{subsection.9.2.2}% 
-\contentsline {subsubsection}{Training}{243}{section*.426}% 
-\contentsline {subsubsection}{Weight Sharing}{244}{section*.427}% 
-\contentsline {section}{\numberline {9.3}Training Deep Neural Networks}{244}{section.9.3}% 
-\contentsline {subsubsection}{Xavier Glorot Initialization}{245}{section*.428}% 
-\contentsline {section}{\numberline {9.4}Regularization}{247}{section.9.4}% 
-\contentsline {subsubsection}{Ottimizzazione degli iperparametri}{249}{section*.434}% 
-\contentsline {section}{\numberline {9.5}Modern Architecture and Tricks}{250}{section.9.5}% 
-\contentsline {subsection}{\numberline {9.5.1}Batch Normalization}{250}{subsection.9.5.1}% 
-\contentsline {subsection}{\numberline {9.5.2}Attention}{252}{subsection.9.5.2}% 
-\contentsline {subsection}{\numberline {9.5.3}Tips and Tricks}{254}{subsection.9.5.3}% 
-\contentsline {chapter}{\numberline {10}Introduction to PyTorch}{255}{chapter.10}% 
-\contentsline {section}{\numberline {10.1}Manually Setup the Affine Layer}{255}{section.10.1}% 
-\contentsline {section}{\numberline {10.2}Declare the layer using PyTorch}{256}{section.10.2}% 
-\contentsline {subsection}{\numberline {10.2.1}nn.Linear}{257}{subsection.10.2.1}% 
-\contentsline {subsection}{\numberline {10.2.2}Torch.optim}{257}{subsection.10.2.2}% 
-\contentsline {subsection}{\numberline {10.2.3}DataLoader}{258}{subsection.10.2.3}% 
-\contentsline {section}{\numberline {10.3}Validation}{258}{section.10.3}% 
-\contentsline {section}{\numberline {10.4}Implement a CNN using PyTorch}{258}{section.10.4}% 
-\contentsline {subsection}{\numberline {10.4.1}nn.Sequential}{259}{subsection.10.4.1}% 
-\contentsline {chapter}{\numberline {11}Math Refresh}{261}{chapter.11}% 
-\contentsline {section}{\numberline {11.1}Loss function}{261}{section.11.1}% 
-\contentsline {section}{\numberline {11.2}0-1 Loss}{261}{section.11.2}% 
-\contentsline {section}{\numberline {11.3}Lagrange Multipliers}{263}{section.11.3}% 
-\contentsline {subsubsection}{Lagrange multiplier con vincoli $\geq $}{264}{section*.442}% 
-\contentsline {section}{\numberline {11.4}Probability Distribution}{265}{section.11.4}% 
-\contentsline {subsection}{\numberline {11.4.1}Bernoulli Distribution}{266}{subsection.11.4.1}% 
-\contentsline {subsection}{\numberline {11.4.2}Normal Distribution}{266}{subsection.11.4.2}% 
-\contentsline {subsection}{\numberline {11.4.3}Beta Distribution}{267}{subsection.11.4.3}% 
-\contentsline {subsection}{\numberline {11.4.4}Categorical Distribution}{268}{subsection.11.4.4}% 
-\contentsline {section}{\numberline {11.5}Propriet\IeC {\`a} dei logaritmi}{268}{section.11.5}% 
-\contentsline {section}{\numberline {11.6}Derivate}{268}{section.11.6}% 
-\contentsline {section}{\numberline {11.7}Integrali}{269}{section.11.7}% 
-\contentsline {section}{\numberline {11.8}Derivate di matrici e Vettori}{270}{section.11.8}% 
+\contentsline {chapter}{\numberline {1}Lezione 1 - Knn}{8}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}K-nn}{10}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Formula per il K-nn}{12}{section.1.2}% 
+\contentsline {subsubsection}{Cost sensitive Learning}{13}{section*.7}% 
+\contentsline {subsubsection}{Weighted K-nn}{13}{section*.8}% 
+\contentsline {subsubsection}{K-nn per regressione}{14}{section*.11}% 
+\contentsline {subsubsection}{Come scegliere la K migliore?}{15}{section*.13}% 
+\contentsline {subsubsection}{Misure di performance}{17}{section*.16}% 
+\contentsline {subsubsection}{Distance Measure}{22}{section*.24}% 
+\contentsline {subsubsection}{Interpretazione probabilistica di K-nn}{25}{section*.30}% 
+\contentsline {subsection}{\numberline {1.2.1}Problemi noti}{27}{subsection.1.2.1}% 
+\contentsline {subsubsection}{Scaling Issue}{27}{section*.35}% 
+\contentsline {subsubsection}{Curse of Dimensionality}{28}{section*.38}% 
+\contentsline {subsection}{\numberline {1.2.2}Considerazioni su K-nn}{29}{subsection.1.2.2}% 
+\contentsline {chapter}{\numberline {2}Decision Tree}{30}{chapter.2}% 
+\contentsline {subsection}{\numberline {2.0.1}Introduzione}{30}{subsection.2.0.1}% 
+\contentsline {subsection}{\numberline {2.0.2}Inferenza con i decision tree}{34}{subsection.2.0.2}% 
+\contentsline {subsection}{\numberline {2.0.3}Creare il decision Tree ottimo}{35}{subsection.2.0.3}% 
+\contentsline {subsubsection}{Algoritmo Greedy}{36}{section*.46}% 
+\contentsline {chapter}{\numberline {3}Lezione 3 - Probabilistic Inference}{37}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Refresh: }{37}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}MLE: Ottimizzare la funzione Likelihood}{38}{section.3.2}% 
+\contentsline {subsection}{\numberline {3.2.1}Ottimizzare}{41}{subsection.3.2.1}% 
+\contentsline {subsection}{\numberline {3.2.2}Problemi della MLE}{43}{subsection.3.2.2}% 
+\contentsline {section}{\numberline {3.3}Bayesian Inference}{44}{section.3.3}% 
+\contentsline {subsection}{\numberline {3.3.1}Bayes Formula}{46}{subsection.3.3.1}% 
+\contentsline {subsection}{\numberline {3.3.2}Problema}{48}{subsection.3.3.2}% 
+\contentsline {section}{\numberline {3.4}MAP: Maximum A Posterior Estimation}{49}{section.3.4}% 
+\contentsline {subsection}{\numberline {3.4.1}Scegliere la prior distribution}{49}{subsection.3.4.1}% 
+\contentsline {subsection}{\numberline {3.4.2}Calcolare la MAP}{51}{subsection.3.4.2}% 
+\contentsline {section}{\numberline {3.5}Estimate the posterior distribution}{53}{section.3.5}% 
+\contentsline {subsection}{\numberline {3.5.1}Vantaggi del calcolo completo della posterior distribution}{56}{subsection.3.5.1}% 
+\contentsline {subsubsection}{Soluzioni viste fino ad ora}{56}{section*.73}% 
+\contentsline {subsubsection}{Visualizzare la posterior distribution}{57}{section*.75}% 
+\contentsline {section}{\numberline {3.6}Previsione del prossimo lancio}{58}{section.3.6}% 
+\contentsline {chapter}{\numberline {4}Linear Regression}{62}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Loss Function}{63}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}NonLinear Dependency in data}{65}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Come scegliere il grado del polinomio}{69}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Regularization}{71}{subsection.4.3.1}% 
+\contentsline {section}{\numberline {4.4}Bias - Variance tradeoff}{73}{section.4.4}% 
+\contentsline {section}{\numberline {4.5}Probabilistic Linear Regression}{76}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Bayesian Network}{76}{subsection.4.5.1}% 
+\contentsline {section}{\numberline {4.6}Probabilistic Formulation of Linear Regression}{78}{section.4.6}% 
+\contentsline {subsection}{\numberline {4.6.1}Calcolare la Likelihood}{79}{subsection.4.6.1}% 
+\contentsline {subsection}{\numberline {4.6.2}Calcolare la posterior Distribution}{82}{subsection.4.6.2}% 
+\contentsline {subsubsection}{Scegliere la prior distribution}{83}{section*.128}% 
+\contentsline {subsubsection}{Massimizzare la posterior distribution: MAP}{84}{section*.130}% 
+\contentsline {subsection}{\numberline {4.6.3}Fully Bayesian Approach}{85}{subsection.4.6.3}% 
+\contentsline {subsection}{\numberline {4.6.4}Sequential Bayesian Linear Regression}{87}{subsection.4.6.4}% 
+\contentsline {subsubsection}{Un esempio di Sequential Bayesian Linear Regression}{87}{section*.140}% 
+\contentsline {subsection}{\numberline {4.6.5}Fare previsioni su nuovi dati}{90}{subsection.4.6.5}% 
+\contentsline {chapter}{\numberline {5}Linear Classification}{94}{chapter.5}% 
+\contentsline {subsection}{\numberline {5.0.1}Come capire se le previsioni sono corrette?}{95}{subsection.5.0.1}% 
+\contentsline {subsection}{\numberline {5.0.2}Usare l'iperpiano come decision boundary}{96}{subsection.5.0.2}% 
+\contentsline {subsubsection}{Multiple Classes}{98}{section*.155}% 
+\contentsline {subsection}{\numberline {5.0.3}Least Squares per la classificazione}{99}{subsection.5.0.3}% 
+\contentsline {subsection}{\numberline {5.0.4}Perceptron Algorithm}{100}{subsection.5.0.4}% 
+\contentsline {section}{\numberline {5.1}Classi non linearmente separabili}{103}{section.5.1}% 
+\contentsline {subsection}{\numberline {5.1.1}Altre limitazioni}{104}{subsection.5.1.1}% 
+\contentsline {section}{\numberline {5.2}Probabilistic Model}{105}{section.5.2}% 
+\contentsline {subsection}{\numberline {5.2.1}Generative Model}{107}{subsection.5.2.1}% 
+\contentsline {subsubsection}{Scegliere la prior distribution}{108}{section*.174}% 
+\contentsline {subsubsection}{Class conditionals}{111}{section*.182}% 
+\contentsline {subsubsection}{Posterior distribution}{113}{section*.189}% 
+\contentsline {subsection}{\numberline {5.2.2}LDA - Linear Discriminant Analysis}{114}{subsection.5.2.2}% 
+\contentsline {subsubsection}{Estensione a pi\IeC {\`u} classi}{116}{section*.199}% 
+\contentsline {subsubsection}{Softmax function}{117}{section*.203}% 
+\contentsline {subsection}{\numberline {5.2.3}Naive Bayes}{118}{subsection.5.2.3}% 
+\contentsline {section}{\numberline {5.3}Probabilistic Discriminative Models for linear classification}{120}{section.5.3}% 
+\contentsline {subsection}{\numberline {5.3.1}Logistic Regression}{121}{subsection.5.3.1}% 
+\contentsline {subsection}{\numberline {5.3.2}Likelihood della logistic Regression}{123}{subsection.5.3.2}% 
+\contentsline {subsection}{\numberline {5.3.3}Logistic Regressione e Weights regularization}{124}{subsection.5.3.3}% 
+\contentsline {subsection}{\numberline {5.3.4}Multiclass logistic regression}{125}{subsection.5.3.4}% 
+\contentsline {subsubsection}{Loss nel caso della Multiclass logistic regression}{125}{section*.222}% 
+\contentsline {section}{\numberline {5.4}Conclusioni}{126}{section.5.4}% 
+\contentsline {chapter}{\numberline {6}Optimization}{127}{chapter.6}% 
+\contentsline {subsection}{\numberline {6.0.1}Convexity}{129}{subsection.6.0.1}% 
+\contentsline {subsubsection}{Convex Set}{129}{section*.226}% 
+\contentsline {subsubsection}{Convex Function}{129}{section*.228}% 
+\contentsline {subsection}{\numberline {6.0.2}Propriet\IeC {\`a} delle convex function}{130}{subsection.6.0.2}% 
+\contentsline {subsection}{\numberline {6.0.3}First Order Convexity Condition}{130}{subsection.6.0.3}% 
+\contentsline {subsection}{\numberline {6.0.4}Vertex}{133}{subsection.6.0.4}% 
+\contentsline {subsection}{\numberline {6.0.5}Convex hull}{133}{subsection.6.0.5}% 
+\contentsline {section}{\numberline {6.1}Maximization Problem}{134}{section.6.1}% 
+\contentsline {subsubsection}{Non con vex Set}{136}{section*.243}% 
+\contentsline {subsection}{\numberline {6.1.1}Come verificare che una funzione \IeC {\`e} convessa}{136}{subsection.6.1.1}% 
+\contentsline {subsection}{\numberline {6.1.2}Verificare che un set \IeC {\`e} convesso}{137}{subsection.6.1.2}% 
+\contentsline {subsection}{\numberline {6.1.3}Problemi semplici}{138}{subsection.6.1.3}% 
+\contentsline {subsection}{\numberline {6.1.4}Coordinate descent}{138}{subsection.6.1.4}% 
+\contentsline {section}{\numberline {6.2}Gradient Descent}{139}{section.6.2}% 
+\contentsline {subsubsection}{Convergenza}{140}{section*.251}% 
+\contentsline {section}{\numberline {6.3}Line search}{141}{section.6.3}% 
+\contentsline {subsubsection}{Note}{143}{section*.257}% 
+\contentsline {subsubsection}{Parallel implementation}{143}{section*.259}% 
+\contentsline {subsection}{\numberline {6.3.1}Un algoritmo pi\IeC {\`u} veloce}{144}{subsection.6.3.1}% 
+\contentsline {subsubsection}{Possibili soluzioni per la scelta del learning rate}{146}{section*.264}% 
+\contentsline {subsubsection}{Adam: Adaptive Moment Estimation}{147}{section*.267}% 
+\contentsline {section}{\numberline {6.4}Discussione e altri metodi}{148}{section.6.4}% 
+\contentsline {subsection}{\numberline {6.4.1}Metodo di Newton}{149}{subsection.6.4.1}% 
+\contentsline {subsubsection}{Note}{150}{section*.275}% 
+\contentsline {subsection}{\numberline {6.4.2}Stochastic Gradient Descent}{151}{subsection.6.4.2}% 
+\contentsline {subsubsection}{Funzionamento}{151}{section*.276}% 
+\contentsline {subsection}{\numberline {6.4.3}Esempio con il Perceptron}{152}{subsection.6.4.3}% 
+\contentsline {subsubsection}{Risolviamo con SGD}{154}{section*.285}% 
+\contentsline {subsection}{\numberline {6.4.4}Ottimizzazione per la logistic regression}{155}{subsection.6.4.4}% 
+\contentsline {subsection}{\numberline {6.4.5}Distributed Learning}{155}{subsection.6.4.5}% 
+\contentsline {subsubsection}{Full gradient descent}{156}{section*.290}% 
+\contentsline {subsubsection}{Stochastic Gradient Descent}{157}{section*.293}% 
+\contentsline {chapter}{\numberline {7}Constrained Optimization}{158}{chapter.7}% 
+\contentsline {subsection}{\numberline {7.0.1}Problemi standard}{159}{subsection.7.0.1}% 
+\contentsline {subsubsection}{Linear Programming}{159}{section*.298}% 
+\contentsline {subsubsection}{Quadratic Programming}{160}{section*.301}% 
+\contentsline {section}{\numberline {7.1}Usare il Gradient Descent per risolvere problemi di Constrained Optimization}{161}{section.7.1}% 
+\contentsline {subsection}{\numberline {7.1.1}Calcolare le proiezioni}{163}{subsection.7.1.1}% 
+\contentsline {subsection}{\numberline {7.1.2}Note}{164}{subsection.7.1.2}% 
+\contentsline {section}{\numberline {7.2}Lagrangian e Duality}{164}{section.7.2}% 
+\contentsline {subsection}{\numberline {7.2.1}Single Inequality Constraint}{164}{subsection.7.2.1}% 
+\contentsline {subsection}{\numberline {7.2.2}Multiple Inequality Constraints}{168}{subsection.7.2.2}% 
+\contentsline {subsubsection}{Lagrangian}{170}{section*.318}% 
+\contentsline {subsubsection}{Esempio dal video}{172}{section*.322}% 
+\contentsline {subsubsection}{Lagrange dual function}{173}{section*.325}% 
+\contentsline {subsubsection}{Duality}{174}{section*.327}% 
+\contentsline {subsubsection}{Slater's constraint qualification}{176}{section*.330}% 
+\contentsline {subsubsection}{Soluzione di un constrained optimization problem}{177}{section*.332}% 
+\contentsline {subsubsection}{KKT Condition}{178}{section*.334}% 
+\contentsline {chapter}{\numberline {8}SVM}{180}{chapter.8}% 
+\contentsline {section}{\numberline {8.1}Classificazione binaria}{180}{section.8.1}% 
+\contentsline {subsubsection}{Iperpiani}{181}{section*.337}% 
+\contentsline {section}{\numberline {8.2}SVM con Hard Margin}{183}{section.8.2}% 
+\contentsline {subsubsection}{Trovare w e b}{185}{section*.341}% 
+\contentsline {subsubsection}{Calcolo del margine come problema di ottimizzazione}{186}{section*.342}% 
+\contentsline {subsubsection}{Risolvere il problema di ottimizzazione della SVM}{187}{section*.343}% 
+\contentsline {subsubsection}{Risolvere il problema duale}{189}{section*.350}% 
+\contentsline {subsubsection}{Trovare w e b dalla soluzione duale}{190}{section*.352}% 
+\contentsline {section}{\numberline {8.3}Soft Margin Support Vector Machine}{192}{section.8.3}% 
+\contentsline {subsubsection}{Slack Variables}{193}{section*.354}% 
+\contentsline {subsubsection}{Hinge Loss}{200}{section*.366}% 
+\contentsline {section}{\numberline {8.4}Kernel}{201}{section.8.4}% 
+\contentsline {subsubsection}{Kernel Matrix (Gram Matrix)}{204}{section*.378}% 
+\contentsline {subsubsection}{Valid Kernel}{205}{section*.381}% 
+\contentsline {subsubsection}{Kernel Preserving Operations}{205}{section*.382}% 
+\contentsline {subsection}{\numberline {8.4.1}Esempi di Kernel}{205}{subsection.8.4.1}% 
+\contentsline {section}{\numberline {8.5}Classificare un nuovo punto con SVM e Kernel}{206}{section.8.5}% 
+\contentsline {subsubsection}{Nota importante}{207}{section*.387}% 
+\contentsline {section}{\numberline {8.6}SVM con classi multiple}{209}{section.8.6}% 
+\contentsline {chapter}{\numberline {9}Deep Learning}{210}{chapter.9}% 
+\contentsline {section}{\numberline {9.1}Introduzione}{210}{section.9.1}% 
+\contentsline {subsection}{\numberline {9.1.1}Perch\IeC {\`e} usiamo i Deep Feedforward Network?}{211}{subsection.9.1.1}% 
+\contentsline {section}{\numberline {9.2}Il dataset dello XOR}{212}{section.9.2}% 
+\contentsline {subsection}{\numberline {9.2.1}Esempio}{213}{subsection.9.2.1}% 
+\contentsline {subsection}{\numberline {9.2.2}Spiegazione e confronto con Logistic Regression}{216}{subsection.9.2.2}% 
+\contentsline {subsubsection}{Trovare la basis function}{219}{section*.401}% 
+\contentsline {subsubsection}{Neural Network pi\IeC {\`u} complicate}{221}{section*.404}% 
+\contentsline {subsubsection}{Activation Function}{223}{section*.407}% 
+\contentsline {subsection}{\numberline {9.2.3}Universal Approximation Theorem}{225}{subsection.9.2.3}% 
+\contentsline {subsection}{\numberline {9.2.4}Usare pi\IeC {\`u} layer}{225}{subsection.9.2.4}% 
+\contentsline {section}{\numberline {9.3}Parameter Learning}{227}{section.9.3}% 
+\contentsline {subsubsection}{Esempio 1: Binary classification}{228}{section*.411}% 
+\contentsline {subsubsection}{Example 2: Multi-class classification}{229}{section*.413}% 
+\contentsline {subsubsection}{Esempio 3: Regressione}{230}{section*.416}% 
+\contentsline {section}{\numberline {9.4}Minimizzazione della cost function}{230}{section.9.4}% 
+\contentsline {subsection}{\numberline {9.4.1}Come calcoliamo il gradiente?}{231}{subsection.9.4.1}% 
+\contentsline {subsubsection}{Jacobian}{234}{section*.420}% 
+\contentsline {subsection}{\numberline {9.4.2}Computational Graph}{236}{subsection.9.4.2}% 
+\contentsline {subsection}{\numberline {9.4.3}Example of BackPropagation}{239}{subsection.9.4.3}% 
+\contentsline {subsection}{\numberline {9.4.4}Computational Graph}{242}{subsection.9.4.4}% 
+\contentsline {subsubsection}{Ancora sulla BackPropagation}{245}{section*.436}% 
+\contentsline {section}{\numberline {9.5}Note}{246}{section.9.5}% 
+\contentsline {chapter}{\numberline {10}Deep Learning 2}{248}{chapter.10}% 
+\contentsline {subsection}{\numberline {10.0.1}Altri utilizzi per le NN}{248}{subsection.10.0.1}% 
+\contentsline {section}{\numberline {10.1}Layer e CNN}{249}{section.10.1}% 
+\contentsline {subsection}{\numberline {10.1.1}CNN}{250}{subsection.10.1.1}% 
+\contentsline {subsubsection}{Motivation}{252}{section*.443}% 
+\contentsline {subsubsection}{Come \IeC {\`e} definita la CNN}{255}{section*.446}% 
+\contentsline {subsubsection}{Un esempio}{256}{section*.449}% 
+\contentsline {subsubsection}{Come ci comportiamo sui bordi dell'immagine?}{258}{section*.451}% 
+\contentsline {subsubsection}{Strides}{259}{section*.452}% 
+\contentsline {subsubsection}{Pooling}{259}{section*.453}% 
+\contentsline {subsubsection}{Summary}{261}{section*.455}% 
+\contentsline {section}{\numberline {10.2}RNN: Recurrent Neural Networks}{261}{section.10.2}% 
+\contentsline {subsection}{\numberline {10.2.1}Unfolding computational Graph}{262}{subsection.10.2.1}% 
+\contentsline {subsection}{\numberline {10.2.2}RNN e training}{266}{subsection.10.2.2}% 
+\contentsline {subsubsection}{Training}{268}{section*.466}% 
+\contentsline {subsubsection}{Weight Sharing}{269}{section*.467}% 
+\contentsline {section}{\numberline {10.3}Training Deep Neural Networks}{269}{section.10.3}% 
+\contentsline {subsubsection}{Xavier Glorot Initialization}{270}{section*.468}% 
+\contentsline {section}{\numberline {10.4}Regularization}{272}{section.10.4}% 
+\contentsline {subsubsection}{Ottimizzazione degli iperparametri}{274}{section*.474}% 
+\contentsline {section}{\numberline {10.5}Modern Architecture and Tricks}{275}{section.10.5}% 
+\contentsline {subsection}{\numberline {10.5.1}Batch Normalization}{275}{subsection.10.5.1}% 
+\contentsline {subsection}{\numberline {10.5.2}Attention}{277}{subsection.10.5.2}% 
+\contentsline {subsection}{\numberline {10.5.3}Tips and Tricks}{279}{subsection.10.5.3}% 
+\contentsline {chapter}{\numberline {11}Dimension Reduction}{280}{chapter.11}% 
+\contentsline {subsection}{\numberline {11.0.1}Unsupervised Learning}{280}{subsection.11.0.1}% 
+\contentsline {subsection}{\numberline {11.0.2}Dimensionality Reduction}{281}{subsection.11.0.2}% 
+\contentsline {subsubsection}{Feature selection}{283}{section*.480}% 
+\contentsline {subsubsection}{Linear Transformation}{284}{section*.484}% 
+\contentsline {section}{\numberline {11.1}Principal Component Analysis}{288}{section.11.1}% 
+\contentsline {subsubsection}{Come troviamo la trasformazione}{289}{section*.488}% 
+\contentsline {subsubsection}{Dimensionality Reduction with PCA}{293}{section*.495}% 
+\contentsline {subsubsection}{Complessit\IeC {\`a}}{295}{section*.497}% 
+\contentsline {subsubsection}{Come si calcolano gli autovettori}{295}{section*.498}% 
+\contentsline {chapter}{\numberline {12}Introduction to PyTorch}{298}{chapter.12}% 
+\contentsline {section}{\numberline {12.1}Manually Setup the Affine Layer}{298}{section.12.1}% 
+\contentsline {section}{\numberline {12.2}Declare the layer using PyTorch}{299}{section.12.2}% 
+\contentsline {subsection}{\numberline {12.2.1}nn.Linear}{300}{subsection.12.2.1}% 
+\contentsline {subsection}{\numberline {12.2.2}Torch.optim}{300}{subsection.12.2.2}% 
+\contentsline {subsection}{\numberline {12.2.3}DataLoader}{301}{subsection.12.2.3}% 
+\contentsline {section}{\numberline {12.3}Validation}{301}{section.12.3}% 
+\contentsline {section}{\numberline {12.4}Implement a CNN using PyTorch}{301}{section.12.4}% 
+\contentsline {subsection}{\numberline {12.4.1}nn.Sequential}{302}{subsection.12.4.1}% 
+\contentsline {chapter}{\numberline {13}Math Refresh}{304}{chapter.13}% 
+\contentsline {section}{\numberline {13.1}Loss function}{304}{section.13.1}% 
+\contentsline {section}{\numberline {13.2}0-1 Loss}{304}{section.13.2}% 
+\contentsline {section}{\numberline {13.3}Lagrange Multipliers}{306}{section.13.3}% 
+\contentsline {subsubsection}{Lagrange multiplier con vincoli $\geq $}{307}{section*.503}% 
+\contentsline {section}{\numberline {13.4}Probability Distribution}{308}{section.13.4}% 
+\contentsline {subsection}{\numberline {13.4.1}Bernoulli Distribution}{309}{subsection.13.4.1}% 
+\contentsline {subsection}{\numberline {13.4.2}Normal Distribution}{309}{subsection.13.4.2}% 
+\contentsline {subsection}{\numberline {13.4.3}Beta Distribution}{310}{subsection.13.4.3}% 
+\contentsline {subsection}{\numberline {13.4.4}Categorical Distribution}{311}{subsection.13.4.4}% 
+\contentsline {section}{\numberline {13.5}Propriet\IeC {\`a} dei logaritmi}{311}{section.13.5}% 
+\contentsline {section}{\numberline {13.6}Derivate}{311}{section.13.6}% 
+\contentsline {section}{\numberline {13.7}Integrali}{312}{section.13.7}% 
+\contentsline {section}{\numberline {13.8}Derivate di matrici e Vettori}{313}{section.13.8}% 

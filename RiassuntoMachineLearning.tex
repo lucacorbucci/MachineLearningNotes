@@ -40,7 +40,8 @@ crescono i dati che abbiamo a disposizione. Un modello di questo genere fa assun
 disposizione. Un modello di questo genere è più flessibile ma possono essere complicati dal punto di vista computazionale.
 \end{itemize}
 
-Un modello non parametrico molto famoso è il K-nn. Quando dobbiamo creare un certo modello di machine learning la prima cosa che dobbiamo fare è
+Un modello non parametrico molto famoso è il K-nn. 
+Quando dobbiamo creare un certo modello di machine learning la prima cosa che dobbiamo fare è
 partire dai dati cercando di studiare la distribuzione dei dati che abbiamo a disposizione. È importante anche capire in che modo le feature che
 vogliamo considerare mi possono differenziare i vari dati. Ad esempio possiamo avere uno scatter plot come questo:
 
@@ -67,10 +68,13 @@ classificazione è chiamato K-nn.
 
 K-nn è un algoritmo di supervised machine learning perchè i dati che abbiamo per fare il training del modello sono già classificati. In questo
 algoritmo abbiamo dei dati di training $D = {(x_i, y_i)}^N_{i=1}$ dove xi è l’insieme delle feature che stiamo considerando e yi è la classificazione
-che abbiamo per quella specifica istanza. Per classificare una nuova osservazione svolgiamo i seguenti passaggi: Definiamo una misura per il calcolo
-della distanza, una possibile è la distanza Euclidea; Prendiamo l’instanza da classificare e calcoliamo la distanza di questa istanza da tutti gli
-altri dati di training [NON SOLO K PUNTI, DEVO CALCOLARE LA DISTANZA DA TUTTI I PUNTI]; Poi una volta calcolata la distanza da tutti i punti prendo i
-K che sono più vicini a me e classifico la nuova istanza in base ai miei K vicini.
+che abbiamo per quella specifica istanza. 
+Per classificare una nuova osservazione svolgiamo i seguenti passaggi: 
+\begin{itemize}
+	\item Definiamo una misura per il calcolo della distanza, una possibile è la distanza Euclidea; 
+	\item Prendiamo l’instanza da classificare e calcoliamo la distanza di questa istanza da tutti gli altri dati di training [NON SOLO K PUNTI, DEVO CALCOLARE LA DISTANZA DA TUTTI I PUNTI]; 	
+	\item Poi una volta calcolata la distanza da tutti i punti prendo i K che sono più vicini a me e classifico la nuova istanza in base ai miei K vicini.
+\end{itemize} 
 
 K-nn è un algoritmo che funziona sia nel caso di classificazione sia nel caso di regressione.
 
@@ -106,8 +110,445 @@ Quindi, in generale la formula per il K-nn è la seguente:
 \includegraphics[width=0.7\linewidth]{59.jpeg}
 \end{figure}
 
+Dobbiamo calcolare la probabilità che una nuova istanza x appartenga ad una classe c dato x e il parametro K. Consideriamo i K vicini di x $N_k(x)$
+e per ognuno di essi contiamo quanti appartengono alla classe c. 
+$$I(y_i = C)$$ 
+vale 1 se yi = c altrimenti vale 0.
+
+Una volta ottenuta la somma dividiamo per k perchè vogliamo normalizzare per ottenere una distribuzione della probabilità. In questo modo dividendo per k, la somma delle varie probabilità sarà sempre 1.
+Una volta calcolate tutte le probabilità cerchiamo quella che ha probabilità maggiore e quella mi indicherà l’appartenenza della nuova istanza alla classe c.
+In pratica per classificare, se non ci serve esplicitamente la probabilità, possiamo evitare di dividere per k e prendere semplicemente la classe che compare di più nei K vicini dell’istanza che dobbiamo classificare, ovvero assegnamo alla nuova istanza la moda dei label dei vicini.
+
+\subsubsection{Cost sensitive Learning}
+Possiamo trovarci in una situazione in cui abbiamo due possibili classi che però sono sbilanciate, nel senso che l’$80\%$ dei dati appartengono alla classe BLU e il $20\%$ alla classe VERDE.
+In questo caso possiamo calcolare di quanto sono sbilanciati i due set di dati, ad esempio in questo caso un set è 4 volte l’altro e poi quando dobbiamo classificare usiamo il cost sensitive learning nel senso che se ho K = 10 e ho che 6 vicini sono BLU e 4 sono VERDI, moltiplico il numero dei verdi per 4 e alla fine classifico il punto come VERDE.
+\subsubsection{Weighted K-nn} 
+Quando usiamo K-nn potremmo renderci conto che stiamo considerando K vicini di cui, alcuni poco distanti da noi, altri molto distanti da noi.
+In generale possiamo dire che i vicini meno distanti da noi dovrebbero avere un peso più grande nel momento in cui classifichiamo la nuova istanza, quindi nella formula precedente possiamo aggiungere una nuova componente che faccia in modo che non conti solamente il numero dei vicini classificati in una certa classe ma anche la distanza di quei vicini dalla nuova istanza da classificare.
+La formula quindi diventa
 
 
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{451.jpeg}
+	\end{figure}
+
+	La I(y = c) viene moltiplicata per l’inverso della distanza tra l’istanza x da classificare e l’istanza xi che è uno dei nostri K vicini che consideriamo.
+	In questo modo se la distanza tra i due punti è piccola avremo un peso molto grande da moltiplicare per I(y=c), se invece la distanza è grande abbiamo un peso piccolo.
+	Quindi questo fattore che usiamo per moltiplicare è inversamente proporzionale alla distanza.
+	Tutta la sommatoria poi va moltiplicata per 1/Z dove in questo caso Z è la sommatoria dell’inverso della distanza tra l’instanza da classificare e le altre nel vicinato:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{452.jpeg}
+	\end{figure}
+
+	Anche in questo caso questa moltiplicazione ci serve per ottenere una probabilità, la somma di tutte le probabilità per le varie classi sarà 1.
+
+\subsubsection{K-nn per regressione}
+
+Come visto si può usare K-nn anche per la regressione
+
+In questo caso la formula per il K-nn diventa la seguente:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{453.jpeg}
+	\end{figure}
+
+	Al posto della I(yi=c) abbiamo semplicemente yi dove con yi intendiamo il valore che è assunto dai vari punti che sono nel vicinato dell’istanza che vogliamo classificare.
+	Anche in questo caso stiamo considerando il caso pesato e quindi moltiplichiamo ogni volta per l’inverso della distanza e alla fine, ottenuta la somma completa, dividiamo per la somma di tutte le distanze (della nuova istanza dai K vicini).
+	Quindi alla fine abbiamo che la nuova istanza verrà classificata come la media dei valori dei K vicini moltiplicata per l’inverso della distanza dell’istanza dai vicini. 
+
+\subsubsection{Come scegliere la K migliore?} 
+
+Dato che il nostro obiettivo è generalizzare, dobbiamo cercare la K che ci permette di avere una migliore generalizzazione sui dati che non ho ancora visto.
+La K in questo caso è chiamata Iper-parametro.
+Dato che non abbiamo a disposizione i dati futuri che vorrò usare con il mio modello, posso dividere i dati che ho in due parti principali:
+
+\begin{itemize}
+	\item Learning Set, a sua volta diviso in:
+		\begin{itemize}
+		\item Training Set: generalmente rappresenta l’$80\%$ dei dati, abbiamo differenti iper parametri K e creiamo vari modelli che si differenziano tra loro per la K. Quindi facciamo il training del modello con varie K.
+		\item Validation Set: In genere è il $10\%$ dei dati. Ora che abbiamo vari modelli, li testiamo con i dati che sono presenti all’interno del validation set e scegliamo il miglior modello (in base a metriche come l’accuracy) ovvero quello con la K che generalizza meglio.
+		Come scelgo la K?
+		
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{454.jpeg}
+	\end{figure}
+	Nel momento in cui ho provato i vari modelli con i dati del validation set posso fare un grafico in cui mostro come varia l’accuracy in base alla variazione della K e poi scelgo la K che ha la migliore accuracy.
+
+		\end{itemize}
+	\item Test Set: questo in genere è il $10\%$ dei dati. Ora che abbiamo scelto quello che per noi è il modello migliore possiamo prendere il test set e vedere come generalizza il nostro modello con il test set. 
+	Questo è un test finale che faccio per capire come si comporta il modello con dati nuovi, È FONDAMENTALE CHE I TEST CHE FACCIO CON IL MIO MODELLO USANDO IL TEST SET NON VADANO A MODIFICARE GLI IPER PARAMETRI. In pratica non possiamo utilizzare il test set durante la learning phase e non posso scegliere i parametri in base ai dati di test perchè sarebbe come barare.
+	Se le performance sul test set non sono buone ci sono varie situazioni possibili:
+	\begin{itemize}
+		\item Se le performance sul test set non sono buone, in teoria dovrei osservare performance non buone anche sul validation set perchè la distribuzione dei dati nei due set è simile.
+		\item Se invece non sono buone solamente nel test set vuol dire che magari la distribuzione dei dati è molto diversa tra test set e validation set e per questo problema al momento non c’è soluzione.
+		\item È poco comune ottenere un risultato non buono a causa dell’overfitting su validation set e su training set perchè è poco comune che allo stesso tempo si ottenga overfitting sia sul training set che sul validation set, di solito si ottiene solamente su uno dei due set ma poi non arrivo al test sul test set perchè devo cambio i parametri per evitare l’overfitting.
+		\end{itemize} 
+	\end{itemize}
+
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{455.jpeg}
+		\end{figure}
+
+Come si fa a dividere i dati:
+\begin{itemize}
+	\item Random Sampling: divisione random in set di dati, il problema in questo caso è che potrei fare un set di dati dove ci sono solamente dati di una certa classe.
+	\item Stratified Sampling: divisione che cerca di preservare la distribuzione delle classi all’interno dei set di dati che vengono creati.
+		Se facciamo la test validation è molto meglio usare lo stratified sampling.
+	\end{itemize}
+		
+	\subsubsection{Misure di performance}
+
+	Per capire le performance di un algoritmo di classificazione (binario) possiamo creare la confusion table (confusion matrix) ovvero una tabella in cui illustriamo le differenti combinazioni di risultati che possiamo ottenere.
+	Nella tabella abbiamo che i risultati TP (True positive) e TN (True negative) sono quelli positivi perchè sono delle istanze che sono state correttamente riconosciute come positive e come negative.
+	Al contrario invece i casi False negative e False positive sono negativi perchè sono quelle istanze che sono state riconosciute come negative ma in realtà sono positive e quelle riconosciute come positive quando in realtà sono negative. 
+	
+
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{456.jpeg}
+		\end{figure}
+
+Partendo dalla confusion table poi possiamo definire varie possibili metriche che possono essere utilizzate per comprendere le performance di un certo modello:
+
+\begin{itemize}
+	\item L’accuracy è definita in questo modo: 
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{457.jpeg}
+	\end{figure}
+	In questo caso noi stiamo considerando le istanze che sono state classificate correttamente (TP+TN) rispetto a tutte le istanze che sono state classificate.
+	Per andare bene dovremmo avere una accuracy alta ed è compresa tra 0 e 1.
+	\item Precision: è calcolata come:
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{458.jpeg}
+	\end{figure} 
+	La precision mi indica quanti sono i risultati rilevanti per il mio modello.
+	Questo vuol dire che noi stiamo prendendo in considerazione i casi che sono stati classificati come positivi e che lo sono realmente (TP) rispetto a quelli che sono stati classificati positivi dal mio algoritmo (considerando quindi anche i falsi positivi). Nel caso di una classificazione di una malattia, consideriamo quelli che ho classificato malati e lo sono realmente diviso quelli che ho classificato malati e lo sono realmente più quelli classificati malati che però stanno bene.
+	Se io qua classifico tutti come positivi ho una precision che è pessima perchè avrò un’alta percentuale di falsi positivi.
+	\item Recall: è definita in questo modo:
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{459.jpeg}
+	\end{figure}
+	Qua la recall mi indica quanti sono i risultati che sono rilevanti e che sono stati classificati correttamente.
+	Qua stiamo considerando i true positivi rispetto a quelli che dovrebbero essere classificati come positivi. Quindi, se il mio modello sbaglia a classificare e mi segna come negativi tanti che in realtà sarebbero positivi la recall si abbassa. Se segno tutti come negativi ad esempio avrò una recall pessima perchè FN sale molto.
+\end{itemize}
+
+
+In generale si può dire che quando la recall sale, la precision scende, l’esempio più classico è classificare tutti come positivi, in questo modo la recall sarà massima perchè abbiamo che i Falsi negativi sono 0. Allo stesso tempo però la precision sarà minima perchè abbiamo tantissimi falsi positivi.
+Quindi l’idea è che dobbiamo scegliere un modello che considera un trade off tra precision e recall e per fare questa scelta possiamo utilizzare ad esempio un grafico in cui mettiamo sulla X la precisione e sulla Y la recall. Creando un grafico per ogni differente approccio per la classificazione possiamo fare un confronto tra i vari algoritmi e scegliere il migliore.
+
+Consideriamo la curva che si forma al variare di K (nel caso di K-nn) e preferiamo il modello che ha l’area più grande sotto la curva.
+Il caso ottimo è quello in cui  abbiamo sia la precision sia la recall fissate a 1, perchè l’area sotto la curva è massima.
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{460.jpeg}
+	\end{figure}
+
+	Se vogliamo una metrica che mi considera allo stesso tempo sia la precision sia la recall cercando di massimizzarle allora devo utilizzare l’F1 Score (che in pratica fa la media armonica). L’F1 Score è definito come:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{461.jpeg}
+	\end{figure}
+
+	Altre possibili metriche sono le seguenti:
+	
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{462.jpeg}
+		\end{figure}
+
+		C’è da fare poi una considerazione importante su queste metriche perchè non sempre possiamo prendere il risultato che ci offrono senza ragionarci.
+In particolare quando abbiamo una situazione con quantità di dati molto sbilanciate, ad esempio il 90% dei dati sono BLU e il 10% VERDI, ci troviamo con un classificatore che potrebbe classificare tutto come BLU e otterremmo comunque una classificazione corretta nel 90% dei casi.
+Quindi è importante che prima di iniziare a fare classificazioni si studino i dati che si hanno a disposizione in modo da capire se sono bilanciati o meno.
+
+	
+	\subsubsection{Distance Measure} 
+
+	Per calcolare la distanza tra le istanze quando usiamo K-nn ci sono varie possibili metriche:
+
+	\begin{itemize}
+		\item Distanza euclidea: è definita in questo modo:
+		
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{463.jpeg}
+	\end{figure}
+		Con la distanza Euclidea quello che si fa è posizionarsi sul punto che vogliamo classificare e poi considerare l’ipersfera centrata in quel punto. Poi aumentiamo il raggio dell’ipersfera fino a quando non contiene tutti i K punti che vogliamo considerare.
+	
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{466.jpeg}
+	\end{figure}
+		\item 	Possiamo usare la norma 1
+	\item Possiamo usare la norma infinita
+	\item Possiamo usare anche l’angolo
+	
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{465.jpeg}
+	\end{figure}
+	\item Ci sono poi edit distance e Hamming Distance
+	\item Poi c’è la Mahalanobis distance definita così:
+	
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{464.jpeg}
+	\end{figure}
+	Questa misura della distanza prende in considerazione anche la matrice di covarianza (la parte dopo la sommatoria) e quindi in pratica considera anche se gli attributi delle istanze sono correlati tra loro o no.
+	Se sono correlati grazie alla parte dopo la sommatoria, possiamo eliminare gli attributi ridondanti.
+	Rispetto alla distanza Euclidea, questa di Mahalanobis va a creare una sorta di ellisse attorno al punto che vogliamo classificare.
+	Rispetto alla distanza Euclidea vengono scalati gli assi e quindi questo ci permette di evitare il problema che abbiamo con la distanza Euclidea che non scala gli assi e quindi non considera mai il modo in cui i dati sono distribuiti.
+	
+	\end{itemize} 
+
+	
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{467.jpeg}
+	\end{figure}
+	In generale possiamo dove possiamo usare uno di questi algoritmi per il calcolo della distanza, possiamo anche usare la classificazione per gestire istanze sconosciute.
+
+	\subsubsection{Interpretazione probabilistica di K-nn}
+
+	Possiamo pensare al K-nn anche in termini di probabilità, consideriamo il caso di avere due classi possibili e calcoliamo per prima cosa la probabilità di avere una certa istanza o l’altra (si chiama mixture model ovvero calcoliamo la probabilità di avere una certa sub popolazione all’interno della mia popolazione complessiva):
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{468.jpeg}
+		\end{figure}
+
+		In questi due calcoli stiamo considerando una distribuzione normale dei dati e per ottenere la probabilità normalizziamo dividendo per il numero di istanze che abbiamo appartenenti a quella classe.
+		Nei due calcoli consideriamo una varianza $\sigma^2$ quindi per ogni istanza di training calcoliamo il numero di istanze 0 e 1 
+		all’interno della "isotropic gaussian" con larghezza $\sigma^2$ e questo mi permette di indicare la probabilità che quell’istanza di trainining sia classificata come 0 o come 1.
+		
+		Questa stima della probabilità è chiamata “Parzen Estimator” e modella la distribuzione dei dati come una somma (pesata in modo uniforme) delle distribuzioni centrate nel punto di training x.
+		In ogni punto di training mettiamo una gaussiana con varianza $\sigma^2$, la larghezza di questa gaussiana è rappresentata dal cerchio che creo in ognuno dei punti.
+
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{469.jpeg}
+\end{figure}
+
+Quando vogliamo calcolare un nuovo punto x* (nero nella figura) possiamo usare il teorema di Bayes:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{470.jpeg}
+	\end{figure}
+
+	La stessa formula la applichiamo per capire la probabilità di avere l’altra classe.
+	Nella formula p(c=0) e p(c=1) viene calcolata come N0/(N0+N1) e N1/(N1+N0).
+	Alla fine quello che vogliamo fare è assegnare una classe alla nuova istanza x* quindi quello che si fa è dividere le due probabilità, se il risultato è maggiore di 1 classifichiamo come 0, altrimenti classifichiamo come 1.
+	
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{471.jpeg}
+	\end{figure}
+
+
+	\subsection{Problemi noti}
+
+	\subsubsection{Scaling Issue}
+	
+	Quando utilizziamo la distanza euclidea e ci troviamo con dei dati che hanno una scala differente per le varie feature che dobbiamo considerare, potremmo trovarci in una situazione simile a quella della foto:
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{472.jpeg}
+		\end{figure}
+
+		In questo caso infatti stiamo calcolando le distanze tra due feature però la feature X1 ha valori compresi tra 0 e 50 mentre la X2 tra 0 e 6 e quindi otteniamo queste specie di striscie verticali.
+		Per risolvere questo problema ci sono due possibili soluzioni:
+
+		\begin{itemize}
+			\item Usare la normalizzazione per standardizzare i dati, in questo modo riusciamo a ridurre la scala di tutte le feature che vogliamo considerare a valori compresi tra 0 e 1. Questa procedura è piuttosto standard e ci sono vari metodi per eseguirla, abbiamo la 0,1 normalization o anche lo 0 score normalization.
+			
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{473.jpeg}
+	\end{figure}
+			\item Usare la distanza di Mahalanobis, in questo modo otteniamo lo stesso risultato che abbiamo con la normalizzazione perchè la matrice di covarianza è uguale alla distanza euclidea calcolata sui dati normalizzati.
+
+			\end{itemize}
+
+			\subsubsection{Curse of Dimensionality}
+			
+			Si tratta di un problema di spazio vuoto, abbiamo un dominio discreto, ad esempio immagini nello spazio, se il numero di queste immagini è finito e vogliamo rappresentarle in una sola dimensione, avremo che queste immagini copriranno totalmente lo spazio.
+			Se passo ad una rappresentazione in due dimensioni avrò dello spazio vuoto, questo aumenta ancora di più se aggiungo un’altra dimensione ancora.
+			Quando aggiungo nuove dimensioni lo spazio vuoto cresce in modo esponenziale, la stessa cosa non si può dire dei dati che non crescono in modo esponenziale da poter coprire tutto lo spazio vuoto.
+			
+			Questo può essere un problema per K-nn perchè se siamo con 3 dimensioni e abbiamo la nostra istanza in un certo punto isolato del piano, finiremo per classificarla basandoci su istanze che sono in realtà molto lontane da questa istanza e quindi faremmo probabilmente un errore.
+
+			
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{474.jpeg}
+	\end{figure}
+
+	\subsection{Considerazioni su K-nn}
+
+	Concludendo possiamo fare alcune considerazioni sull’uso di K-nn:
+	\begin{itemize}
+		\item L’algoritmo mi costringe a portarmi dietro tutto il dataset di training per fare le successive classificazioni, quindi ho un costo in termini di memoria di O(N).dove N è il numero di punti nel piano.
+		Ci sono delle possibili ottimizzazioni, ad esempio c’è un metodo chiamato data editing che mi permette di rimuovere i punti che non sono interessanti o utili per la classificazione.
+\item Ci sono dei metodi per comprimere i dati che devo memorizzare senza portarmi dietro tutti i dati di training.
+\item Ci sono delle possibili ottimizzazioni che mi fanno usare una struttura di ricerca ad albero per approssimare in modo efficiente il funzionamento di K-nn.
+		\end{itemize}Per ogni punto che voglio classificare devo calcolare la distanza da tutti i putni che stanno nel piano, quindi è un costo O(N) dove N è il numero di punti nel piano.
+
+
+\chapter{Decision Tree}
+
+\subsection{Introduzione}
+
+I decision trees rappresentano un altro possibile modello da poter utilizzare per la classificazione o la regressione.
+I decision tree sono utilizzati per svariati motivi:
+
+Possono modellare le relazioni tra i dati senza fare assunzioni a priori
+Possono gestire dati eterogenei
+Implementano in modo automatico la feature selection
+Sono robusti quando nei dati ci sono errori e outlier
+
+In questo caso l’idea è quella di andare a partizionare ricorsivamente lo spazio degli input per definire un modello in ognuna delle regioni risultati.
+Questo partizionamento dello spazio può essere rappresentato facilmente con un albero.
+Questo modello può essere definito con la seguente equazione:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{475.jpeg}
+	\end{figure}
+
+	Dove:
+	\begin{itemize}
+		\item Vogliamo classificare l’istanza x
+		\item m è la regione che stiamo prendendo in considerazione
+		\item $w_m$ è la risposta media che abbiamo ottenuto in quella regione 
+		\item I(x in Rm) è una funzione booleana che mi dice se x è in quella regione o no.
+	\end{itemize}
+
+
+Quindi si tratta di un modello con una funzione che mi definisce le regioni e dei pesi che mi specificano il response value in ognuna delle regioni.
+Una rappresentazione alternativa a quella appena vista (che non prevede l’uso dei response value) è quella in cui nelle foglie del nostro albero andiamo a memorizzare la distribuzione dei label dei vari elementi presenti all’interno della regione che stiamo considerando. Ad esempio se ci sono 4 blu e 2 rossi scriveremo (4,2), un esempio:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{476.jpeg}
+	\end{figure}
+
+
+	Più in generale possiamo definire un decision tree come un albero in cui abbiamo dei nodi interni che rappresentano le possibili “domande” che possiamo farci basandoci sulle feature che abbiamo a disposizione e poi avremo dei nodi foglia che sono le possibili classificazioni che otteniamo rispondendo ad alcune delle domande.
+	Gli archi che collegano i vari nodi sono le possibili risposte alle domande che ci stiamo facendo, ad esempio qua ci chiediamo il tipo di umidità, le possibili risposte sono normale o alta e poi abbiamo due possibili classificazioni che sono “Yes” e “No”.
+	Nel secondo esempio abbiamo una classificazione con feature numeriche e in questo caso in base alla risposta che diamo finiamo in una foglia in cui abbiamo prevalenza di classificazioni rosse o in una in cui abbiamo prevalenza verde. 
+	Quindi se andiamo a sinistra classifichiamo come rosso e se andiamo a destra come verde.
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{477.jpeg}
+	\end{figure}
+
+	Un esempio, in questo caso abbiamo 3 possibili domande in base alle feature che vogliamo considerare e poi abbiamo 4 possibili classificazioni. 
+	L’obiettivo quindi, anche in questo caso, è fare una previsione, con la funzione 
+	f: X->Y.
+	Se consideriamo l’istanza X = [Fur=Yes, Bark = Yes, Fly = No] abbiamo che il decision tree ci fornisce come risposta Y = dog.
+
+
+
+	\begin{figure}[H] 
+		\centering
+		\includegraphics[width=0.7\linewidth]{478.jpeg}
+		\end{figure}
+
+		In alcuni casi potrei avere un dataset in cui scegliendo una certa feature ho delle possibili risposte che mi forniscono direttamente l’appartenenza ad una certa classe, in altri casi invece devo fare varie domande prima di arrivare ad una risposta che mi permetta di classificare la nuova istanza.
+
+		I decision tree possono essere utilizzati sia con input categorici che con input numerici:
+
+		\begin{itemize}
+			\item Nel caso di input categorici facciamo come con i decision trees dell’esempio precedente e quindi consideriamo una feature e i possibili valori. Possiamo anche andare a splittare in più di 2 differenti risposte, in questo modo però si rischia di ottenere una frammentazione dei dati con il rischio di andare in overfitting.
+			\item Nel caso di input numerici invece abbiamo la rappresentazione dei nostri dati all’interno di un piano e possiamo splittare i dati in base a dei range. Per ognuna delle feature ordiniamo i possibili valori in ordine crescente e cerchiamo di suddividere il piano in base ai possibili valori della feature in questione.
+			\end{itemize}
+
+
+			\begin{figure}[H] 
+				\centering
+				\includegraphics[width=0.7\linewidth]{479.jpeg}
+				\end{figure}
+
+				Un esempio con i dati numerici, qua facciamo 4 differenti split ottenendo 5 regioni diverse, nel momento in cui creiamo l’albero cerchiamo di capire in quale regione finiamo e poi in base alla regione in cui siamo finiti classifichiamo l’instanza. 
+				Qua, a differenza di quello che succede con il K-nn abbiamo dei decision boundary che sono ben definiti e non abbiamo forme arbitrarie.
+				Ad esempio se finiamo nella regione in basso a sinistra possiamo subito classificare come blu, se finiamo in quella nel mezzo tra $xi \leq 6$ e $x1>2$ allora assegnamo verde perchè è la classificazione che compare maggiormente.
+				In tutti questi casi per splittare stiamo considerando una funzione che è molto semplice e che quindi prevede solamente una feature alla volta.
+				In principio potremmo anche utilizzare funzioni più complicate, ad esempio $x_1+x_2 < 3$ oppure anche $x_2 +\sqrt{x} \leq 4$, in pratica però non vogliamo utilizzare questo tipo di funzioni perchè diventerebbe complicato e costoso calcolare il l’albero di decisione e avremmo una esplosione dei possibili cammini all’interno dell’albero.
+				
+				\subsection{Inferenza con i decision tree}
+
+				L’obiettivo della creazione di un decision tree è la classificazione di nuove istanze, quindi la generalizzazione.
+Il processo che mi porta a questa generalizzazione è composto da varie fasi:
+\begin{itemize}
+	\item Train Phase: fase in cui creo il modello, in questo caso l’albero
+	\item Inference: fase in cui faccio previsioni su nuovi dati non ancora visti
+	\end{itemize}
+
+	Per quanto riguarda la fase di inferenza, dato un attributo x da classificare dobbiamo svolgere i seguenti passaggi:
+	\begin{itemize}
+		\item Per prima cosa dobbiamo utilizzare l’albero per capire in quale regione si trova l’istanza da classificare.
+		\item Una volta trovata la regione, calcoliamo la distribuzione delle varie classi all’interno di quella regione, quindi, per ogni classe 
+		$C = c_1,...c_k$  calcoliamo $N_r = (nc_1R, nc2R,..., nckR)$ ovvero calcoliamo quanti elementi ci sono all’interno della regione R per ognuna delle possibili classi.
+
+		\item La probabilità (discreta) che un certo dato x che sta in R venga classificato come appartenente alla classe c viene calcolata con questa equazione:
+			
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{480.jpeg}
+	\end{figure}
+	ovvero prendiamo le singole distribuzioni delle varie classi e le dividiamo per la somma completa delle distribuzioni all’interno di quella regione.
+	È importante notare che la somma di tutte queste probabilità sarà sempre uguale a 1.
+
+		\item Alla fine all’istanza x viene assegnata la classe che ha la probabilità più alta.
+		Un esempio: siamo in una regione con 10 istanze, 2 sono verdi e 8 blu, quindi calcoliamo la distribuzione e vediamo che Nr = (verde = 2, blu =8).
+		Ora calcoliamo la probabilità che una nuova istanza sia classificata come verde: 2/10 = 0.2 e la probabilità che sia classificata come blu: 8/10 = 0.8.
+		Quindi classifichiamo la nuova istanza come blu.
+		
+		\end{itemize} 
+
+		\subsection{Creare il decision Tree ottimo}
+
+		Per la creazione di un decision tree possiamo suddividere il processo in due fasi, learning phase e test phase. Partendo con una certa quantità di dati dobbiamo dividere questi dati nei soliti set: 
+		\begin{itemize}
+			\item Training Set
+			\item Validation Set
+			\item Test Set
+			
+			\end{itemize} 
+		
+			Una prima idea che potremmo avere per generare il miglior decision tree possibile è quella di generare tutti i possibili decision tree (in base alle varie feature che abbiamo a disposizione e ai possibili valori). Quindi nella fase di training generiamo tutti gli alberi e poi nella fase validation li proviamo tutti fino e trovo il migliore ovvero quello che generalizza meglio.
+Questa idea è del tutto impossibile da realizzare ed è anche inefficiente perchè dovremmo generare un numero decisamente troppo alto di alberi.
+Ad esempio, consideriamo solamente il nodo root, quindi solo la prima feature che vogliamo prendere in considerazione e i valori. Se avessimo solamente due feature e ogni feature avesse 300 possibili valori numeri, avremo 299 possibili threshold per fare lo split. Quindi in pratica avrei 2*299 = 598 possibilità solamente per il nodo root (la formula generale è D*(N-1) dove D è il numero di feature e N è il numero di possibili valori da testare).
+Ovviamente questo numero di possibili alberi da testare aumenta a mano a mano che scendiamo di più nell’albero.
+
+\subsubsection{Algoritmo Greedy}
 
 \chapter{Lezione 3 - Probabilistic Inference}
 
@@ -5415,7 +5856,395 @@ A seconda del modello che stiamo creando e dei dati di training che abbiamo poss
 non serve per le CNN.
 
 
+\chapter{Dimension Reduction}
 
+\subsection{Unsupervised Learning}
+
+Fino ad ora abbiamo parlato solamente di supervised learning, qua noi abbiamo una serie di dati in input labellati e quindi cerchiamo di mappare i dati in input
+con i dati in output cercando di generalizzare su dati che non abbiamo ancora visto.
+Il supervised learning in particolare lo possiamo vedere come $y=f(x)$ oppure da un punto di vista probabilistico come $p(y|x)$.
+
+Un'altra possibile situazione in cui possiamo trovarci è quella dell'unsupervised learning in cui abbiamo i nostri dati in input
+ma non abbiamo il target quindi modelliamo $p(x)$ l'obiettivo è quello di trovare la struttura nascosta dei dati.
+
+Potremmo ad esempio cercare una distribuzione nascosta dei dati $p(z)$ dove z è la variabile che stiamo cercando 
+e poi la generative transformation $p(x|z)$ dove invece x è la variabile che noi conosciamo mentre la z è la variabile che 
+dobbiamo stimare.
+Un esempio è il clustering dove il label che assegnamo a ciascun data point è la variabile che stiamo cercando.
+
+L'unsupervised learning può essere visto come un metodo per comprimere i dati che abbiamo in input, supponiamo che i dati in input
+siamo dati con tante feature e quindi tante dimensioni. Noi possiamo usare ad esempio il clustering per assegnare ognuno dei punti
+ad un cluster. Il cluster ID di ogni punto diventa quindi una feature aggiuntiva di quel punto, allo stesso tempo posso ora
+comprimere il data point identificandolo solamente con il label che corrisponde al cluster di appartenenza.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\linewidth]{434.jpeg}
+\end{figure}
+
+È anche possibile comprimere un data point in 2 o 3 dimensioni in modo che il dato possa essere visualizzato oppure analizzato
+nuovamente in una successiva fase di analisi.
+Ad esempio possiamo avere come dato in input una immagine X e creiamo una versione compressa che è la Z.
+
+Quello che ci interessa fare è la dimensionality reduction, quando siamo nel caso dell'unsupervised learning possiamo anche parlare
+di generative models, ad esempio possiamo avere una immagine in input e possiamo generare come output del testo, ad esempio 
+la descrizione dell'immagine.
+
+\subsection{Dimensionality Reduction}
+
+Molto spesso abbiamo dei dati in input che sono caratterizzati da molte feature.
+Avere dati con molte feature è un problema per varie ragioni:
+\begin{itemize}
+\item È difficile visualizzare i dati
+\item È computazionalmente difficile calcolare la similarity tra i vari dati
+\item Se le feature dei vari dati sono molto correlate tra loro possiamo avere dei problemi con alcuni algoritmi
+\item Curse of dimensionality
+\end{itemize}
+
+Quello che succede solitamente è che in realtà i dati li troviamo all'interno del piano tutti posizionati in una zona specifica
+e questo mi permette di ridurre la dimensione dei nostri dati andando a scartare alcune delle feature che non sono interessanti.
+
+Ad esempio nella seguente figura abbiamo dei dati che sono in 2 dimensioni, in realtà quello che possiamo vedere è che i dati
+si trovano più o meno tutti su una linea.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\linewidth]{435.jpeg}
+\end{figure}
+
+Il fatto di avere tutti questi dati sulla stessa linea ci permette di non considerare la feature che rappresentiamo sull'asse y
+quindi i nostri dati possono essere compressi, non abbiamo più bisogno di una rappresentazione 2D ma mi basta una rappresentazione in una
+sola dimensione.
+
+L'obiettivo quindi è ridurre la quantità di feature necessarie per i nostri dati senza però avere perdita di informazioni e questo
+lo facciamo per fare in modo che sia necessario meno spazio per memorizzare i dati e soprattutto perchè possiamo lavorare con i dati 
+più velocemente.
+
+
+\subsubsection{Feature selection}
+
+Una prima tecnica che possiamo adottare per la dimension reduction consiste in delle euristiche:
+
+\begin{itemize}
+\item La prima cosa che possiamo considerare è la varianza delle varie feature. Se le varie feature hanno una bassa varianza
+possiamo pensare di rimuovere quella dimension.
+Qua in questa figura possiamo vedere un esempio di una riduzione da 2D a 1D.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{436.jpeg}
+\end{figure}
+\item Possiamo poi considerare il tipo di analisi che vogliamo effettuare e andare ad eliminare quelle dimension che non 
+sono interessati per il nostro scopo. In questo caso è più complicato perchè sono necessarie conoscenze maggiori e c'è il rischio di 
+giudicare poco utili delle feature che in realtà mi servono.
+\end{itemize} 
+
+Fare questo tipo di lavoro è positivo per i successivi step perchè qua risparmiamo del tempo e non abbiamo bisogno di fare una fase di
+preprocessing per determinare quali sono le dimension più rilevanti.
+
+Possiamo però fare di meglio, ad esempio consideriamo la seguente figura:
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{437.jpeg}
+\end{figure}
+
+In queste due figure noi abbiamo gli stessi dati, nella seconda però sono ruotati. 
+Nella prima figura possiamo vedere che la dimension dell'asse y possiamo tranquillamente non considerarla perchè la varianza è bassa.
+Allo stesso tempo però non possiamo fare la stessa cosa con la dimension dell'assse y della seconda immagine perchè c'è un'alta
+correlazione tra le due dimension.
+Avere una correlazione di questo tipo è problematico e quindi quello che si fa quando si hanno due dimension con una correlation 
+molto alta è rimuovere una delle due feature.
+
+Ad esempio nel caso del secondo grafico possiamo notare che con una trasformazione del piano possiamo ottenere la stessa situazione
+che avevamo nella prima immagine e quindi possiamo vedere che in questo nuovo sistema di coordinate la dimensione $y'$ che abbiamo creato
+non è più utile perchè la varianza è bassa.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{438.jpeg}
+\end{figure}
+
+\subsubsection{Linear Transformation}
+
+Per fare una trasformazione come quella che abbiamo appena visto bisogna fare una linear transformation che mi permetta di 
+rappresentare i dati in un sistema di coordinate differente da quello iniziale.
+
+Quello che vediamo nella seguente figura è la trasformazione lineare che svolgiamo:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{439.jpeg}
+	\end{figure}
+
+In particolare abbiamo in input una matrice $X$ che contiene i nostri dati e ha dimensione $NxD$. 
+Questa matrice viene moltiplicata per la transformation matrix F che ha dimensione $DxK$, si tratta di una matrice che p ortonormale
+(Ovvero data la matrice $G$ questa è ortonormale se $G^TG=GG^T=I$).
+Quella che otteniamo in output è una matrice $X'$ di dimensione $NxK$ che contiene tutti i punti che abbiamo trasformato.
+Abbiamo eseguito quindi una linear transformation, questo 
+non vuol dire che abbiamo eseguito anche la dimensionality reduction perchè la matrice in output potrebbe anche avere la stessa 
+dimensione di quella in output. Quindi svolgiamo la dimensionality reduction solamente se $K<D$.
+
+Questa feature selection è una trasformazione lineare, ci sono alcune proprietà da considerare e tenere a mente:
+
+\begin{itemize}
+\item Prendiamo un caso semplice in cui abbiamo in input una matrice 3D ovvero con 3 feature e vogliamo ridurne la dimensione
+per ottenere una matrice che abbia 2 dimensions. Quindi vogliamo passare da $X \in R^{N*3}$ a $X \in R^{3*K}$ usando come matrice di
+trasformazione una matrice $F \in R^{3*2}$.
+Supponiamo di voler eliminare la seconda feature dalla matrice di partenza e di voler tenere invece le altre due.
+La nostra matrice quindi sarà:
+\begin{equation}
+F = \begin{matrix}
+1 & 0\\
+0 & 0\\
+0 & 1
+\end{matrix}
+\end{equation}
+\item La prima proprietà riguarda il modo in cui la media del data space trasformato è legata alla media del data space originale.
+Data la media $m$ del data space di partenza, la media $m^{'}$ del data space trasformato è:
+$$m^{'} = m * F$$.
+
+Proof (Tentative Proof, at least I tried):
+
+La media della X iniziale è $$m = \frac{\sum x_i}{n}$$.
+La media della $X^{'}$ è invece $$X^{'} = \frac{\sum x_i^{'}}{n} = \frac{\sum x_i f_i}{n} = m*F$$
+
+\item Un'altra proprietà riguarda invece la covariance matrix. Preso un vettore, possiamo calcolare la covariance matrix che è una
+matrice quadrata in cui memorizziamo la covarianza tra tutti gli elementi del vettore. La covarianza è una proprietà che mi indica quanto
+due variabili sono dipendenti tra loro. Se il valore è positivo allora le variabili sono dipendenti, se è negativo invece non sono dipenenti.
+In particolare noi abbiamo un data space iniziale $X$ e un data space finale $X'$. La proprietà di cui parliamo indica che la covariance
+matrix nel data space trasformato è legata a quella nel data space iniziale in questo modo:
+$$\Sigma_{X'} = F^T*\Sigma^{X}*F$$.
+
+Proof (Tentative Proof, at least I tried):
+
+La media della matrice iniziale è $$m = E[X]$$ e la covarianza iniziale è $$Cov(X) = E[(X-m)(X-m)^T]$$
+Dopo la trasformazione abbiamo $X^{'} = X*F$ e la media diventa $$E[X^{'}] = F*m$$.
+La covarianza dopo la trasformazione invece diventa: $$cov(X^{'}) = E[(X^{'}-Fm)(X^{'}-Fm)] = E[(XF-Fm)(XF-Fm)^T]$$
+$$E[F(X-m)(X-m)^{T}F^{T}] = F(E[(X-m)(X-m)^{T}])F^{T} = F\Sigma_{X}F^{T}$$.
+\end{itemize}
+
+In particolare le ultime due proprietà sono importanti.
+
+\section{Principal Component Analysis}
+
+La domanda che possiamo porci ora riguarda la matrice di trasformazione F che dobbiamo utilizzare per eseguire la nostra trasformazione.
+Come possiamo scegliere questa matrice F? Noi vorremmo trovare la F ottima che mi permetta di approssimare i dati con meno coefficienti 
+possibili.
+L'obiettivo è ottenere una trasformazione dei nostri dati tale per cui le dimensions non siano correlate ovvero in cui la covarianza tra le
+due dimension deve essere 0: 
+$$Cov(D1,D2) = 0$$
+ovvero i trasformed data point non devono più essere correlati.
+
+Se troviamo due dimension che non sono correlate tra loro allora possiamo liberarci di una delle due dimension. In questo
+caso la scelta della dimension che deve essere rimossa ricade sulla dimension che ha la varianza minore tra le due dimension.
+
+Un esempio è il seguente:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{438.jpeg}
+\end{figure}
+
+Nella prima immagine ad esempio potremmo prendere come matrice di trasformazione $F = [1,0]$ per eliminare la seconda dimension
+ma non sarebbe una scelta ottima perchè comunque le due dimension sono correlate. Se invece scegliamo una trasformazione che mi
+permette di avere un nuovo data space in cui le due dimensions non sono correlate avremo la possibilità di scegliere la dimension che ha 
+la minore varianza ed eliminarla.
+
+Quindi per trovare questa trasformazione ottima si utillizza una tecnica chiamata Principal Component Analysis ovvero PCA.
+
+Tutto il discorso della PCA si basa sul fatto che in alcune situazioni non abbiamo bisogno di tutte le $D$ dimension iniziali per 
+descrivere i nostri dati ma ce ne bastano solamente $d<D$. Questo è giustificato dal fatto che spesso i dati si trovano tutti nella 
+stessa zona, magari tutti su una stessa linea o tutti su un iperpiano.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{442.jpeg}
+\end{figure}
+
+\subsubsection{Come troviamo la trasformazione}
+
+Noi partiamo con N data point iniziali ognuno con d features, quindi abbiamo una cosa del tipo:
+
+$${X_i}_{i=1}^N x_i \in R^d \ \forall \ i \ \in {1,...,N}$$
+
+E vogliamo rappresentare questi data point in una matrice:
+
+\begin{equation}
+	X = \begin{matrix}
+	x_{11} & ... & x_{1d} \\
+	. & ... & . \\
+	x_{N1} & ... & x_{Nd}
+	\end{matrix}
+	\end{equation}
+
+In cui le righe rappresentano i singoli data point (quindi tutte le feature di ogni data point)
+mentre la colonna $j$ rappresenta tutti i valori della j-esima dimension.
+
+\begin{itemize}
+	\item La prima cosa che dobbiamo fare è centrare i nostri data point. Centrare i data point vuol dire che sottraiamo 
+	ai nostri data point lo stesso valore che in questo caso è la media. 
+	Dopo aver eseguito questa operazione la media diventa 0.
+	Questa operazione che consiste nel centrare i data point non è strettamente 
+	necessaria per il risultato finale ma è utile perchè rende più semplice i calcoli successivi.
+
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{444.jpeg}
+	\end{figure}
+
+	\item Poi il prossimo step consiste nel calcolo della covariance Matrix. Per prima cosa calcoliamo la varianza di ciascuna
+	delle nostre dimensions. 
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{445.jpeg}
+	\end{figure}
+	Poi come secondo passo calcoliamo la covariance matrix. Per il calcolo della covariance Matrix calcoliamo la covarianza tra 
+	ogni coppia di dimensions $j_i$, $J_y$ con $i \not = y$.
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{446.jpeg}
+	\end{figure}
+	La covariance matrix che abbiamo trovato è una matrice quadrata e simmetrica.
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{447.jpeg}
+	\end{figure}
+	\item Poi per ultimo utilizzeremo la decomposizione con gli autovettori per trasformare il sistema di coordinate
+\end{itemize}
+
+Quindi alla fine di questo procedimento noi abbiamo ottenuto una covariance matrix. Il nostro obiettivo è prendere questa 
+covariance matrix e poi diagonalizzarla ovvero ottenere solamenente elementi sulla diagonale di questa matrice e 0 in tutti gli altri 
+elementi in modo che la covarianza di ciascuna coppia di dimension sia sempre 0.
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{448.jpeg}
+	\end{figure}
+
+Quello che possiamo fare prendendo la covariance matrix è una eigendecomposition ovvero:
+
+$$\Sigma_X^{'} = \Gamma \Lambda \Gamma^T$$
+
+In questa decomposizione abbiamo:
+
+\begin{itemize}
+	\item $\Gamma$ è una matrice orgogonale e ogni colonna di questa matrice contiene gli autovettori normalizzati della matrice 
+	di partenza
+	\item $\Lambda$ è una matrice diagonale in cui gli elementi diagonali corrispondono agli autovalori della matrice. Fuori dalla
+	diagonale tutti gli elementi sono uguali a 0.
+\end{itemize}
+
+Ora che abbiamo la covariance matrix $$\Sigma_X^{'} = \Gamma \Lambda \Gamma^T$$ dobbiamo ricordarci la proprietà secondo cui:
+$$\Sigma_Y = \Gamma^T \Sigma_X^{'} \Gamma$$
+
+Dove $\Sigma_Y$ è la nuova covariance matrix dopo la trasformazione e $\Sigma_X^{'}$ è la vecchia. 
+Nella formula sopra noi stiamo considerando la matrice $\Gamma$ come nostra matrice di trasformazione (Prima l'avevamo chiamata F).
+Quello che possiamo scrivere ora considerando questa proprietà è la seguente relazione:
+
+$$\Sigma_Y == \Gamma^T \Gamma \Lambda \Gamma^T \Gamma $$
+
+Dato che $\Gamma$ è una matrice simmetrica allora $$\Sigma_Y = \Lambda $$
+
+ovvero abbiamo ottenuto che la nuova covariance matrix dopo la trasformazione è una matrice diagonale che ha come valori sulla
+diagonale gli autovalori della matrice $\Sigma_X^{'}$ che era la matrice centrata.
+Ogni valore che abbiamo sulla diagonale corrisponde poi alla varianza della dimensione $i$ all'interno del nuovo spazio (questo perchè 
+questa matrice diagonale che abbiamo trovato è la nostra covariance matrix e abbiamo visto che nella covariance matrix i valori
+sulla diagonale corrispondono alla varianza).
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{449.jpeg}
+\end{figure}
+
+Quindi visto che ora conosciamo anche $\Gamma$ che è la nostra matrice di trasformazione che sfruttiamo per "de-correlare" i dati 
+moltiplicando con gli autovettori e visto che conosciamo anche $X^{'}$ che sono i nostri dati centrati, possiamo scrivere 
+la formula dei nostri dati trasformati finali:
+$$Y = X^{'}\Gamma$$
+
+
+\subsubsection{Dimensionality Reduction with PCA}
+
+Noi siamo interessati a fare questa trasformazione principalmente perchè vogliamo rimuovere le dimensions che non sono troppo 
+interessanti per i nostri dati ovvero le dimensions che hanno una varianza bassa.
+Se (per semplicità) assumiamo di ordinare gli autovalori della matrice di covarianza in ordine decrescente, questo si traduce nel prendere
+i primo K autovalori e non considerare tutti gli altri.
+In questo modo riusciamo ad ottenere il nostro data space trasformato e i nostri dati avranno meno features rispetto a quelle di partenza
+perchè avremo rimosso quelle che hanno una varianza bassa.
+Vediamolo graficamente:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{450.jpeg}
+\end{figure}
+
+Il problema ora rimane la scelta della K.
+
+Per scegliere la K si utilizza una regola che viene chiamata $90\%$ rule ovvero si sceglie la minima K tale che 
+la somma delle varianze è il $90\%$ della somma totale di tutte le varianze.
+Possiamo scriverla sotto forma di formula in questo modo:
+$$\sum_{i=1}^K \lambda_i \geq 0.9 * \sum_{i=1}^d \lambda_i$$
+
+In questa formula in particolare la parte $\sum_{i=1}^d \lambda_i$ equivale alla traccia della matrice ovvero la somma degli elementi
+sulla diagonale.
+I punti nel nuovo data space ora contengono più o meno le stesse informazioni dei dati iniziali con la sola differenza che ora hanno 
+meno feature e quindi sono meglio rappresentabili.
+
+La cosa importante da ricordare è che la feature trasformation di cui abbiamo parlato fino ad ora è una linear trasformation.
+
+\subsubsection{Complessità}
+
+Per quanto riguarda la procedura della PCA, consideriamo che abbiamo $N$ dati e abbiamo $d$ feature per ogni dato. 
+Quindi il costo dipende dalle seguenti operazioni:
+
+\begin{itemize}
+\item Calcolo della covariance matrix: $O(N*d^2)$
+\item Eigenvalue decomposition: $O(d^3)$. Qua noi abbiamo un costo molto alto che in realtà nemmeno servirebbe perchè a noi
+non serve tutta la matrice ma ci bastano i primi K elementi perchè siamo interessati solamente alla versione "troncata".
+\item Proiezione dei dati in uno spazio dimensionale di k dimensioni: $O(N*d*K)$
+\end{itemize}
+
+In totale abbiamo quindi un costo complessivo di $O(N*d^2+d^3)$ e il problema principale è legato alla presenza del termine $d^3$.
+
+Ci sono due possibili ottimizzazioni che possiamo effettuare per abbassare il costo relativo al calcolo degli autovettori:
+\begin{itemize}
+\item Possiamo portare la complessità a $O(\#it * d^{2})$ dove it è il numero di iterazioni se non eseguiamo un algoritmo iterativo.
+\item Possiamo ridurre ancora di più la complessità se abbiamo una matrice sparsa come può essere ad esempio la matrice di Netflix con gli utenti
+e i film visti. In questo caso la complessità diventa infatti $O(\#it*nz)$ dove nz il numero di elementi diversi da 0 nella matrice.
+\end{itemize}
+
+\subsubsection{Come si calcolano gli autovettori}
+
+Per il calcolo degli autovettori possiamo utilizzare un procedimento iterativo che viene chiamato Von Mises iteration. 
+Questo approccio iterativo mi permette di calcolare un singolo autovettore.
+L'algoritmo funziona in questo modo:
+
+\begin{itemize}
+	\item Abbiamo una matrice X di partenza e poi abbiamo un vettore v arbitrario che possiamo scegliere a caso o che magari 
+	è simile a quello che noi pensiamo sia l'autovettore che stiamo cercando. Il vettore v da cui partiamo deve essere normalizzato.
+	\item Dobbiamo calcolare in modo iterativo: $$v = \frac{X*v}{||X*v||}$$
+	fino a che non arriviamo ad una convergenza, ovvero fino a quando non troviamo il primo autovettore relativo alla matrice X.
+	\item Una volta che abbiamo trovato il primo autovettore possiamo trovare anche il primo autovalore.
+\end{itemize}
+
+Questo metodo funziona particolarmente bene se abbiamo una matrice sparsa che quindi ha molti 0 al suo interno.
+
+Noi però non vogliamo trovare solamente il primo autovettore ma siamo interessati a trovare i primi K autovettori (e quindi i primi K autovalori).
+Quindi ci serve un metodo un po' differente per trovare i K autovettori più grandi:
+\begin{itemize}
+\item Supponiamo di avere una matrice simmetrica $A$, questa che stiamo considerando non è la matrice con i nostri dati perchè non sarbebe 
+una matrice simmetrica. Quindi la nostra A è in realtà $A = \Sigma_X$
+\item Eseguiamo la eigenvalue decomposition della matrice A: $$A = \gamma \lambda \gamma^T = \sum_{i=1}^d \lambda_i \gamma_i \gamma_i^T$$
+Dove $\lambda_i$ sono gli autovalori mentre $\gamma_i$ sono gli autovettori.
+\item Supponiamo di aver trovato il primo degli autovettori $\lambda_1 \gamma_1 \gamma_1^T$ (Se abbiamo trovato il primo autovettore poi il primo
+autovalore lo troviamo facilmente perchè basta applicare la formula $A\lambda_1= \gamma_1 \lambda_1$).
+Ora noi possiamo sottrarre alla matrice A questo primo autovettore ottenendo $A^{'} = A - \lambda_1 \gamma_1 \gamma_1^T$.
+La nuova matrice che abbiamo creato avrà la stessa quantità di autovettori della precedente ad eccezione del primo che ora è azzerato.
+\item Dalla nuova matrice che abbiamo trovato possiamo ora trovare il secondo autovettore utilizzando la regola del power iteration vista in precedenza
+(Von Mises iteration).
+\end{itemize}
+
+Trovare questi K top autovettori equivale quindi a trovare la matrice $\Gamma_{truncated}$ che ci serve per il nostro calcolo
+della trasformazione dei dati.
 
 
 
