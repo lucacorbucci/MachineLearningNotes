@@ -14,7 +14,6 @@
 \begin{document}
 
 
-
 % Name of your university/college
 \begin{center}
 	
@@ -275,7 +274,7 @@ Il caso ottimo è quello in cui  abbiamo sia la precision sia la recall fissate 
 		\end{figure}
 
 		C’è da fare poi una considerazione importante su queste metriche perchè non sempre possiamo prendere il risultato che ci offrono senza ragionarci.
-In particolare quando abbiamo una situazione con quantità di dati molto sbilanciate, ad esempio il 90% dei dati sono BLU e il 10% VERDI, ci troviamo con un classificatore che potrebbe classificare tutto come BLU e otterremmo comunque una classificazione corretta nel 90% dei casi.
+In particolare quando abbiamo una situazione con quantità di dati molto sbilanciate, ad esempio il $90\%$ dei dati sono BLU e il $10\%$ VERDI, ci troviamo con un classificatore che potrebbe classificare tutto come BLU e otterremmo comunque una classificazione corretta nel $90\%$ dei casi.
 Quindi è importante che prima di iniziare a fare classificazioni si studino i dati che si hanno a disposizione in modo da capire se sono bilanciati o meno.
 
 	
@@ -312,7 +311,7 @@ Quindi è importante che prima di iniziare a fare classificazioni si studino i d
 	\includegraphics[width=0.7\linewidth]{464.jpeg}
 	\end{figure}
 	Questa misura della distanza prende in considerazione anche la matrice di covarianza (la parte dopo la sommatoria) e quindi in pratica considera anche se gli attributi delle istanze sono correlati tra loro o no.
-	Se sono correlati grazie alla parte dopo la sommatoria, possiamo eliminare gli attributi ridondanti.
+	Se sono correlati grazie alla parte dopo la matrice di covarianza, possiamo eliminare gli attributi ridondanti.
 	Rispetto alla distanza Euclidea, questa di Mahalanobis va a creare una sorta di ellisse attorno al punto che vogliamo classificare.
 	Rispetto alla distanza Euclidea vengono scalati gli assi e quindi questo ci permette di evitare il problema che abbiamo con la distanza Euclidea che non scala gli assi e quindi non considera mai il modo in cui i dati sono distribuiti.
 	
@@ -323,7 +322,7 @@ Quindi è importante che prima di iniziare a fare classificazioni si studino i d
 	\centering
 	\includegraphics[width=0.7\linewidth]{467.jpeg}
 	\end{figure}
-	In generale possiamo dove possiamo usare uno di questi algoritmi per il calcolo della distanza, possiamo anche usare la classificazione per gestire istanze sconosciute.
+	In generale dove possiamo usare uno di questi algoritmi per il calcolo della distanza, possiamo anche usare la classificazione per gestire istanze sconosciute.
 
 	\subsubsection{Interpretazione probabilistica di K-nn}
 
@@ -414,20 +413,23 @@ Quando vogliamo calcolare un nuovo punto x* (nero nella figura) possiamo usare i
 		Ci sono delle possibili ottimizzazioni, ad esempio c’è un metodo chiamato data editing che mi permette di rimuovere i punti che non sono interessanti o utili per la classificazione.
 \item Ci sono dei metodi per comprimere i dati che devo memorizzare senza portarmi dietro tutti i dati di training.
 \item Ci sono delle possibili ottimizzazioni che mi fanno usare una struttura di ricerca ad albero per approssimare in modo efficiente il funzionamento di K-nn.
-		\end{itemize}Per ogni punto che voglio classificare devo calcolare la distanza da tutti i putni che stanno nel piano, quindi è un costo O(N) dove N è il numero di punti nel piano.
+		\end{itemize}Per ogni punto che voglio classificare devo calcolare la distanza da tutti i punti che stanno nel piano, quindi è un costo O(N) dove N è il numero di punti nel piano.
 
 
 \chapter{Decision Tree}
 
-\subsection{Introduzione}
+\section{Introduzione}
 
 I decision trees rappresentano un altro possibile modello da poter utilizzare per la classificazione o la regressione.
 I decision tree sono utilizzati per svariati motivi:
 
-Possono modellare le relazioni tra i dati senza fare assunzioni a priori
-Possono gestire dati eterogenei
-Implementano in modo automatico la feature selection
-Sono robusti quando nei dati ci sono errori e outlier
+\begin{itemize}
+	\item Possono modellare le relazioni tra i dati senza fare assunzioni a priori
+	\item Possono gestire dati eterogenei
+	\item Implementano in modo automatico la feature selection
+	\item Sono robusti quando nei dati ci sono errori e outlier
+\end{itemize} 
+
 
 In questo caso l’idea è quella di andare a partizionare ricorsivamente lo spazio degli input per definire un modello in ognuna delle regioni risultati.
 Questo partizionamento dello spazio può essere rappresentato facilmente con un albero.
@@ -502,7 +504,7 @@ Una rappresentazione alternativa a quella appena vista (che non prevede l’uso 
 				In tutti questi casi per splittare stiamo considerando una funzione che è molto semplice e che quindi prevede solamente una feature alla volta.
 				In principio potremmo anche utilizzare funzioni più complicate, ad esempio $x_1+x_2 < 3$ oppure anche $x_2 +\sqrt{x} \leq 4$, in pratica però non vogliamo utilizzare questo tipo di funzioni perchè diventerebbe complicato e costoso calcolare il l’albero di decisione e avremmo una esplosione dei possibili cammini all’interno dell’albero.
 				
-				\subsection{Inferenza con i decision tree}
+				\section{Inferenza con i decision tree}
 
 				L’obiettivo della creazione di un decision tree è la classificazione di nuove istanze, quindi la generalizzazione.
 Il processo che mi porta a questa generalizzazione è composto da varie fasi:
@@ -533,7 +535,7 @@ Il processo che mi porta a questa generalizzazione è composto da varie fasi:
 		
 		\end{itemize} 
 
-		\subsection{Creare il decision Tree ottimo}
+		\section{Creare il decision Tree ottimo}
 
 		Per la creazione di un decision tree possiamo suddividere il processo in due fasi, learning phase e test phase. Partendo con una certa quantità di dati dobbiamo dividere questi dati nei soliti set: 
 		\begin{itemize}
@@ -549,6 +551,15 @@ Ad esempio, consideriamo solamente il nodo root, quindi solo la prima feature ch
 Ovviamente questo numero di possibili alberi da testare aumenta a mano a mano che scendiamo di più nell’albero.
 
 \subsubsection{Algoritmo Greedy}
+
+Trovare il partizionamento ottimo per l’albero di decisione è un problama NP-completo e quindi si utilizzano delle euristiche per trovare un albero che pur non essendo l’ottimo è comunque valido da poter essere utilizzato.
+L’algortimo che viene usato per trovare il migliore split è greedy, si guarda al dataset che abbiamo a disposizione e poi si prende di volta in volta lo split che mi permette di avere la migliore separazione dei dati. 
+Per capire se devo continuare a splittare un certo nodo oppure no ci sono varie possibili euristiche:
+Quello che guadagno con lo split è troppo poco?
+Vado oltre l’altezza massima dell’albero che voglio avere?
+La distribuzione delle classi nelle foglie è abbastanza omogenea? (Quindi i figli sono abbastanza puri)
+Il numero degli esempi che rimangono nelle foglie è troppo piccolo?
+
 
 \chapter{Lezione 3 - Probabilistic Inference}
 
@@ -5976,7 +5987,7 @@ Quello che vediamo nella seguente figura è la trasformazione lineare che svolgi
 	\end{figure}
 
 In particolare abbiamo in input una matrice $X$ che contiene i nostri dati e ha dimensione $NxD$. 
-Questa matrice viene moltiplicata per la transformation matrix F che ha dimensione $DxK$, si tratta di una matrice che p ortonormale
+Questa matrice viene moltiplicata per la transformation matrix F che ha dimensione $DxK$, si tratta di una matrice che è ortonormale
 (Ovvero data la matrice $G$ questa è ortonormale se $G^TG=GG^T=I$).
 Quella che otteniamo in output è una matrice $X'$ di dimensione $NxK$ che contiene tutti i punti che abbiamo trasformato.
 Abbiamo eseguito quindi una linear transformation, questo 
@@ -6000,11 +6011,11 @@ F = \begin{matrix}
 \end{equation}
 \item La prima proprietà riguarda il modo in cui la media del data space trasformato è legata alla media del data space originale.
 Data la media $m$ del data space di partenza, la media $m^{'}$ del data space trasformato è:
-$$m^{'} = m * F$$.
+$$m^{'} = m * F$$
 
 Proof (Tentative Proof, at least I tried):
 
-La media della X iniziale è $$m = \frac{\sum x_i}{n}$$.
+La media della X iniziale è $$m = \frac{\sum x_i}{n}$$
 La media della $X^{'}$ è invece $$X^{'} = \frac{\sum x_i^{'}}{n} = \frac{\sum x_i f_i}{n} = m*F$$
 
 \item Un'altra proprietà riguarda invece la covariance matrix. Preso un vettore, possiamo calcolare la covariance matrix che è una
@@ -6017,9 +6028,9 @@ $$\Sigma_{X'} = F^T*\Sigma^{X}*F$$.
 Proof (Tentative Proof, at least I tried):
 
 La media della matrice iniziale è $$m = E[X]$$ e la covarianza iniziale è $$Cov(X) = E[(X-m)(X-m)^T]$$
-Dopo la trasformazione abbiamo $X^{'} = X*F$ e la media diventa $$E[X^{'}] = F*m$$.
+Dopo la trasformazione abbiamo $X^{'} = X*F$ e la media diventa $$E[X^{'}] = F*m$$
 La covarianza dopo la trasformazione invece diventa: $$cov(X^{'}) = E[(X^{'}-Fm)(X^{'}-Fm)] = E[(XF-Fm)(XF-Fm)^T]$$
-$$E[F(X-m)(X-m)^{T}F^{T}] = F(E[(X-m)(X-m)^{T}])F^{T} = F\Sigma_{X}F^{T}$$.
+$$E[F(X-m)(X-m)^{T}F^{T}] = F(E[(X-m)(X-m)^{T}])F^{T} = F\Sigma_{X}F^{T}$$
 \end{itemize}
 
 In particolare le ultime due proprietà sono importanti.
@@ -6167,7 +6178,7 @@ $$Y = X^{'}\Gamma$$
 Noi siamo interessati a fare questa trasformazione principalmente perchè vogliamo rimuovere le dimensions che non sono troppo 
 interessanti per i nostri dati ovvero le dimensions che hanno una varianza bassa.
 Se (per semplicità) assumiamo di ordinare gli autovalori della matrice di covarianza in ordine decrescente, questo si traduce nel prendere
-i primo K autovalori e non considerare tutti gli altri.
+i primi K autovalori e non considerare tutti gli altri.
 In questo modo riusciamo ad ottenere il nostro data space trasformato e i nostri dati avranno meno features rispetto a quelle di partenza
 perchè avremo rimosso quelle che hanno una varianza bassa.
 Vediamolo graficamente:
@@ -6231,7 +6242,7 @@ Questo metodo funziona particolarmente bene se abbiamo una matrice sparsa che qu
 Noi però non vogliamo trovare solamente il primo autovettore ma siamo interessati a trovare i primi K autovettori (e quindi i primi K autovalori).
 Quindi ci serve un metodo un po' differente per trovare i K autovettori più grandi:
 \begin{itemize}
-\item Supponiamo di avere una matrice simmetrica $A$, questa che stiamo considerando non è la matrice con i nostri dati perchè non sarbebe 
+\item Supponiamo di avere una matrice simmetrica $A$, questa che stiamo considerando non è la matrice con i nostri dati perchè non sarebbe 
 una matrice simmetrica. Quindi la nostra A è in realtà $A = \Sigma_X$
 \item Eseguiamo la eigenvalue decomposition della matrice A: $$A = \gamma \lambda \gamma^T = \sum_{i=1}^d \lambda_i \gamma_i \gamma_i^T$$
 Dove $\lambda_i$ sono gli autovalori mentre $\gamma_i$ sono gli autovettori.
@@ -6245,6 +6256,733 @@ La nuova matrice che abbiamo creato avrà la stessa quantità di autovettori del
 
 Trovare questi K top autovettori equivale quindi a trovare la matrice $\Gamma_{truncated}$ che ci serve per il nostro calcolo
 della trasformazione dei dati.
+
+\section{Probabilistic PCA}
+
+Possiamo formulare la PCA che abbiamo visto fino ad ora in termini di una soluzione di un modello probabilistico.
+Questa differente formulazione della PCA, conosciuta come Probabilistic PCA offre vari vantaggi:
+\begin{itemize}
+	\item La classica PCA non è in grado di gestire dati mancanti, questa si.
+	\item La classica PCA ha problemi quando ci sono gli outlier, questa no e noi vorremmo una soluzione che sia robusta contro gli outlier.
+	\item La PPCA può essere eseguita per generare sample dalla distribuzione
+	\item L'esistenza di una likelihood function ci permette di poter fare dei confronti direttamente con altri probabilistic density models.
+\end{itemize}
+
+Per definire la Probabilistic PCA dobbiamo considerare due variabili:
+\begin{itemize}
+	\item Dobbiamo definire la variabile $z_i$ che rappresenta lo spazio trasformato. Facciamo il sampling di questa variabile $z_i$ 
+	dalla distribuzione gaussiana $N(0,I)$ ovvero da una distribuzione gaussiana con media 0. La matrice di covarianza I in questo caso è una matrice di 
+	dimensione $K*K$.
+	In pratica il prodotto $\sigma^2*I$ lo possiamo rappresentare in una matrice come:
+	\begin{equation}
+		k = \begin{matrix}
+		\sigma^2 & 0 & 0\\
+		0 & ... & 0\\
+		0 & 0 & \sigma^2
+		\end{matrix}
+		\end{equation}
+	\item Poi definiamo anche la variabile che abbiamo osservato, $x_i$ e qua possiamo definire la distribuzione condizionale della variabile osservata
+	$x_i$ rispetto alla variabile $z_i$: $$p(x|z) = N(x|Wz + \mu, \sigma^2I)$$
+	In questo caso abbiamo la media della variabile $x_i$ che dipende dalla $z$ e da una matrice $W$ di dimensione $D*K$, poi sommiamo per un vettore $\mu$ 
+	di dimensione $D$. La varianza invece dipende dal parametro $\sigma^2$
+\end{itemize}
+
+Nella definizione di $P(x_i|z_i)$ possiamo vedere anche che $W$, $\mu$ e $\sigma$ sono dei parametri.
+Se vogliamo rappresentare tutto questo in un grafico possiamo considerare che $z_i$ è la variabile che non conosciamo mentre la $x_i$ è quello che osserviamo.
+Il grafico quindi sarebbe il seguente:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{482.jpeg}
+\end{figure}
+
+Quello che otteniamo è un modello generativo.
+
+\subsection{Un esempio}
+
+Consideriamo la seguente figura:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{483.jpeg}
+\end{figure}
+
+E ricordiamo che abbiamo definito le variabili nel modo seguente:
+
+\begin{itemize}
+\item $z_i \sim N(0, I)$
+\item $(x_i | z_i) \sim N(Wz_i + \mu, \sigma^2I)$
+\end{itemize}
+
+In questo caso noi partiamo con uno spazio trasformato in cui abbiamo $K=1$ ovvero abbiamo ridotto i nostri dati ad avere solamente una feature.
+Rappresentiamo la figura a sinistra con la gaussiana $z_i \sim N(0, I)$ che abbiamo già visto. 
+Notare che nel data space che non conosciamo $K=1$ quindi abbiamo 1 sola dimensione ma noi vogliamo generare un data space in cui abbiamo invece 
+due dimensioni $K=2$ vuol dire che la matrice $W$ che useremo nella formula
+$(x_i | z_i) \sim N(Wz_i + \mu, \sigma^2I)$ sarà una matrice di dimensione $2*1$ e lo stesso vale per il vettore $\mu$ che quindi è un vettore di due elementi
+visto che dobbiamo sommarlo al risultato di $Wz_i$.
+
+Passando da un data space di una dimensione ad un data space di due dimensioni possiamo vedere che i nostri punti si troveranno sulla linea blue della seconda figura.
+In particolare notiamo che:
+\begin{itemize}
+	\item Nella figura in cui il data space è di dimensione 1 abbiamo la media a 0 e noi il punto medio della gaussiana lo possiamo trasformare in un punto 
+	nel dataspace di due dimensioni. 
+	\item Possiamo notare che la maggior parte dei punti nel data space di due dimensioni la troveremo nell'area attorno al punto $\mu$ della media.
+	In particolare la maggior parte dei punti saranno sulla linea blu e a mano a mano che ci allontaniamo da $\mu$ i punti diminuiranno.
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{484.jpeg}
+	\end{figure}
+	\item Allo stesso modo i punti diminuiscono se ci allontaniamo in "larghezza" dalla linea blu, in particoalre questo lo vediamo grazie all'isotropic gaussian
+	distribution (il cerchio rosso), più siamo lontani dalla linea e meno probabile diventa trovare un data point.
+	\item I punti che si trovano sulla linea blu possiamo indicarli come:
+	$L = \{P \in R^2 | \exists\ z\ \in R \ : \ P=Wz+\mu\}$
+\end{itemize}
+
+L'ultima figura invece mostra la distribuzione di $P(x)$ e in particolare quello che possiamo notare è che più questa ellisse diventa larga più abbiamo informazioni 
+che andiamo a perdere eliminando quella dimension.
+Anche da questa ultima figura (ellissi verde) possiamo vedere che più ci allontaniamo dalla $\mu$ più la likelihood di trovare quel punto diminuisce, quindi il punto
+centrale è più probabile rispetto a quello sull'ellissi più esterna.
+
+\section{PPCA: Learning Step}
+
+\subsection{Verso la MLE}
+
+Noi fino ad ora abbiamo definito le due variabili nel modo seguente:
+
+\begin{itemize}
+\item $z_i \sim N(0, I)$
+\item $(x_i | z_i) \sim N(Wz_i + \mu, \sigma^2I)$
+\end{itemize}
+
+ma vorrremmo fare in modo di non avere la variabile $z_i$ all'interno della definizione di $(x_i | z_i)$. 
+Quello che possiamo fare è calcolare la marginal distribution (abbiamo le variabili X e z e conosciamo la loro joint distribution) che definiamo nel modo seguente:
+
+$$p(x) = \int p(x|z)p(z)$$
+
+La distribuzione di $P(x)$ sarà una gaussiana perchè lo sono anche $P(z)$ e $P(x|z)$. Noi sapendo queste informazioni possiamo derivare:
+$$P(x_i) = x_i \sim N(\mu, WW^T + \sigma^2I)$$
+Dove $\mu$ è la media e $WW^T + \sigma^2I)$ è la covarianza.
+
+E possiamo anche trovare che:
+
+$$P(x) = \prod_{i=1}^N P(x_i) = \prod_{i=1}^N (x_i, \mu, WW^T)$$
+
+Dove $\mu$ è la media e $WW^T$ è la covarianza.
+Ora vorremmo trovare $W$, $\mu$ e $\sigma$ usando l'MLE perchè questi sono i parametri da cui dipende la predictive distribution $p(x)$.
+
+\subsection{Usare MLE con la PPCA}
+
+Come abbiamo detto vogliamo determinare i parametri del modello usando la maximum likelihood. Questo step che mi permette di fare il learning dei parametri
+si chiama learning step. 
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{485.jpeg}
+\end{figure}
+
+E riusciamo ad ottenere la Log-Likelihood del PPCA model:
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{486.jpeg}
+	\end{figure}
+
+Ora che siamo riusciti a trovare il Log-Likelihood del modello possiamo trovare i parametri che stavamo cercando:
+\begin{itemize}
+	\item Il primo parametro che troviamo è $\mu$, per calcolarlo dobbiamo calcolare la derivata della log likelihood rispetto a $\mu$ e poi la 
+	uguagliamo a 0 per ottenere $\mu_{ML} = \frac{1}{N}\sum_{i=1}{N}x_i$. Quello che abbiamo ottenuto è la media. Possiamo sostituire il valore che abbiamo 
+	trovato all'interno della formula del log-likelihood che quindi diventa:
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{487.jpeg}
+	\end{figure}
+	In particolare la $S$ è la matrice di covarianza dei nostri dati e la definiamo come:
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{488.jpeg}
+	\end{figure}
+	\item Ci rimangono da stimare i due parametri $W$ e $\sigma^2$. Una possibilità è usare la closed form per calcolare questi due parametri:
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{493.jpeg}
+	\end{figure}
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{492.jpeg}
+	\end{figure}
+	Un'altra possibilità
+	invece consiste nell'uso del gradient descent, in questo modo riusciamo anche ad evitare di eseguire la eigen decomposition.
+\end{itemize}
+
+\section{PPCA: Inference Step}
+
+Terminato il learning step possiamo eseguire l'inference step:
+\begin{itemize}
+	\item Solitamente nell'inference step quando abbiamo un problema di supervised learning dobbiamo provare il nostro modello e inferire 
+	il valore di $y$.
+	\item In questo caso noi vogliamo trovare $z$ ovvero siamo interessati a $P(Z|x, w, \mu, \sigma)$.
+\end{itemize}
+
+Quello che vorremmo fare ora quindi è studiare la distribuzione della variabile $z_i$ dato il dato $x_i$ che noi conosciamo e per questo step possiamo utilizzare
+la formula di bayes:
+
+$$z_i | x_i \sim N(M^{-1}W^{T}(x_i-\mu), \sigma^2M^{-1})$$
+
+Dove in particolare abbiamo $M = W^TW + \sigma^2I$. All'interno della formula possiamo notare che il punto $x_i$ viene prima trasformato utilizzando la trasformazione
+$M^{-1}W^{T}$, poi facciamo il sample dalla normal distribution.
+
+\subsection{PCA e PPCA: pro e contro}
+
+I due metodi sono simili tra loro nel caso limite in cui abbiamo $\sigma^2 = 0$.
+Supponiamo di aver trovato il nostro parametro $W_{ML}$ ovvero il parametro migliore per la $W$. 
+Quindi avremmo questa situazione:
+
+$$W_{ML} = U_K\Lambda_K^{1/2} = WW^T + \sigma^2I = U_K\Lambda_K^{1/2}(U_K\Lambda^{1/2})^T$$
+
+$$U_K\Lambda_K^{1/2}\Lambda_K^{1/2}U_{K}^{T} = U_K \Lambda_K U_K^T$$
+
+Vantaggi di PCA:
+
+\begin{itemize}
+	\item Possiamo ottimizzare il modello senza dover calcolare in modo esplicito la covariance matrix. (Massimizzando la likelihood function).
+	\item Possiamo fare il sampling del modello per generare nuovi dati.
+	\item L'esistenza della likelihood function mi permette di fare confronti con altri modelli.
+	\item Possiamo unire più modelli PCA
+	\item Se scriviamo la likelihood nel modo corretto possiamo gestire correttamente i dati mancanti e in particolare questo discorso non vale solamente per la PPCA
+	ma per tutti i modelli probabilistici.
+\end{itemize}
+
+Consideriamo il caso in cui abbiamo dei dati mancanti e vediamo come lavora PCA.
+
+Quello che si fa con PCA è andare ad utilizzare la marginal distribution, quindi, assumiamo di avere un vettore con tre elementi $x_a$, $x_b$ e $x_c$ ma per il 
+dato che stiamo prendendo in considerazione ci manca $x_b$. 
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{494.jpeg}
+\end{figure}
+
+Quindi questo è quello che succede e nella likelihood che andiamo a calcolare avremo quindi: 
+
+$$Likelihood \ = \ P([x_a^1,x_c^1])*P([x_a^2, x_b^2, x_c^2]) * P([x_a^3,x_b^3])$$
+
+QUindi in pratica possiamo calcolare la likelihood su dati incompleti utilizzando la marginal distribution perchè marginalizziamo il missing value.
+
+
+\section{Singular Value Decomposition: SVD}
+
+La singular value decomposition è un altro metodo che abbiamo per decomporre le matrici, a differenza dell'eigenvalue decomposition in questo caso non abbiamo bisogno di
+una matrice diagonale per poter eseguire la decomposizione.
+Quindi l'SVD funziona anche con matrici $A \in R^{n*d}$, la decomposizione che otteniamo rappresenta in modo esatto la matrice originale e non va a fare una approssimazione.
+
+La decomposizione è la seguente:
+
+$$A = U \Sigma V^T$$
+
+Ci sono da notare i seguenti particolari:
+
+\begin{itemize}
+	\item La matrice $U$ è una matrice di dimensione $n*r$
+	\item La matrice $\Sigma$ è una matrice quadrata di dimensione $r*r$ e r rappresenta il rank delle matrice A che stiamo decomponendo.
+	\item La matrice $V$ ha dimensione $r*d$
+	\item La matrice $\Sigma$ è diagonale, ha valori maggiori di 0 solamente sulla diagonale altrimenti 0. 
+	I valori sulla diagonale sono positivi e ordinati in ordine decrescente e rappresentano i singular values (che sono le radici
+	quadrate degli autovalori della matrice $A^TA$). 
+	\item I valori della matrice $U$ sono chiamati left singular values
+	\item I valori della matrice $V$ sono chiamati right singular values
+\end{itemize}
+
+La decomposizione che si ottiene con questo metodo è più o meno unica nel senso che i valori all'interno delle matrici sono sempre gli stessi ma 
+possono avere una variazione del segno e quindi potremmo ottenere matrici con valori di segno differente che però sono la decomposizione della stessa matrice iniziale.
+
+Perchè può essere utile effettuare la decomposizione con l'SVD:
+\begin{itemize}
+	\item Possiamo trovare delle correlazioni nascoste nei dati, ad esempio film dello stesso genere o parole simili (ad esempio una matrice di words,documents 
+	in cui abbiamo il numero di occorrenze di parole in ogni documento ci potrebbe permettere di clusterizzare i documenti in base all'argomento trattato). 
+	\item Possiamo interpretare e visualizzare meglio i dati.
+\end{itemize}
+
+Possiamo visualizzare questa decomposizione nella seguente immagine:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{496.jpeg}
+\end{figure}
+
+La cosa che possiamo notare dall'immagine è che in questo caso la dimensione della matrice $\Sigma$ è $2*2$ e quindi vuol dire che il rank della matrice di partenza è 2.
+Grazie alle due colorazioni differenti nell'esempio possiamo notare come vengono eseguite le moltiplicazioni all'interno della decomposizione e in particolare possiamo anche 
+notare che questa decomposizione può essere rappresentata anche sotto forma di somma di due matrici che hanno rank 1:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{497.jpeg}
+\end{figure}
+
+Le due matrici possono essere sommate perchè la moltiplicazione che abbiamo nella decomposizione forma una matrice.
+
+Vediamo un primo esempio di utilizzo dell'SVD, consideriamo una matrice di partenza in cui abbiamo utenti e film e all'interno della matrice abbiamo la preferenza
+di un utente per un certo film:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{498.jpeg}
+\end{figure}
+
+Possiamo notare che:
+
+\begin{itemize}
+	\item Abbiamo una lista di utenti, un insieme di film che sono stati visti e ogni film è di un certo genere (Sci-fi Concept, Romance Concept)
+	\item Nella matrice $U$ della decomposizione vogliamo rappresentare la similarity matrix user-concept ovvero vogliamo indicare per ogni utente quanto
+	hanno apprezzato i film dei due generi che stiamo considerando. Ad esempio il primo ha valutazioni basse e infatti ha un valore basso anche nella U a differenza del 	
+	quarto utente ad esempio.
+	\item Nella matrice $V$ abbiamo invece la similarity matrix movie to concept nel senso che per ogni film vogliamo capire quanto è simile al genere che stiamo prendendo 
+	in considerazione. Il fatto che nella prima riga ci sia sempre 0.57 e poi 0 indica che quei film sono tutti di quel genere.
+
+	\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{500.jpeg}
+	\end{figure}
+
+	\item $\Sigma$ mi indica la "forza" di ognuno dei vari concetti che stiamo prendendo in considerazione. In questo caso il primo valore è più alto perchè abbiamo più 
+	dati che riguardano il primo genere rispetto ai dati che riguardano il secondo genere.
+\end{itemize}
+
+Questi concepts di cui stiamo parlando (Sci-fi concept and Romance concept) rappresentano in questo caso i generi dei film e sono le dimensions del problema che non conosciamo
+in partenza.
+Per ora abbiamo considerato solamente il caso in cui ogni utente vede e vota solamente film di un certo genere, ora consideriamo il caso in cui gli utenti vedono
+e votano anche film di generi differenti, la decomposizione ovviamente è differente:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{499.jpeg}
+\end{figure}
+
+\begin{itemize}
+	\item Come possiamo vedere dalla dimensione della matrice $\Sigma$, il rank della matrice $A$ di partenza è ora 3 perchè abbiamo dei voti in più
+	\item Nelle matrici $U$ e $V$ abbiamo del rumore dovuto alla presenza delle valutazioni in più che prima non avevamo, in particolare ora la terza colonna di U 
+	e la terza riga di V sono legate proprio alla presenza di questo rumore. La terza riga della matrice V in particolare mi indica in che modo i film sono legati 
+	ai due concepts e possiamo notare che qua noi indichiamo che le due nuove valutazioni fanno si che i film valutati siano più vicini al concetto sci-fi rispetto 
+	al romance perchè le valutazioni sono basse.
+	\item All'interno della matrice $\Sigma$ invece abbiamo il terzo elemento diagonale che ha un valore basso rispetto agli altri due e questo mi indica che è meno 
+	importante rispetto agli altri due.
+\end{itemize}
+
+Come si riconosce il dominant component?
+
+Dobbiamo considerare il valore all'interno della matrice con il valore assoluto più alto facendo poi in modo che a questo venga assegnato un segno positivo (sappiamo
+che nella decomposizione possiamo moltiplicare per -1, solitamente si moltiplica per -1 per fare in modo che il valore più alto sia positivo). 
+Ad esempio nella matrice $\Sigma$ abbiamo che il dominant component è 12.4.
+
+\section{Dimensionality Reduction con Low Rank Approximation}
+
+Supponiamo di avere una matrice A che ha al suo interno dei valori che sono decimali, quindi è difficile azzerare le varie righe e quindi il rank della matrice è 3 e non si 
+riesce ad ridurre la dimensione della matrice e quindi a ridurre le dimensioni perchè non sono correlate tra loro.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{501.jpeg}
+\end{figure}
+
+Quindi l'idea è quella di creare una approssimazione della matrice originale in modo da poter ottenere una matrice in cui possiamo ridurre le dimensions.
+L'obiettivo è trovare la matrice B che minimizza la differenza tra le due matrici ovvero:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{502.jpeg}
+\end{figure}
+
+\section{Un'alta interpretazione dell'SVD}
+
+Rimanendo sempre con l'esempio del ranking dei film ci chiediamo in che modo possiamo scoprire che i nostri dati dei film hanno solamente due concept principali
+e un terzo meno importante che quindi possiamo rimuovere. L'obiettivo quindi è trovare questi due concept principali ed eseguire quindi la dimensionality reduction.
+
+Per fare questo l'SVD ci fornisce il miglior asse su cui fare la proiezione, questo è migliore in termini di minimizzazione della 
+somma degli errori delle proiezioni al quadrato.
+
+Consideriamo il seguente dataset:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{503.jpeg}
+\end{figure}
+
+\begin{itemize}
+	\item I due assi mi rappresentano due differenti film che gli utenti hanno votato
+	\item Ogni punto interno al piano mi rappresenta un utente, sulla X abbiamo il voto che ha dato l'utente al primo film e sulla Y il voto che ha dato 
+	lo stesso utente al secondo film 
+\end{itemize}
+
+Assumendo questo dataset il nostro obiettivo è utilizzare solamente una coordinata per rappresentarlo invece che due, per farlo mi devo chiedere quale sarà 
+il miglior asse per rappresentare i dati con un singolo numero.
+
+Se consideriamo il nostro esempio abbiamo che l'asse migliore che ci viene restituito da SVD è quello che troviamo nella prima linea della matrice $V$ perchè questo 
+corrisponde alla prima riga della matrice $\Sigma$ (in $\Sigma$ memorizziamo l'importanza di ogni vettore e indichiamo per ogni vettore quanto i dati sono 
+distribuiti attorno a quel vettore) e quindi rappresenta l'asse con la maggiore varianza.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{504.jpeg}
+\end{figure}
+
+Ora eseguiamo la moltiplicazione della matrice U con la matrice $\Sigma$, i valori che troviamo all'interno di questa matrice risultato mi indicano la posizione 
+di ognuno dei punti proiettato però sul nuovo asse.
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{505.jpeg}
+	\end{figure}
+
+
+Possiamo vedere che i valori che troviamo all'interno della prima colonna della matrice hanno una varianza maggiore rispetto a quelli che troviamo all'interno dell'ultima
+colonna, questo è dovuto al fatto che nella matrice $\Sigma$ noi stiamo dando maggiore peso ai primi due concept e meno al terzo concept.
+
+\subsection{Approximation}
+
+Ora che abbiamo eseguito la nostra decomposizione con SVD vorremmo andare a trovare una approssimazione della matrice originale che mi permetta di avere meno una 
+quantità di dimensions minore rispetto alla matrice originale.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{506.jpeg}
+\end{figure}
+
+Quello che possiamo fare è andare a fissare a 0 il singular value più piccolo che abbiamo nella matrice $\Sigma$, in questo modo riusciamo ad ottenere 
+una approssimazione della matrice iniziale in cui abbiamo il rank che (per costruzione, credo che sia 2 perchè la matrice $\Sigma$ è 2x2) è 2.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{507.jpeg}
+\end{figure}
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{508.jpeg}
+\end{figure}
+
+Per quanto riguarda invece la proiezione dei dati iniziali, possiamo ottenere la proiezione con il calcolo $P=A*V$ oppure $U*\Sigma$.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{509.jpeg}
+\end{figure}
+
+Come facciamo a capire quanti elementi di $\Sigma$ possiamo scartare? 
+Considerando il fatto che gli elementi diagonali di $\Sigma$ sono ordinati in ordine decrescente allora vale sempre la solita regola che prendiamo il $90\%$
+del totale ovvero $\sum_{i=1}^K \sigma_i^2 \geq 0.9 \sum_{i=1}^r \sigma_i^2$.
+Se scegliamo di rendere 0 i valori più piccoli dei vari $\sigma_i$ allora vuol dire che introduciamo meno errore rispetto a rendere 0 valori più grandi.
+
+\subsection{Best Low Rank Approximation - Proof}
+
+\textbf{Theorem} 
+Prendiamo la matrice $A = U \Sigma V^T$ con $(\sigma_1 \geq \sigma_2, ...., rank(A)=r)$ e prendiamo la matrice $B = USV^{T}$ con S matrice diagonale in cui però abbiamo 
+$\sigma_i$ nelle prime k posizioni e poi 0.
+Allora B è la miglior approssimazione di rango k della matrice originale ovvero B è soluzione per il problema di minimizzazione:
+
+$$min_B ||A-B||_F$$
+
+\subsection{SVD - Complessità}
+
+Eseguire la decomposizione completa con l'SVD ha un costo molto alto:
+
+$$O(nd^2) \ o \ O(n^{2}d)$$
+
+Anche per questa ragione si preferisce effettuare una decomposizione parziale in cui andiamo a considerare solamente i top K valori.
+
+\section{Confronto tra PCA e SVD}
+
+Consideriamo per prima cosa l'SVD, abbiamo i seguenti dati:
+
+\begin{itemize}
+	\item $X = U \Sigma V^T$.
+	\item $P = XV = U \Sigma$.
+	\item $P = U \Sigma V^T V = U \Sigma$ questo lo possiamo fare perchè abbiamo $V^T V$ che è la matrice identità perchè sono due vettori ortogonali.
+\end{itemize}
+
+Ora consideriamo invece la PCA:
+
+\begin{itemize}
+	\item Qua abbiamo la covariance matrix che è $X^TX = (U \Sigma V^T)^T(U \Sigma V^T) = V \Sigma^T U^T U \Sigma V^T = V \Sigma^T \Sigma V^T = V \Sigma^2 V^T$ 
+	\item La Eigendecomposition è $X^T X = \Gamma \Lambda \Gamma^T$.
+\end{itemize} 
+
+Possiamo vedere che $\Gamma = V$ e $\Sigma^2 = \Lambda$ e quindi il risultato che otteniamo è lo stesso.
+
+
+Poi supponiamo di avere una matrice quadrata del tipo $\Sigma_x = U \Sigma V^T$, in questo caso l'eigendecomposition mi porta lo stesso risultato numerico 
+della SVD decomposition.
+
+
+
+\section{Matrix Factorization}
+
+\subsection{L'esempio di Netflix}
+
+Qualche anno fa Netflix ha avviato una challenge in cui chiedeva di migliorare il recommendation system.
+C'erano a disposizioen 100 milioni di dati, 480.000 utenti e 17.770 film, il databaset era stato diviso tra training set e tests set e in particolare per 
+valutare le previsioni effettuate sul test set veniva utilizzata la formula Root Mean Square Error:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{511.jpeg}
+\end{figure}
+
+L'obiettivo è avere un risultato di questa formula che sia il più basso possibile perchè più questo risultato è basso e 
+migliori sono le raccomandazioni che otteniamo.
+
+In pratica c'era a disposizione una matrice di questo genere per i dati e all'interno della matrice è contenuto il rating di ognuno degli utenti
+rispetto ad un certo film specifico:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{512.jpeg}
+\end{figure}
+
+Una possibile soluzione per il problema potrebbe essere l'esecuzione della decomposizione della matrice dei ranking utilizzando SVD.
+Quindi avremmo la nostra decomposizione e quando vogliamo fare la previsione eseguiamo i seguenti passaggi:
+\begin{itemize}
+	\item Prima moltiplichiamo la matrice U con la matrice $\Sigma$ e otteniamo la matrice Q che abbiamo anche nel disegno sotto 
+	\item Poi andiamo ad eseguire una moltiplicazione tra la riga della matrice Q corrispondente all'utente che ci interessa e la colonna della matrice P
+	che corrisponde al film che ci interessa.
+	\item Quindi se per esempio vogliamo sapere se l'utente 1 gradirà il film 5 dovremo moltiplicare la prima riga della matrice Q con la quinta colonna della
+	matrice P.
+\end{itemize}
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{513.jpeg}
+\end{figure}
+
+
+Utilizzando questo metodo possiamo dire che la SVD minimizza il reconstruction error, quindi facendo la decomposizione con l'SVD otteniamo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{514.jpeg}
+\end{figure}
+
+La cosa bella è che SSE e RMSE sono legati perchè la formula dell'RMSE può essere riscritta come:
+$$RMSE = \frac{1}{C}\sqrt{SSE}$$
+
+e questa cosa è positiva perchè vuol dire che l'SVD minimizza anche RMSE.
+
+Ci sono però anche degli aspetti negativi di tutta questa vicenda, per prima cosa dobbiamo considerare che la somma che abbiamo per il calcolo dell'errore
+con l'SVD viene effettuata su tutti i termini della matrice. Il problema è che la matrice R è una matrice in cui non tutti i campi sono riempiti con dei numeri
+perchè non tutti gli utenti hanno dato un voto a tutti i film quindi quello che succede è che viene messo uno 0 al posto dei missing data e questo è 
+chiaramente un problema in questo caso.
+
+Un altro problema che si verifica riguarda le matrici U, $\Sigma$ e V che creiamo con la nostra decomposizione. Il problema è legato al fatto che abbiamo delle matrici
+che sono piene di valori e non sparse quando invece la matrice di partenza è molto sparsa. Questa cosa potrebbe sembrare contro intuitiva perchè la matrice di partenza
+è sparsa e le altre sono invece piene di valori però è così e le matrici che otteniamo quindi sono dense perchè poi quando moltiplichiamo delle matrici dense 
+otteniamo una matrice che è sparsa.
+
+Abbiamo quindi una alternativa, noi vogliamo considerare la matrice di partenza tenendo però in considerazione solamente quei valori che abbiamo osservato.
+Quindi possiamo trasformare il problema di minimizzazione che avevamo in precedenza in un problema di minimizzazione di questo genere in cui abbiamo:
+
+
+\begin{figure}[H] 
+	\centering
+	\includegraphics[width=0.7\linewidth]{515.jpeg}
+	\end{figure}
+
+Quindi in pratica qua noi stiamo facendo la somma considerando solamente le entry che abbiamo osservato davvero all'interno della matrice e inoltre 
+quando minimizziamo vogliamo trovare i valori P e Q che minimizzano il problema.
+Nella formula in particolare abbiamo:
+
+\begin{itemize}
+	\item $r_{xi} = q_x * p_i^T$.
+	\item $q_x$ è la righa x della matrice Q.
+	\item $p_i$ è la riga i nella matrice P.
+\end{itemize}
+
+\subsubsection{Alternating Optimization}
+
+Come facciamo a minimizzare il problema visto sopra? Possiamo utilizzare un metodo chiamato Alternative Optimization.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{516.jpeg}
+\end{figure}
+
+In questo caso non possiamo utilizzare il gradient descent e quindi usiamo questo altro metodo in cui ottimizziamo P e Q alternativamente, non come nel gradient descent
+in cui invece facciamo una sola ottimizzazione e facciamo una sorta di zig zag per ottimizzare entrambe le variabili.
+Quindi come funziona questa ottimizzazione: 
+\begin{itemize}
+	\item Fissiamo un valore iniziale per la $Q$ e ottimizziamo $P$.
+	\item Fissiamo $P$ e ottimizziamo $Q$.
+	\item Ripetiamo questo procedimento in cui una variabile è fissata e una è da ottimizzare fino a quando non arriviamo ad avere la convergenza.
+\end{itemize}
+
+La matrice P che stiamo utilizzando qua è la matrice con Film e Rank e ogni riga di questa matrice è $p_i$ 
+mentre la matrice Q è la matrice degli utenti e ogni riga è indicata come $q_i$, in particolare per trovare P e Q
+possiamo utilizzare SVD ma quando ci sono delle entry mancanti le sostituiamo con degli 0 o con la media.
+
+Quello che dobbiamo fare è risolvere il seguente problema:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{517.jpeg}
+\end{figure}
+
+Dato che Q viene fissato allora il problema può essere risolto in modo indipendente per ognuno dei vettori $p_i$.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{518.jpeg}
+\end{figure}
+
+Se consideriamo il problema che abbiamo nella figura sopra abbiamo la parte:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{519.jpeg}
+\end{figure}
+
+che mi rappresenta la somma effettuata su tutti gli elementi in cui l'utente è coinvolto, questa minimizzazione rappresenta l'objective function che 
+noi dobbiamo risolvere.
+Se vogliamo risolverla dobbiamo considerare che $p_i$ è il valore che stiamo cercando, $r_{xi}$ è il valore osservato e $q_x$ è fissato.
+Questo vuol dire che si tratta di un least square problem.
+
+Sempre considerando la formula della immagine che abbiamo sopra notiamo che abbiamo:
+
+\begin{itemize}
+	\item $n = |R_{*,i}|$ osservazioni.
+	\item Abbiamo che il numero di parametri in questo least square problem equivale alla lunghezza del vettore b, in questo caso equivale alla lunghezza 
+	del vettore $P_i$.
+	\item Quanti sono i parametri sconosciuti? Abbiamo K parametri perchè il vettore è di dimensione K.
+\end{itemize}
+
+Questa sommatoria in particolare la possiamo rappresentare graficamente in questo modo:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{520.jpeg}
+\end{figure}
+
+In questo caso stiamo considerando la presenza di due utenti e poi per ognuno di questi facciamo la moltiplicazione per la $p_i$ per ottenere la corrispondente $r$.
+La parte con la $r$ è sempre osservata, le $Q$ sono fissate e abbiamo $p_i$ che invece è la variabile che stiamo cercando.
+Abbiamo anche una soluzione rapida con una closed form per b e per $p_i$:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{521.jpeg}
+\end{figure}
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{522.jpeg}
+\end{figure}
+
+Questi due sono anche veloci da calcolare.
+In pratica tutta questo calcolo viene ridotto ad un problema standard di ottimizzazione che possiamo risolvere come un classico problema.
+Fissando P e Q possiamo sempre trovare i valori ottimi per P e Q ma quali sono i problemi di questo metodo?
+\begin{itemize}
+\item La soluzione che otteniamo è solamente una approssimazione della soluzione reale e non siamo sicuri che la soluzione che troviamo è 
+vicina alla soluzione ottima.
+\item Dipende molto dalla soluzione iniziale.
+\end{itemize}
+
+Supponiamo di aver ottenuto la decomposizione della nostra matrice di partenza e abbiamo due matrici ora, una è la matrice $Q$ e una è la matrice $P$.
+Ora vorremmo eseguire la nostra previsione, come facciamo a stimare se ad un utente piacerà un certo film?
+Possiamo prendere la riga della matrice Q che corrisponde all'utente e la colonna della matrice P che corrisponde al film e poi applichiamo questa formula:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{523.jpeg}
+\end{figure}
+
+In questo modo otteniamo il valore del rating per l'utente e per quel film:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.4\linewidth]{524.jpeg}
+\end{figure}
+
+\subsubsection{Overfitting}
+
+Il numero dei latent component K è un parametro e il nostro obiettivo è fare una minimizzazione della SSE sui dati di training, vorremmo avere un valore alto per la 
+K in modo da catturare tutti i segnali ma il problema è che aumentando troppo K avremmo una migliore soluzione sul validation test ma una soluzione che va via 
+via peggiorando sul test set. 
+Quindi dobbiamo scegliere una K che ci permette di evitare il problema dell'overfitting, infatti se abbiamo troppi parametri il modello inizia a 
+considerare anche il rumore e questo non va bene e il modello finale non generalizzarebbe. 
+Come scegliamo la K? Possiamo fare train validation per trovare la K migliore per il nostro problema e un'alternativa possibile è eseguire la 
+regularization.
+
+Potrebbe anche capitare che la K che scegliamo è maggiore rispetto al numero di $|R_{*,i}|$, in questo caso il sistema di equazioni non può essere risolto 
+perchè avremmo più parametri che data points.
+
+\subsubsection{Risolvere l'overfitting con la Regolarizzazione}
+
+Per risolvere il problema dell'overfitting una possibile soluzione è l'utilizzo della regolarizzazione, la formula è la seguente, una parte rappresenta l'errore
+e una parte invece rappresenta quello che aggiungiamo per la regolarizzazione. In particolare in questa seconda parte relativa alla regolarizzazione abbiamo due parametri 
+che sono $\lambda_1$ e $\lambda_2$. Questi due sono i parametri che sono definiti dall'utente e che servono per la regolarizzazione.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{525.jpeg}
+\end{figure}
+
+In questa formula noi non siamo interessati al valore che assume la nostra objective function ma siamo invece interessati ai valori di P e di Q che mi permettono 
+di ottenere il minimo nell'objective function. P in questo caso è una variabile con una distribuzione gaussiana $P = N(0, \sigma I)$.
+
+Quali sono gli effetti della regolarizzazione?
+
+Consideriamo questo caso:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{526.jpeg}
+\end{figure}
+
+Qui noi abbiamo che la previsione per il nostro utente è tutta spostata in basso a destra quindi siamo in overfitting e con la regolarizzazione vorremmo 
+spostare l'utente verso il centro del piano.
+Il nostro obiettivo è minimizzare la norma dei due vettori $p_x$ e $q_i$, i pesi invece rappresentano invece l'embedding dell'utente nel latent space.
+Modificando il valore dei pesi $\lambda$ (alzando il valore) noi riusciamo a ridurre l'overfitting e quindi la nostra previsione sarà meno verso una singola preferenza.
+Nella formula sopra possiamo anche dire che dei due termini abbiamo che il primo è più importante del secondo se l'utente ha votato molti film, se invece non ha molti 
+ratings allora la seconda parte della formula avrà un peso maggiore.
+
+\subsubsection{L2 vs L1 regularization}
+
+Possiamo confrontare i due tipi di regolarizzazione:
+
+\begin{itemize}
+\item L2 cerca di penalizzare i valori più alti che abbiamo nel vettore grazie alla radice quadrata che abbiamo nella formula di L2.
+Le soluzioni in questo caso sono tutte sul bordo del cerchio della norma e possiamo dire che non produciamo una soluzione che è sparsa in questo caso.
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{527.jpeg}
+\end{figure}
+\item La L1 permette di mantenere valori grandi in ogni componente di b portando a 0 gli altri componenti. Qua otteniamo una matrice che è sparsa 
+perchè le soluzioni sono sui vertici e qua abbiamo 4 vertici:
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{527.jpeg}
+\end{figure}
+Perchè preferiamo avere una matrice sparsa? Perchè solamente pochi valori contribuiscono al risultato finale, quindi serve meno spazio e lavoriamo più velocemente.
+\end{itemize}
+
+\section{Altri metodi per fattorizzare le matrici}
+
+La fattorizzazione delle matrici è una tecnica che viene utilizzata ad esempio per la dimensionality reduction 
+o anche per l'analisi dei dati e per predire i missing values e per questo ne sono state proposte varie estensioni.
+Una di queste estensioni nasce dalla necessità di avere una fattorizzazione che non contenga valori negativi al suo interno.
+In particolare possiamo dimostrare che quando utilizziamo l'SVD potremmo ottenere delle matrici che contengono dei valori negativi e questo può essere un problema
+perchè la matrice diventa difficile da interpretare. Quindi nasce l'idea della Non Negative Matrix factorization.
+
+
+
+
 
 
 

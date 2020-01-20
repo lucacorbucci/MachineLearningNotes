@@ -4,9 +4,9 @@
 \BOOKMARK [2][-]{subsection.1.2.1}{Problemi noti}{section.1.2}% 4
 \BOOKMARK [2][-]{subsection.1.2.2}{Considerazioni su K-nn}{section.1.2}% 5
 \BOOKMARK [0][-]{chapter.2}{Decision Tree}{}% 6
-\BOOKMARK [1][-]{subsection.2.0.1}{Introduzione}{chapter.2}% 7
-\BOOKMARK [2][-]{subsection.2.0.2}{Inferenza con i decision tree}{subsection.2.0.1}% 8
-\BOOKMARK [2][-]{subsection.2.0.3}{Creare il decision Tree ottimo}{subsection.2.0.1}% 9
+\BOOKMARK [1][-]{section.2.1}{Introduzione}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Inferenza con i decision tree}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Creare il decision Tree ottimo}{chapter.2}% 9
 \BOOKMARK [0][-]{chapter.3}{Lezione 3 - Probabilistic Inference}{}% 10
 \BOOKMARK [1][-]{section.3.1}{Refresh: }{chapter.3}% 11
 \BOOKMARK [1][-]{section.3.2}{MLE: Ottimizzare la funzione Likelihood}{chapter.3}% 12
@@ -108,37 +108,4 @@
 \BOOKMARK [1][-]{section.10.1}{Layer e CNN}{chapter.10}% 108
 \BOOKMARK [2][-]{subsection.10.1.1}{CNN}{section.10.1}% 109
 \BOOKMARK [1][-]{section.10.2}{RNN: Recurrent Neural Networks}{chapter.10}% 110
-\BOOKMARK [2][-]{subsection.10.2.1}{Unfolding computational Graph}{section.10.2}% 111
-\BOOKMARK [2][-]{subsection.10.2.2}{RNN e training}{section.10.2}% 112
-\BOOKMARK [1][-]{section.10.3}{Training Deep Neural Networks}{chapter.10}% 113
-\BOOKMARK [1][-]{section.10.4}{Regularization}{chapter.10}% 114
-\BOOKMARK [1][-]{section.10.5}{Modern Architecture and Tricks}{chapter.10}% 115
-\BOOKMARK [2][-]{subsection.10.5.1}{Batch Normalization}{section.10.5}% 116
-\BOOKMARK [2][-]{subsection.10.5.2}{Attention}{section.10.5}% 117
-\BOOKMARK [2][-]{subsection.10.5.3}{Tips and Tricks}{section.10.5}% 118
-\BOOKMARK [0][-]{chapter.11}{Dimension Reduction}{}% 119
-\BOOKMARK [1][-]{subsection.11.0.1}{Unsupervised Learning}{chapter.11}% 120
-\BOOKMARK [2][-]{subsection.11.0.2}{Dimensionality Reduction}{subsection.11.0.1}% 121
-\BOOKMARK [1][-]{section.11.1}{Principal Component Analysis}{chapter.11}% 122
-\BOOKMARK [0][-]{chapter.12}{Introduction to PyTorch}{}% 123
-\BOOKMARK [1][-]{section.12.1}{Manually Setup the Affine Layer}{chapter.12}% 124
-\BOOKMARK [1][-]{section.12.2}{Declare the layer using PyTorch}{chapter.12}% 125
-\BOOKMARK [2][-]{subsection.12.2.1}{nn.Linear}{section.12.2}% 126
-\BOOKMARK [2][-]{subsection.12.2.2}{Torch.optim}{section.12.2}% 127
-\BOOKMARK [2][-]{subsection.12.2.3}{DataLoader}{section.12.2}% 128
-\BOOKMARK [1][-]{section.12.3}{Validation}{chapter.12}% 129
-\BOOKMARK [1][-]{section.12.4}{Implement a CNN using PyTorch}{chapter.12}% 130
-\BOOKMARK [2][-]{subsection.12.4.1}{nn.Sequential}{section.12.4}% 131
-\BOOKMARK [0][-]{chapter.13}{Math Refresh}{}% 132
-\BOOKMARK [1][-]{section.13.1}{Loss function}{chapter.13}% 133
-\BOOKMARK [1][-]{section.13.2}{0-1 Loss}{chapter.13}% 134
-\BOOKMARK [1][-]{section.13.3}{Lagrange Multipliers}{chapter.13}% 135
-\BOOKMARK [1][-]{section.13.4}{Probability Distribution}{chapter.13}% 136
-\BOOKMARK [2][-]{subsection.13.4.1}{Bernoulli Distribution}{section.13.4}% 137
-\BOOKMARK [2][-]{subsection.13.4.2}{Normal Distribution}{section.13.4}% 138
-\BOOKMARK [2][-]{subsection.13.4.3}{Beta Distribution}{section.13.4}% 139
-\BOOKMARK [2][-]{subsection.13.4.4}{Categorical Distribution}{section.13.4}% 140
-\BOOKMARK [1][-]{section.13.5}{Propriet\340 dei logaritmi}{chapter.13}% 141
-\BOOKMARK [1][-]{section.13.6}{Derivate}{chapter.13}% 142
-\BOOKMARK [1][-]{section.13.7}{Integrali}{chapter.13}% 143
-\BOOKMARK [1][-]{section.13.8}{Derivate di matrici e Vettori}{chapter.13}% 144
+\BOOKMARK [2][-]{subsection.10.2.1
