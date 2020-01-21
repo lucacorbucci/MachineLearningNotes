@@ -6980,12 +6980,68 @@ Una di queste estensioni nasce dalla necessità di avere una fattorizzazione che
 In particolare possiamo dimostrare che quando utilizziamo l'SVD potremmo ottenere delle matrici che contengono dei valori negativi e questo può essere un problema
 perchè la matrice diventa difficile da interpretare. Quindi nasce l'idea della Non Negative Matrix factorization.
 
+Come funziona questo metodo?
+
+\begin{itemize}
+\item Noi partiamo con una matrice $A$ che deve essere $\geq 0$ e abbiamo un intero k come parametro 
+\item Il nostro obiettivo è trovare due matrici $P \in R^{n*k}$ e $Q \in R^{k*d}$ tale che $$||A - PQ||_F$$ sia minimizzata 
+\item I vincoli che poniamo sono due ovvero vogliamo che $P \geq 0$ e  $Q \geq 0$
+\item A noi interessa risolvere questo problema di minimo e per risolverlo possiamo usare il projected gradint descent.
+\end{itemize}
 
 
+\subsubsection{Boolean Matrix factorization}
 
+Quando ci troviamo ad avere boolean data (ad esempio quando abbiamo una matrice con utenti e prodotti acquistati) potrebbe essere del tutto inutile 
+cercare di eseguire una decomposizione della matrice come quelle che abbiamo visto fino ad ora perchè sono decomposizioni che mi creano delle matrici con 
+dei numeri che nel caso di una matrice booleana potrebbero non significare nulla.
 
+Per risolvere questo problema possiamo utilizzare una soluzione differente e in particolare la soluzione che adottiamo consiste nell'utilizzo dei concetti
+dell'algebra booleana.
+Quindi la nostra decomposizione verrà effettuata considerando che abbiamo due possibili operazioni:
+\begin{itemize}
+\item La moltiplicazione tra due elementi della matrice diventa un AND 
+\item La somma di due elementi della matrice diventa un OR
+\item Abbiamo due valori possibili, 1 che indica true e 0 che indica false
+\end{itemize}
 
+Il nostro obiettivo, data una matrice di partenza $A \in \{0,1\}^{n*d}$ è trovare la decomposizione formata da due matrici $B \in \{0,1\}^{n*k}$ tale che 
+sia minimizzata la differenza tra la matrice iniziale e il prodotto della decomposizione ovvero: $$|A-B*C|$$
 
+Quella che otteniamo con questa decomposizione è una ricostruzione della matrice iniziale quasi perfetta, il metodo è facile da capire e in alcune situazioni
+è utile da utilizzare.
+Il funzionamento si può vedere anche dalla seguente immagine:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{530.jpeg}
+\end{figure}
+
+\section{AutoEncoders}
+
+I metodi che abbiamo visto fino ad ora (PCA/SVD) sono in grado di catturare solamente trasformazioni lineari presenti all'interno dei nostri dati, ricordiamo che 
+questi metodi effettuano una trasformazione del tipo $Y = X * \Gamma$ dove $\Gamma$ rappresenta la trasformazione lineare effettuate tramite gli autovettori.
+
+I dati però non sempre si trovano tutti sulla stessa linea e quindi non sempre possiamo eseguire la dimensionality reduction utilizzando una trasformazione lineare
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{531.jpeg}
+\end{figure}
+
+Quindi in alcune situazioni dobbiamo poter eseguire un encoding dei nostri punti perchè la PCA non sarà mai in grado di ricostruire questi dati
+in modo perfetto, una possibile soluzione consiste nell'utilizzare una proiezione non lineare dei dati.
+
+Una soluzione per questo problema sono gli auto encoders che sono delle reti neurali che eseguono la dimensionality reduction trovando quindi una rappresentazione
+più compatta dei dati.
+
+Quindi in pratica la nostra rete neurale dovrebbe eseguire il learning per capire in che modo ricostruire l'input $x$:
+$$f(x,W) = x' = x$$
+
+facendo anche in modo che l'errore di ricostruzione tra la $x$ di partenza e la $x'$ di arrivo sia minimizzato il più possibile.
+Quindi stiamo cercando di minimizzare la seguente objective function:
+
+$$min_W \frac{1}{N} \sum_{i=1}^N ||f(x_i, W)-x_i||^2$$
 
 
 
