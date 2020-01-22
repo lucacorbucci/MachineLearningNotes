@@ -7234,14 +7234,14 @@ Nel caso dell'unsupervised learning, come abbiamo detto, solamente i dati sono g
 
 Per cercare $\Theta$ quando la Z non è già conosciuta dobbiamo utilizzare la marginalizzazione per ottenere $P(X|\Theta)$ da $P(X,Z|\Theta)$:
 
-$$P(X|\Theta) = \Sum_Z P(X,Z|\Theta) = \Sum_Z P(X|Z, \Theta)*P(Z|Theta)$$
+$$ P(X | \Theta ) = \sum_{Z}{P(X , Z | \Theta )} = \sum_{Z} P(X | Z, \Theta ) * P( Z | \Theta) $$
 
-Nella formula abbiamo che $\Sum_Z P(X|Z, \Theta)$ è una gaussian distribution mentre la $P(Z|Theta)$ è una categorical distribution.
+Nella formula abbiamo che $\sum_{Z} P(X | Z, \Theta)$ è una gaussian distribution mentre la $P(Z | Theta)$ è una categorical distribution.
 Nella formula stiamo integrando Z fuori dalla distribuzione e utilizziamo la sommatoria con Z perchè questa è una variabile discreta.
 
 Ora il nostro problema si trasforma in questa ottimizzazione che va risolta:
 
-$$\Theta^{^} = argmax_{\Theta} P(X|\Theta)$$
+$$\Theta^{*} = argmax_{\Theta} P(X | \Theta)$$
 
 La Z, che non viene mai osservata diventa solamente una astrazione utilizzata per semplificare il modello e la chiamiamo latent variable.
 
