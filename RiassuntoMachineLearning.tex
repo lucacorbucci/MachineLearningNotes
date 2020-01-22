@@ -7096,12 +7096,159 @@ Consideriamo questo caso:
 \end{figure}
 
 Abbiamo che il rank della matrice $W_1W_2$ sarà $l$ perchè le dimensioni originali delle due matrici sono $W_1 \in R^{D*L}$ e $W_2 \in R^{L*D}$ (questo lo 
-possiamo vedere anche se consideriamo che con la decomposizione dell'SVD abbiamo $A = U \Sigma V^T}$ e possiamo dire che il rank della matrice A corrisponde 
+possiamo vedere anche se consideriamo che con la decomposizione dell'SVD abbiamo $A = U \Sigma V^{T}$ e possiamo dire che il rank della matrice A corrisponde 
 alla dimensione di U).
 Guardando la matrice W della formula sopra abbiamo che $W$ è una matrice di dimensioen $D*D$ e in particolare possiamo dire che questa matrice 
 non può essere la matrice identità perchè avrebbe rank D, cosa non possibile perchè noi abbiamo detto che questa matrice può avere al più rank $L$.
 
 \chapter{Clustering}
+
+Siamo sempre nel contesto dell'unsupervised learning, abbiamo dei dati che non sono labellati e vorremmo trovare le strutture nascoste presenti all'interno 
+dei nostri dati.
+L'idea è di utilizzare queste strutture nascoste per raggruppare i dati in gruppi basandoci sulla similarità dei dati.
+Ognuno dei data point del nostro dataset quindi verrà assegnato ad un cluster tale che gli oggetti all'interno del cluster saranno simili tra loro 
+e gli oggetti di cluster diversi saranno differenti tra loro.
+
+\section{K-Means}
+
+Per capire quali oggetti vanno inseriti all'interno di uno stesso cluster dobbiamo avere una definizione di similarità:
+\begin{itemize}
+\item Possiamo definire una similarity function che mi dice quando due oggetti sono simili o meno
+\item Possiamo minimizzare la differenza tra i vari oggetti che troviamo all'interno di un cluster sfruttando la distanza tra i vari oggetti
+e in questo caso si utilizzano delle misure per il calcolo della distanza come ad esempio la Manhattan Distance, la distanza Euclidea e la Mahalanobis distance.
+\end{itemize}
+
+Nel caso di K-Means abbiamo i nostri dati nel piano e vogliamo creare un numero K di cluster.
+Ognuno di questi K cluster viene identificato con un centroide $\mu_k \in R^D$ e ogni punto del piano appartiene ad un solo cluster, per rappresentare 
+l'appartenenza di un punto ad un cluster si utilizza un vettore per ogni punto in cui indichiamo con 1 il cluster in cui si trova quel punto e con 0 
+tutti gli altri (quindi abbiamo un one-hot encoding).
+Anche con K-Means abbiamo una funzione da minimizzare (rappresenta l'objective function di K-Means) che in questo caso è definita come la distanza di un punto presente all'interno del cluster rispetto 
+al centroide del cluster, l'obiettivo quindi è ottenere un cluster che sia compatto.
+
+$$J(X,Z,\mu) = \sum_{i=1}^N \sum_{k=1}^K z_{ik}||x_i - \mu_k||_2^2$$
+
+All'interno della formula abbiamo i seguenti termini:
+\begin{itemize}
+\item X sono i nostri dati.
+\item Z è l'insieme dei vettori one-hot encoding, è una matrice $\{0,1\}^{N,K}$ dove 0 indica che quel punto non è nel cluster e 1 si.
+\item $\mu$ è l'insieme dei centroidi che abbiamo per ognuno dei cluster.
+\end{itemize}
+
+L'obiettivo è trovare i migliori centroidi e i migliori assegnamenti dei punti ai cluster.
+Per risolvere la minimizzazione dell'equazione scritta sopra non possiamo utilizzare subito il gradient descent perchè in questo caso la $Z$ che stiamo cercando 
+è un vettore e questo è un problema. Non possiamo neanche provare tutti i possibili assegnamenti di oggetti ai cluster perchè con K cluster e N oggetti avremmo
+$N^K$ possibili assegnamenti.
+
+Il problema di minimizzazione è difficile da risolvere se consideriamo che vanno minimizzati entrambi i parametri nello stesso momento, sarebbe più semplice 
+se considerassimo i due problemi separatamente perchè in questo caso avremmo due sottoproblemi che potremmo risolvere facilmente con due closed forms.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{537.jpeg}
+\end{figure}
+
+C'è anche da considerare che per come è posto ora il problema presenta alcune problematiche perchè abbiamo che la minimizzazione ci potrebbe portare ad 
+avere punti che appartengono a più cluster e anche la sommatoria che tende a 0.
+Quindi per risolvere vanno aggiunti dei vincoli al problema, noi vogliamo che ogni istanza dei dati appartenga solamente ad un cluster e questo lo possiamo esprimere 
+come:
+
+$$\forall_i : \sum_k z_i K = 1$$
+
+Quello che viene rappresentato in questo vincolo è la L1 ball della norma.
+
+Quindi una possibile soluzione per risolvere questo problema consiste nell'utilizzare il Projected gradient descent, un'altra possibile soluzione è l'utilizzo
+dell'alternating optimization:
+\begin{itemize}
+\item Vogliamo aggiornare ogni volta Z e $\mu$ e quindi ad ogni iterazione fissiamo uno dei due parametri e l'altro viene ottimizzato. 
+\item Ad esempio se fissiamo il $\mu_k$ poi possiamo prendere il punto che stiamo considerando e lo assegnamo al cluster più vicino.
+\item Il centroide ottimo poi sarà la media dei data point che appartengono allo stesso cluster.
+\end{itemize}
+
+Questo algoritmo per risolvere il problema di K-Means si chiama Lloyd's Algorithm, vediamone il funzionamento:
+\begin{itemize}
+\item I centroidi vengono inizializzati $\mu = {\mu_1,..., \mu_k}$
+\item Assegnamo i data point ai vari centroidi e quindi otteniamo i cluster, per fare questo passaggio risolviamo il problema di minimizzazione e minimizziamo la Z
+\item Ora che abbiamo assegnato i punti ai centroidi possiamo aggiornare i centroidi risolvendo di nuovo il problema di minimizzazione, questa volta però
+aggiorniamo il centroide.
+\item Alterniamo questi due step di ottimizzazione fino a quando non arriviamo ad una convergenza.
+\end{itemize}
+
+È importante fare una distinzione tra il modello che utilizziamo, che in questo caso è KMeans e l'algoritmo che utilizziamo per il training del modello
+che in questo caso è l'algoritmo di Lloyd.
+
+Dato che questo problema è un problema di ottimizzazione non convesso, il risultato e la convergenza dipenderà dalla scelta iniziale dei centroidi.
+
+Durante l'esecuzione dell'algoritmo è necessario che ogni punto venga assegnato ad un cluster, anche se il punto è lontano e rappresenta sicuramente rumore 
+va comunque assegnato.
+
+\subsubsection{Come scegliamo la K?}
+
+Il nostro obiettivo per l'algoritmo del clustering è trovare dei cluster in cui la varianza internamente ai vari cluster è minimizzata mentre la distanza tra 
+i cluster è massimizzata.
+Per la scelta di K viene utilizzato il silhouette coefficient che mi misura queste due distanze e mi permette di minimizzare la distanza intra cluster e massimizzare
+la distanza tra i cluster.
+
+\subsubsection{KMeans++}
+
+Un problema che abbiamo visto è che la scelta dei centroidi va poi a modificare il comportamento dell'algoritmo e il risultato finale (compresa la 
+convergenza dell'algoritmo). Quindi bisognerebbe trovare i centroidi nel modo corretto, una possibilità è utilizzare l'algoritmo K-Means++.
+Questo algoritmo funziona in questo modo per la scelta dei centroidi:
+\begin{itemize}
+\item Viene scelto un primo centroide in modo del tutto random tra i dati che abbiamo a disposizione.
+\item Per ogni punto calcoliamo la distanza dal centroide.
+\item Calcoliamo un altro centroide, la probabilità di questo centroide di essere scelto dipenderà dalla sua distanza dal centroide attuale.
+\item Calcoliamo di nuovo le distanze (per ogni punto prendiamo il minimo tra le distanze che abbiamo) e andiamo avanti fino a quando non abbiamo trovato 
+i K centroidi che stavamo cercando.
+\end{itemize}
+
+\subsubsection{Problemi}
+
+K-Means ha alcune problematiche:
+\begin{itemize}
+\item Non riconosce il rumore, quindi quando trova outlier non se ne accorge
+\item Non permette di considerare delle assunzioni esplicite che possiamo avere sui nostri dati
+\item Non permette di riconoscere cluster con forme particolari 
+\item Dipende troppo dalla fase di inizializzazione 
+\end{itemize}
+
+\section{Guassian Mixture Model}
+
+Si tratta di un sistema che è simile alla Probabilistic PCA, l'obiettivo in questo caso è quello di creare un modello probabilistico per i nostri dati 
+utilizzando un parametro $\Theta$ che noi vogliamo stimare, quindi in pratica vorremmo modellare una distribuzione per i nostri dati in modo che venga 
+evidenziato il raggruppamento in clusters.
+
+Considerando che assumiamo che ogni punto appartiene ad un cluster indicato con $z$ possiamo provare a modellare la probabilità $P(x,z | \Theta)$ e possiamo anche considerare
+la probabilità $P(x|z,\Theta)P(Z|\Theta)$.
+In particolare abbiamo che la $P(x|z,\Theta)$ è una normal distribution che mi indica i cluster mentre la $P(z|\Theta)$ è una distribuzione categorica 
+che mi indica se un punto appartiene o meno ad un cluster.
+
+\subsubsection{Stimare i parametri}
+
+Per il modello $P(X, Z | \Theta)$ non è semplice stimare i parametri perchè non vogliamo solamente fare il learning del parametro $\Theta$ ma anche il parametro 
+$Z$ è un latent parameter e quindi la storia diventa più complicata.
+Nel caso del supervised learning in particolare abbiamo che sia $X$ che $Z$ sono già conosciuti e quindi la soluzione più semplice consiste nell'utilizzare la 
+maximum likelihood estimation. Nel caso dell'LDA, quindi supervised learning però abbiamo che Z è un parametro già noto qua invece no perchè sono i label che noi stiamo cercando.
+Sempre nel modello LDA il linear classifier fa un'assunzione perchè stiamo assumendo che la covarianza è la stessa per ognuno dei data point.
+
+Nel caso dell'unsupervised learning, come abbiamo detto, solamente i dati sono già conosciuti mentre i label vanno cercati.
+
+Per cercare $\Theta$ quando la Z non è già conosciuta dobbiamo utilizzare la marginalizzazione per ottenere $P(X|\Theta)$ da $P(X,Z|\Theta)$:
+
+$$P(X|\Theta) = \Sum_Z P(X,Z|\Theta) = \Sum_Z P(X|Z, \Theta)*P(Z|Theta)$$
+
+Nella formula abbiamo che $\Sum_Z P(X|Z, \Theta)$ è una gaussian distribution mentre la $P(Z|Theta)$ è una categorical distribution.
+Nella formula stiamo integrando Z fuori dalla distribuzione e utilizziamo la sommatoria con Z perchè questa è una variabile discreta.
+
+Ora il nostro problema si trasforma in questa ottimizzazione che va risolta:
+
+$$\Theta^{^} = argmax_{\Theta} P(X|\Theta)$$
+
+La Z, che non viene mai osservata diventa solamente una astrazione utilizzata per semplificare il modello e la chiamiamo latent variable.
+
+\subsubsection{Gaussian Mixture Model}
+
+
+
 
 
 
