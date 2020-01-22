@@ -7055,11 +7055,53 @@ Poi abbiamo il decoder che prende in input i dati compressi e restituisce in out
 \includegraphics[width=0.7\linewidth]{533.jpeg}
 \end{figure}
 
+Vediamo un esempio di autoencoder, possiamo considerare il caso in cui abbiamo delle immagini con dei numeri e vogliamo comprimerle con un encoder, allo stesso
+tempo dobbiamo anche essere in grado di decomprimerle utilizzando un decoder che mi possa restituire una ricostruzione dell'immagine uguale o comunque approssimata 
+della immagine iniziale.
 
 
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{534.jpeg}
+\end{figure}
+
+Consideriamo l'immagine di partenza e il nostro encoder che la trasforma in 10 pixel che possono essere o bianchi o neri ovvero ogni pixel è $\in \{0,1\}$, q
+questa compressione può essere utile se vogliamo codificare i nostri dati.
+Poi abbiamo il decoder che prende questi 10 pixel e ricostruisce l'immagine iniziale.
+La parte del decoder la possiamo considerare come un probabilistic model o come un generative model, l'encoder però rimane escluso da questo probabilistic model.
+Dal punto di vista probabilistico possiamo formulare il problema in questo modo:
+
+$$z \sim P(z)$$
+$$x = f_{dec}(z)$$
+
+In questo autoencoder con encoder e decoder facciamo il training del modello per trovare vari parametri:
+\begin{itemize}
+\item $W_e$ e $W_d$ sono i pesi di encoder e decoder, noi invece di memorizzare tutta l'immagine iniziale memorizziamo solamente l'immagine ridotta (quindi 10 pixel)
+e poi memorizziamo questi due pesi. Questo può essere utilizzato sia per la compressione che per la dimensionality reduction.
+\item Abbiamo la funzione $f_{enc}$ per codificare e la funzione $f_{dec}$ per decodificare. È necessario aggiungere la regolarizzazione per evitare di andare in
+overfitting.
+\end{itemize}
+
+Quando utilizziamo degli autoencoders non è utile utilizzare delle funzioni lineari questo perchè quando andiamo a creare la nostra rete neurale e abbiamo tanti 
+livelli con funzioni lineari vuol dire che posso ottenere lo stesso risultato anche senza utilizzare tutti quei livelli perchè le funzioni sono lineari e mi basta
+comporle una dopo l'altra per avere lo stesso risultato (In pratica possiamo collassare tutto in un unico livello).
+Se dobbiamo usare funzioni lineari allora possiamo benissimo usare SVD e non abbiamo bisogno degli autoencoders.
+
+Consideriamo questo caso:
 
 
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{536.jpeg}
+\end{figure}
 
+Abbiamo che il rank della matrice $W_1W_2$ sarà $l$ perchè le dimensioni originali delle due matrici sono $W_1 \in R^{D*L}$ e $W_2 \in R^{L*D}$ (questo lo 
+possiamo vedere anche se consideriamo che con la decomposizione dell'SVD abbiamo $A = U \Sigma V^T}$ e possiamo dire che il rank della matrice A corrisponde 
+alla dimensione di U).
+Guardando la matrice W della formula sopra abbiamo che $W$ è una matrice di dimensioen $D*D$ e in particolare possiamo dire che questa matrice 
+non può essere la matrice identità perchè avrebbe rank D, cosa non possibile perchè noi abbiamo detto che questa matrice può avere al più rank $L$.
+
+\chapter{Clustering}
 
 
 
