@@ -994,7 +994,7 @@ Fino ad ora abbiamo visto le seguenti soluzioni:
 Tutte queste soluzioni sono legate l'una all'altra:
 \begin{itemize}
 \item Data la posterior distribution $p(\Theta|D) = Beta(\Theta|\ a+|T|, b+|H|)$ e sapendo che la moda della beta distribution è $\frac{\alpha -1
-}{\alpha + \beta - 2}$ vediamo che la $\Theta_{MAP}$ è la moda della posterio distribution (poniamo $\alpha=|T|+a$ e $\beta=|H|+b$):
+}{\alpha + \beta - 2}$ vediamo che la $\Theta_{MAP}$ è la moda della posterior distribution (poniamo $\alpha=|T|+a$ e $\beta=|H|+b$):
 $$\Theta_{MAP}=\frac{|T|+a-1}{|H|+|T|+a+b-2}$$
 \item Se scegliamo una distribuzione uniforme per la prior distribution ($a=1$ e $b=1$) otteniamo la $\Theta_{MLE}$:
 $$\Theta_{MLE}=\frac{|T|+1-1}{|H|+|T|+1+1-2} = \frac{|T|}{|T|+|H|}$$
@@ -1031,7 +1031,7 @@ probabilità che mi dice che:
 $$p(a|c) = \int p(a,b|c)$$ in questo caso aggiungiamo la variabile b nella joint probability e questo vuol dire che stiamo marginalizzando la b.
 Quindi la nostra formula, per la sum rule diventa: $$p(f|D, a,b) = \int_0^1p(f,\Theta|D,a,b)$$
 
-In questo caso noi marginalizziamo la $\Theta$. Ora possiamo riscrivere la formula utilizzando la regola della probabilità condizonale ($P(a,b|c) =
+In questo caso noi marginalizziamo la $\Theta$. Ora possiamo riscrivere la formula utilizzando la regola della probabilità condizionale ($P(a,b|c) =
 P(a|b,c)P(b|c)$):
 $$\int_0^1p(f|\Theta,D,a,b)p(\Theta|D,a,b)$$
 
@@ -7032,8 +7032,8 @@ I dati però non sempre si trovano tutti sulla stessa linea e quindi non sempre 
 Quindi in alcune situazioni dobbiamo poter eseguire un encoding dei nostri punti perchè la PCA non sarà mai in grado di ricostruire questi dati
 in modo perfetto, una possibile soluzione consiste nell'utilizzare una proiezione non lineare dei dati.
 
-Una soluzione per questo problema sono gli auto encoders che sono delle reti neurali che eseguono la dimensionality reduction trovando quindi una rappresentazione
-più compatta dei dati.
+Una soluzione per questo problema sono gli autoencoders che sono delle reti neurali che eseguono la dimensionality reduction trovando quindi una 
+rappresentazione più compatta dei dati.
 
 Quindi in pratica la nostra rete neurale dovrebbe eseguire il learning per capire in che modo ricostruire l'input $x$:
 $$f(x,W) = x' = x$$
@@ -7042,6 +7042,45 @@ facendo anche in modo che l'errore di ricostruzione tra la $x$ di partenza e la 
 Quindi stiamo cercando di minimizzare la seguente objective function:
 
 $$min_W \frac{1}{N} \sum_{i=1}^N ||f(x_i, W)-x_i||^2$$
+
+Possiamo rappresentare questo processo di encoding/decoding nella seguente immagine che mostra la nostra rete neurale.
+Nello specifico abbiamo i nostri dati in input con la funzione che svolge la fase di encoding e che mi restituisce in output i nostri dati 
+compressi (questi rappresentano la nostra latent variable), 
+questi dati restituiti in output sono meno rispetto a quelli che abbiamo in input, $L << D$ dove L è la dimensione dei dati in output e D è la dimensione
+dei dati in input.
+Poi abbiamo il decoder che prende in input i dati compressi e restituisce in output i dati originali (approssimati):
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{533.jpeg}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
