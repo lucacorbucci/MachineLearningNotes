@@ -2056,7 +2056,7 @@ Quello che vogliamo fare in un primo step chiamato "Learning" è stimare i param
 abbiamo a disposizione.
 
 Una volta che abbiamo trovato i parametri possiamo calcolare la prior distribution, la class conditional e poi effettuare l'inferenza andando a
-classificare una uova $x$ usando il teorema di Bayes.
+classificare una nuova $x$ usando il teorema di Bayes.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\linewidth]{159.jpeg}
@@ -2841,7 +2841,7 @@ Anche per verificare se un set è convesso ci sono due regole:
 \subsection{Problemi semplici}
 
 I problemi di ottimizzazione più semplici sono quelli in cui abbiamo una funzione obiettivo che è convessa, non abbiamo vincoli, la funzione è
-differenziabile su tutto il dominio. In questo caso quello che facicmao è calcolare la derivata della funzione, porla uguale a 0 e poi troviamo la
+differenziabile su tutto il dominio. In questo caso quello che facciamo è calcolare la derivata della funzione, porla uguale a 0 e poi troviamo la
 soluzione. Questo è il caso della least squares regression. Nella maggior parte dei casi però i problemi sono più complicati quindi non abbiamo la
 soluzione analitica o non abbiamo possibilità di differenziare la funzione.
 
@@ -2926,7 +2926,7 @@ trovare la migliore t non è fattibile e si preferiscono soluzioni alternative.
 \item Backtracking: in questo caso si tratta di un algoritmo che approssima la t e non trova la migliore t in assoluto. Abbiamo tre parametri che sono
 $\alpha \in (0,1/2)$, $\beta \in (0,1)$ e il lagrange multiplier $\alpha$. Il parametro $\beta$ mi indica come e quanto devo modificare la dimensione
 dello step $t$ ad ogni iterazione dell'algoritmo. Il parametro $\alpha$ invece lo utilizziamo per capire quando mi devo fermare e se sono sotto alla
-linea (possiamo prendere un qualsiasi valore all'interno dell'intervallo).x
+linea (possiamo prendere un qualsiasi valore all'interno dell'intervallo).
 \end{itemize}
 
 L'algoritmo del backtracking funziona in questo modo:
@@ -3104,7 +3104,7 @@ All'interno della formula del nuovo $\Theta_{t+1}$ abbiamo la parte finale dopo 
 \includegraphics[width=0.7\linewidth]{258.jpeg}
 \end{figure}
 
-Questo è quello che otteniamo graficamente, usando il gradiente invece lavoriamo con una retta che sta sotto alla funzione convessa dal minimizzare.
+Questo è quello che otteniamo graficamente, usando il gradiente invece lavoriamo con una retta che sta sotto alla funzione convessa da minimizzare.
 
 C'è anche la possibilità di parallelizzare questo metodo di Newton ma il problema è che la Hessian matrix richiede $O(d^2)$ dati e non è semplice
 calcolarne l'inverso e inoltre l'update step non è semplice da parallelizzare.
@@ -3120,7 +3120,7 @@ In alcuni casi però anche i metodi del primo ordine sono troppo costosi nel mon
 \subsection{Stochastic Gradient Descent}
 
 Il nostro obiettivo con questi metodi per la ricerca dei migliori parametri è quello di minimizzare la funzione $f(\Theta) = \sum_{i=1}^n L_i(\Theta)$
-dove indichiamo con $L_i$ è la loss per una specifica istanza di training. Se abbiamo molti dati però anche un singolo passaggio su tutti i dati può
+dove indichiamo con $L_i$ la loss per una specifica istanza di training. Se abbiamo molti dati però anche un singolo passaggio su tutti i dati può
 essere molto costoso e potrebbe volerci molto tempo per calcolare il gradiente. Una possibile soluzione per aggiornare i parametri più frequentemente
 e più velocemente è usare lo \textbf{Stochastic Gradient Descent}.
 
@@ -7236,7 +7236,7 @@ Per cercare $\Theta$ quando la Z non è già conosciuta dobbiamo utilizzare la m
 
 $$ P(X | \Theta ) = \sum_{Z}{P(X , Z | \Theta )} = \sum_{Z} P(X | Z, \Theta ) * P( Z | \Theta) $$
 
-Nella formula abbiamo che $\sum_{Z} P(X | Z, \Theta)$ è una gaussian distribution mentre la $P(Z | Theta)$ è una categorical distribution.
+Nella formula abbiamo che $\sum_{Z} P(X | Z, \Theta)$ è una gaussian distribution mentre la $P(Z | \Theta)$ è una categorical distribution.
 Nella formula stiamo integrando Z fuori dalla distribuzione e utilizziamo la sommatoria con Z perchè questa è una variabile discreta.
 
 Ora il nostro problema si trasforma in questa ottimizzazione che va risolta:
@@ -7246,6 +7246,334 @@ $$\Theta^{*} = argmax_{\Theta} P(X | \Theta)$$
 La Z, che non viene mai osservata diventa solamente una astrazione utilizzata per semplificare il modello e la chiamiamo latent variable.
 
 \subsubsection{Gaussian Mixture Model}
+
+La probabilità $P(x,z|\Theta)$ viene decomposta utilizzando la product rule:
+
+$$P(x,z | \Theta) = P(z|\Theta)*P(x|z,\Theta)$$
+
+Dove, come detto, la $P(z|\Theta)$ è una distribuzione categorica e ogni cluster ha la sua distribuzione normale $P(x|z,\Theta)$.
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{539.jpeg}
+\end{figure}
+
+I parametri da stimare nella fase di learning sono $\Theta = \{\Pi, \mu, \Sigma\}$ e possiamo rappresentare tutta questa probabilità come:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{538.jpeg}
+\end{figure}
+
+qui abbiamo che X è una variabile osservata che dipende da $\mu$ e da $\Sigma$ mentre la $Z$ è una variabile non osservata che dipende da $\Pi$, in particolare 
+durante l'inference step vogliamo trovare la variabile Z.
+Nell'LDA la differenza è che la $Z$ è una variabile già osservata.
+È possibile utilizzare la GMM in modo generativo, se abbiamo K cluster ognuno con i parametri $\mu_k, \Sigma_k$ e conosciamo la prior probability $\Pi_k$ per 
+ogni cluster:
+
+\begin{itemize}
+\item Facciamo un sample di Z ovvero facciamo il sampling di un vettore one-hot
+\item Creiamo il sample $x \sim N(\mu_k, \Sigma_K)$
+\end{itemize}
+
+Quindi prima eseguiamo il sample del cluster e poi eseguiamo il sample del data point.
+
+La probabilità di ottenere un singolo sample $x$ all'interno di un Gaussian Mixture model può essere calcolata come:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{540.jpeg}
+\end{figure}
+
+Questa è la likelihood function e in particolare mi indica la probaiblità che un punto $x$ appartenga 
+ad una classe specifica.
+
+Possiamo calcolare la likelihood anche considerando l'intero dataset e applicando il logaritmo, avremmo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{541.jpeg}
+\end{figure}
+
+Consideriamo la densità del Gaussian Mixture Model:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{542.jpeg}
+\end{figure}
+
+\begin{itemize}
+\item Nella prima figura possiamo vedere le varie componenti con i rispettivi coefficienti $\Pi_K$. In particolare qua abbiamo 
+3 differenti gaussiane con 3 differenti variance.
+\item Nella seconda figura abbiamo la trasformazione della prima immagine che, senza considerare i colori, diventa in questo modo.
+Qua abbiamo la somma delle densità delle gaussiane che però non è una 
+gaussiana perchè qua sommiamo le densità e non la gaussiana in se per se.
+\item Nella terza foto abbiamo invece il grafico che mostra la superficie e in particolare la dimensione che va verso l'alto rappresenta la densità dei vari cluster.
+\end{itemize}
+
+Gli obiettivi principali di tutta questa procedura sono i seguenti:
+\begin{itemize}
+\item Learning Phase: nella fase di learning vogliamo determinare i valori ottimi per i parametri. Trovare questi valori ottimi equivale a trovare i valori che 
+massimizzano la loglikelihood:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{545.jpeg}
+\end{figure}
+\item Inference Phase: in questa fase vogliamo capire per ogni punto il cluster di appartenenza che è il vero e proprio obiettivo del clustering. 
+Questo vuol dire che vogliamo calcolare la posterior distribution conoscento i parametri $\mu$, $\Pi$ e $\Sigma$ che abbiamo trovato nella fase di learning.
+Quindi quello che calcoliamo qua è $P(Z|X,\Pi, \mu, \Sigma)$
+\end{itemize}
+
+\subsubsection{Inference Phase}
+
+Come abbiamo detto nella fase di inferenza vogliamo calcolare la posterior distribution $P(Z|X,\Pi, \mu, \Sigma)$ e per farlo possiamo applicare la 
+formula di Bayes:
+
+$$P(Z|X,\Pi, \mu, \Sigma) = \frac{P(z_{ik=1}|\Pi)P(x_i|z_{ik=1},\mu_k,\Sigma_k)}{P(x_i|\Pi,\mu, \Sigma)} = $$
+
+La posterior distribution mi indica per ciascun punto $x_i$ la probabilità che quel punto sia all'interno di un cluster, indica la likelihood del punto 
+di essere in un cluster.
+Poi questa formula la possiamo scrivere come:
+$$= \frac{\Pi_k N(x_i|\mu_k, \Sigma_k)}{\sum_{j=1}^K \Pi_j N(x_i | \mu_j, \Sigma_j)}$$
+
+Qua in questa riscrittura vediamo che sopra abbiamo la densità del cluster 1 che mi indica quando è probabile che il punto sia in questo cluster, questa
+viene moltiplicata per un peso $\Pi_k$ che è il peso relativo a quello specifico cluster.
+Il tutto è diviso per la somma di tutte queste densità moltiplicate per i pesi relativi a ciascuno dei cluster.
+
+Possiamo scrivere la posterior distribution in questo modo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{546.jpeg}
+\end{figure}
+
+Un esempio di come funziona l'inferenza:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{546.jpeg}
+\end{figure}
+
+\begin{itemize}
+\item La prima immagine mostra come andrebbero suddivisi i punti nei vari cluster con una clusterizzazione ideale.
+\item La seconda immagine mostra quello che effettivamente vediamo ovvero dei punti non labellati che quindi sono tutti uguali tra loro, possiamo
+anche notare che ci sono delle regioni che si sovrappongono e quindi in questi casi abbiamo una insicurezza nel momento in cui assegnamo i punti ai cluster.
+\item L'ultima immagine mostra l'assegnamento probabilistico dei vari punti ai vari cluster, in particoalre per ogni punto abbiamo che con una certa probabilità
+il punto verrà assegnato ad un cluster e con una certa probabilità verrà assegnato ad un altro. Alla fine assegnamo il punto al cluster che è più probabile.
+Qua la probabilità di appartenza ai cluster viene calcolata tramite la posterior distribution $P(Z|X,\Pi, \mu, \Sigma)$ dove i parametri sono noti e dobbiamo
+solamente inferire il cluster di appartenenza.
+\end{itemize}
+
+Notare che per avere una suddivisione in cluster tramite un decision boundary lineare è necessario che le $\Sigma$ siano condivise tra tutti i clsuter, per avere invece un 
+decision boundary quadratico dovremmo avere una $\Sigma$ che deve essere diagonale.
+
+\subsubsection{Learning Phase}
+
+Ci sono da trovare i parametri $\mu$, $\Pi$, $\Sigma$ e per farlo si deve massimizzare la likelihood.
+Applichiamo il logaritmo alla likelihood e otteniamo il seguente problema da massimizzare:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{548.jpeg}
+\end{figure}
+
+In teoria potremmo risolvere questo problema utilizzando il gradient descent e aggiungendo alcuni vincoli (ad esempio la somma deve essere 1).
+Risolvere questo problema non è semplice anche se stiamo utilizzando il logaritmo perchè qua il logaritmo non incide direttamente sulla gaussiana a causa 
+della sommatoria. Quindi c'è da trovare un'altra soluzione.
+
+Consideriamo il caso più banale ovvero il caso della semplice classificazione in cui noi sappiamo già come sono classificati i vari punti quindi vuol dire
+che il parametro Z è noto. Per calcolare media e varianza in questo caso mi basta calcolarle considerando i dati che ho a disposizione usando le formule 
+matematiche che ho a disposizione.
+In questo caso la soluzione del problema diventerebbe semplice:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{549.jpeg}
+\end{figure}
+
+Problema: non conosciamo la Z e quindi non possiamo conoscere facilmente i parametri. 
+Una possibile soluzione: noi abbiamo una nostra idea della distribuzione della Z e sappiamo come questa potrebbe essere conoscendo i parametri, quindi 
+sappiamo come poter scrivere la posterior distribution:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{550.jpeg}
+\end{figure}
+
+Avendo questa informazione possiamo risolvere il problema più semplice invece di ottimizzare la $P(X)$ direttamente.
+Quindi quello che facciamo è utilizzare anche la Z all'interno della formula e in particolare calcoliamo l'expectation di questa formula:
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{551.jpeg}
+\end{figure}
+
+Riscrivendo la formula in questo modo ora il logaritmo ci permette di lavorare direttamente us $P(X,Z)$ e quindi possiamo ottimizzare tutta l'espressione.
+Questo ci porta all'utilizzo dell'algoritmo Expectation-Maximization:
+\begin{itemize}
+\item Nello step di expectation valutiamo la posterior distribution rispetto alla stima corrente dei parametri ($\mu^{(t)}$, $\Sigma^{(t)}$, $\Pi^{(t)}$).
+\item Nello step di maximization invece otteniamo la prossima iterazione dei parametri risolvendo il seguente problema di massimizzazione che abbiamo trasformato
+in un problema facile da risolvere nel momento in cui abbiamo trasformato la likelihood inserendo anche il parametro Z e riscrivendo il tutto come expectation.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{552.jpeg}
+\end{figure}
+\end{itemize}
+
+Come funziona l'algoritmo:
+\begin{itemize}
+\item Partiamo con dei parametri per il nostro modello, questi parametri sono differenti per ciascuno dei cluster che stiamo prendendo in considerazione.
+Quindi abbiamo $\{\Pi^{(0)}, \mu_1^{(0)},....,\mu_K^{(0)},\Sigma_1^{(0)},...., \Sigma_K^{(0)}\}$
+\item E step: nello step di expectation effettuiamo lo step di inferenza quindi il calcolo della posterior distribution, questo step di inferenza 
+lo posso calcolare grazie al fatto che conosco i parametri scelti al primo passo. In questo modo riusciamo a trovare il valore della Z che utilizzeremo 
+all'interno dello step di maximization.	
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{553.jpeg}
+\end{figure}
+\item M step: Nello step di maximization devo calcolare nuovamente i parametri che al primo step avevo stimato basandomi sulla Z che ora conosciamo. 
+Quindi possiamo semplicemente utilizzare la formula per il calcolo di media e varianza come se stessimo eseguendo un problema di classificazione in cui i dati
+sono labellati.
+Come facciamo l'aggiornamento, calcoliamo nuovamente la media.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{554.jpeg}
+\end{figure}
+
+Poi calcoliamo la covarianza: 
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{555.jpeg}
+\end{figure}
+
+Poi per ultima calcoliamo la somma pesata in cui la $N_k$ rappresenta la dimensione del cluster che non è semplicemente una somma dei punti che sono 
+presenti all'interno del cluster ma una somma delle responsabilità dei vari punti nel cluster.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{556.jpeg}
+\end{figure}
+
+\item Iterare gli step 2 e 3 fino a che non convergiamo
+\end{itemize}
+
+
+Un esempio è il seguente, in particolare per inizializzare i parametri possiamo utilizzare KMeans, alla fine del procedimento possiamo dire che tutto il processso 
+è simile a KMeans con la sola differenza che in Kmeans abbiamo un assegnamento precido dei punti ai cluster mentre qua è un assegnamento probabilistico e quindi
+per ogni punto diamo una probabilità di appartenenza al cluster.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{557.jpeg}
+\end{figure}
+
+\section{Expectation Maximization}
+
+Abbiamo usato l'algoritmo expectation maximization, come funziona?
+
+L'algoritmo è formato da due step e dovrebbe essere utilizzando quando abbiamo una $P(X)$ difficile da calcolare e una $P(X,Z)$ che invece è semplice da calcolare.
+In generale gli step che abbiamo in questo algoritmo sono i seguenti:
+
+\begin{itemize}
+\item E step: valutiamo la posterior, in questo caso è semplice il calcolo
+\item M step: massimizziamo la $log P(X, Z | \Theta)$ rispetto a $\Theta$.
+\end{itemize}
+
+Il nostro obiettivo è la massimizzazione di $Log(P(X|\Theta))$ che è la likelihood, quello che viene fatto è questo:
+\begin{itemize}
+\item Si sceglie una $q(z)$ presa da una qualsiasi distribuzione di probabilità e inseriamo questa $q(z)$ all'interno del calcolo della likelihood:
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{558.jpeg}
+\end{figure}
+\item Sfruttiamo il fatto che $P(Z|X)P(X) = P(X,Z)$ per riscrivere la formula per ottenere questo:
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{559.jpeg}
+\end{figure}
+Questo lo facciamo perchè nel nostro caso abbiamo $P(X|\Theta)P(Z|X,\Theta) = P(X,Z|\Theta)$
+\item Moltiplichiamo e dividiamo per la $q(Z)$ perchè comunque non cambia il risultato:
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{560.jpeg}
+\end{figure}
+\item Utilizzando le proprietà del logaritmo (divisione e moltiplicazione) può essere riscritto come:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{561.jpeg}
+\end{figure}
+
+\item Ora la formula viene riscritta per un'ultima volta, la prima parte della formula diventa l'expectation del logaritmo di $\frac{P(X,Z|\Theta)}{q(Z)}$. 
+La seconda parte diventa invece la similarity matrix tra le due distribuzioni ovvero tra la distribuzione di $q$ e la distribuzione della $P$.
+Questa similarity matrix sarà positiva se non sono le stesse, se invece la distribuzione è la stessa allora la distribuzione sarà uguale.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{563.jpeg}
+\end{figure}
+La prima parte della formula è un lower bound che sarà sempre minore rispetto al $log(P(X|\Theta)$ a cui siamo interessati, graficamente lo possiamo vedere in questo modo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{562.jpeg}
+\end{figure}
+In particolare quello che possiamo dire è che per raggiungere il valore $log(P(X|\Theta)$ che ci interessa dobbiamo utilizzare la similarity matrix.
+\end{itemize} 
+
+Dato che ora abbiamo riscritto la formula originale come un lower bound sommato ad una similarity matrix e dato che la formula originale è difficile da ottimizzare, 
+possiamo pensare di ottimizzare il lower bound per ottimizzare la formula originale.
+
+In generale lo step E dell'EM algorithm è il seguente:
+
+\begin{itemize}
+\item Abbiamo riscritto la formula che vorremmo valutare e abbiamo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{565.jpeg}
+\end{figure}
+
+Questa formula non dipende dalla Q, noi vorremmo massimizzare la prima parte della formula, se rivediamo il disegno che sta sopra, questa è massima quando 
+la seconda parte della formula è minima. Quindi dovremmo massimizzare la formula minimizzando la KL.
+\item Per minimizzare la parte a destra della formula questa deve essere 0 e questa è 0 quando abbiamo che le distribuzioni di $q$ e di $P$ sono uguali.
+\item Facendo questa massimizzazione noi possiamo riscrivere il termine che stiamo massimizzando in questo modo:
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{566.jpeg}
+\end{figure}
+
+Quando riscriviamo questo termine vediamo che la seconda parte della formula è costante perchè è indipendente da $\Theta$
+
+\end{itemize}
+
+Quello che si fa nello step E è ridurre il gap che abbiamo tra la $\alpha(q,\Theta)$ e la $log P(X|\Theta)$, quindi alla fine dello step di Expectation abbiamo
+$log(P(X|\Theta)) = \alpha(q,\Theta)$.
+Ora nello step M abbiamo due possibilità:
+\begin{itemize}
+\item La $\alpha(q, \Theta)$ non cambia, quindi siamo in un local massimo e EM converge.
+\item $\alpha(q, \Theta)$ aumenta rispetto a $log(P|\Theta)$ e dobbiamo continuare l'iterazione.
+\end{itemize} 
+
+Quindi in pratica EM lo usiamo quando il termine X di $log P(X, Z | \Theta)$ è difficile da calcolare poi:
+\begin{itemize}
+\item Facciamo finta di conoscere Z.
+\item Aggiorniamo la Z nello step E.
+\item Aggiorniamo i parametri nello step M utilizzando la Z dello step precedente.
+\end{itemize}
+
 
 
 

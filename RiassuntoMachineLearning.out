@@ -1,0 +1,166 @@
+\BOOKMARK [0][-]{chapter.1}{Lezione 1 - Knn}{}% 1
+\BOOKMARK [1][-]{section.1.1}{K-nn}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Formula per il K-nn}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Problemi noti}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Considerazioni su K-nn}{section.1.2}% 5
+\BOOKMARK [0][-]{chapter.2}{Decision Tree}{}% 6
+\BOOKMARK [1][-]{section.2.1}{Introduzione}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.2}{Inferenza con i decision tree}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Creare il decision Tree ottimo}{chapter.2}% 9
+\BOOKMARK [0][-]{chapter.3}{Lezione 3 - Probabilistic Inference}{}% 10
+\BOOKMARK [1][-]{section.3.1}{Refresh: }{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.2}{MLE: Ottimizzare la funzione Likelihood}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.2.1}{Ottimizzare}{section.3.2}% 13
+\BOOKMARK [2][-]{subsection.3.2.2}{Problemi della MLE}{section.3.2}% 14
+\BOOKMARK [1][-]{section.3.3}{Bayesian Inference}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.3.1}{Bayes Formula}{section.3.3}% 16
+\BOOKMARK [2][-]{subsection.3.3.2}{Problema}{section.3.3}% 17
+\BOOKMARK [1][-]{section.3.4}{MAP: Maximum A Posterior Estimation}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.4.1}{Scegliere la prior distribution}{section.3.4}% 19
+\BOOKMARK [2][-]{subsection.3.4.2}{Calcolare la MAP}{section.3.4}% 20
+\BOOKMARK [1][-]{section.3.5}{Estimate the posterior distribution}{chapter.3}% 21
+\BOOKMARK [2][-]{subsection.3.5.1}{Vantaggi del calcolo completo della posterior distribution}{section.3.5}% 22
+\BOOKMARK [1][-]{section.3.6}{Previsione del prossimo lancio}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Linear Regression}{}% 24
+\BOOKMARK [1][-]{section.4.1}{Loss Function}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.2}{NonLinear Dependency in data}{chapter.4}% 26
+\BOOKMARK [1][-]{section.4.3}{Come scegliere il grado del polinomio}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.3.1}{Regularization}{section.4.3}% 28
+\BOOKMARK [1][-]{section.4.4}{Bias - Variance tradeoff}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.5}{Probabilistic Linear Regression}{chapter.4}% 30
+\BOOKMARK [2][-]{subsection.4.5.1}{Bayesian Network}{section.4.5}% 31
+\BOOKMARK [1][-]{section.4.6}{Probabilistic Formulation of Linear Regression}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.6.1}{Calcolare la Likelihood}{section.4.6}% 33
+\BOOKMARK [2][-]{subsection.4.6.2}{Calcolare la posterior Distribution}{section.4.6}% 34
+\BOOKMARK [2][-]{subsection.4.6.3}{Fully Bayesian Approach}{section.4.6}% 35
+\BOOKMARK [2][-]{subsection.4.6.4}{Sequential Bayesian Linear Regression}{section.4.6}% 36
+\BOOKMARK [2][-]{subsection.4.6.5}{Fare previsioni su nuovi dati}{section.4.6}% 37
+\BOOKMARK [0][-]{chapter.5}{Linear Classification}{}% 38
+\BOOKMARK [1][-]{subsection.5.0.1}{Come capire se le previsioni sono corrette?}{chapter.5}% 39
+\BOOKMARK [2][-]{subsection.5.0.2}{Usare l'iperpiano come decision boundary}{subsection.5.0.1}% 40
+\BOOKMARK [2][-]{subsection.5.0.3}{Least Squares per la classificazione}{subsection.5.0.1}% 41
+\BOOKMARK [2][-]{subsection.5.0.4}{Perceptron Algorithm}{subsection.5.0.1}% 42
+\BOOKMARK [1][-]{section.5.1}{Classi non linearmente separabili}{chapter.5}% 43
+\BOOKMARK [2][-]{subsection.5.1.1}{Altre limitazioni}{section.5.1}% 44
+\BOOKMARK [1][-]{section.5.2}{Probabilistic Model}{chapter.5}% 45
+\BOOKMARK [2][-]{subsection.5.2.1}{Generative Model}{section.5.2}% 46
+\BOOKMARK [2][-]{subsection.5.2.2}{LDA - Linear Discriminant Analysis}{section.5.2}% 47
+\BOOKMARK [2][-]{subsection.5.2.3}{Naive Bayes}{section.5.2}% 48
+\BOOKMARK [1][-]{section.5.3}{Probabilistic Discriminative Models for linear classification}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.3.1}{Logistic Regression}{section.5.3}% 50
+\BOOKMARK [2][-]{subsection.5.3.2}{Likelihood della logistic Regression}{section.5.3}% 51
+\BOOKMARK [2][-]{subsection.5.3.3}{Logistic Regressione e Weights regularization}{section.5.3}% 52
+\BOOKMARK [2][-]{subsection.5.3.4}{Multiclass logistic regression}{section.5.3}% 53
+\BOOKMARK [1][-]{section.5.4}{Conclusioni}{chapter.5}% 54
+\BOOKMARK [0][-]{chapter.6}{Optimization}{}% 55
+\BOOKMARK [1][-]{subsection.6.0.1}{Convexity}{chapter.6}% 56
+\BOOKMARK [2][-]{subsection.6.0.2}{Propriet\340 delle convex function}{subsection.6.0.1}% 57
+\BOOKMARK [2][-]{subsection.6.0.3}{First Order Convexity Condition}{subsection.6.0.1}% 58
+\BOOKMARK [2][-]{subsection.6.0.4}{Vertex}{subsection.6.0.1}% 59
+\BOOKMARK [2][-]{subsection.6.0.5}{Convex hull}{subsection.6.0.1}% 60
+\BOOKMARK [1][-]{section.6.1}{Maximization Problem}{chapter.6}% 61
+\BOOKMARK [2][-]{subsection.6.1.1}{Come verificare che una funzione \350 convessa}{section.6.1}% 62
+\BOOKMARK [2][-]{subsection.6.1.2}{Verificare che un set \350 convesso}{section.6.1}% 63
+\BOOKMARK [2][-]{subsection.6.1.3}{Problemi semplici}{section.6.1}% 64
+\BOOKMARK [2][-]{subsection.6.1.4}{Coordinate descent}{section.6.1}% 65
+\BOOKMARK [1][-]{section.6.2}{Gradient Descent}{chapter.6}% 66
+\BOOKMARK [1][-]{section.6.3}{Line search}{chapter.6}% 67
+\BOOKMARK [2][-]{subsection.6.3.1}{Un algoritmo pi\371 veloce}{section.6.3}% 68
+\BOOKMARK [1][-]{section.6.4}{Discussione e altri metodi}{chapter.6}% 69
+\BOOKMARK [2][-]{subsection.6.4.1}{Metodo di Newton}{section.6.4}% 70
+\BOOKMARK [2][-]{subsection.6.4.2}{Stochastic Gradient Descent}{section.6.4}% 71
+\BOOKMARK [2][-]{subsection.6.4.3}{Esempio con il Perceptron}{section.6.4}% 72
+\BOOKMARK [2][-]{subsection.6.4.4}{Ottimizzazione per la logistic regression}{section.6.4}% 73
+\BOOKMARK [2][-]{subsection.6.4.5}{Distributed Learning}{section.6.4}% 74
+\BOOKMARK [0][-]{chapter.7}{Constrained Optimization}{}% 75
+\BOOKMARK [1][-]{subsection.7.0.1}{Problemi standard}{chapter.7}% 76
+\BOOKMARK [1][-]{section.7.1}{Usare il Gradient Descent per risolvere problemi di Constrained Optimization}{chapter.7}% 77
+\BOOKMARK [2][-]{subsection.7.1.1}{Calcolare le proiezioni}{section.7.1}% 78
+\BOOKMARK [2][-]{subsection.7.1.2}{Note}{section.7.1}% 79
+\BOOKMARK [1][-]{section.7.2}{Lagrangian e Duality}{chapter.7}% 80
+\BOOKMARK [2][-]{subsection.7.2.1}{Single Inequality Constraint}{section.7.2}% 81
+\BOOKMARK [2][-]{subsection.7.2.2}{Multiple Inequality Constraints}{section.7.2}% 82
+\BOOKMARK [0][-]{chapter.8}{SVM}{}% 83
+\BOOKMARK [1][-]{section.8.1}{Classificazione binaria}{chapter.8}% 84
+\BOOKMARK [1][-]{section.8.2}{SVM con Hard Margin}{chapter.8}% 85
+\BOOKMARK [1][-]{section.8.3}{Soft Margin Support Vector Machine}{chapter.8}% 86
+\BOOKMARK [1][-]{section.8.4}{Kernel}{chapter.8}% 87
+\BOOKMARK [2][-]{subsection.8.4.1}{Esempi di Kernel}{section.8.4}% 88
+\BOOKMARK [1][-]{section.8.5}{Classificare un nuovo punto con SVM e Kernel}{chapter.8}% 89
+\BOOKMARK [1][-]{section.8.6}{SVM con classi multiple}{chapter.8}% 90
+\BOOKMARK [0][-]{chapter.9}{Deep Learning}{}% 91
+\BOOKMARK [1][-]{section.9.1}{Introduzione}{chapter.9}% 92
+\BOOKMARK [2][-]{subsection.9.1.1}{Perch\350 usiamo i Deep Feedforward Network?}{section.9.1}% 93
+\BOOKMARK [1][-]{section.9.2}{Il dataset dello XOR}{chapter.9}% 94
+\BOOKMARK [2][-]{subsection.9.2.1}{Esempio}{section.9.2}% 95
+\BOOKMARK [2][-]{subsection.9.2.2}{Spiegazione e confronto con Logistic Regression}{section.9.2}% 96
+\BOOKMARK [2][-]{subsection.9.2.3}{Universal Approximation Theorem}{section.9.2}% 97
+\BOOKMARK [2][-]{subsection.9.2.4}{Usare pi\371 layer}{section.9.2}% 98
+\BOOKMARK [1][-]{section.9.3}{Parameter Learning}{chapter.9}% 99
+\BOOKMARK [1][-]{section.9.4}{Minimizzazione della cost function}{chapter.9}% 100
+\BOOKMARK [2][-]{subsection.9.4.1}{Come calcoliamo il gradiente?}{section.9.4}% 101
+\BOOKMARK [2][-]{subsection.9.4.2}{Computational Graph}{section.9.4}% 102
+\BOOKMARK [2][-]{subsection.9.4.3}{Example of BackPropagation}{section.9.4}% 103
+\BOOKMARK [2][-]{subsection.9.4.4}{Computational Graph}{section.9.4}% 104
+\BOOKMARK [1][-]{section.9.5}{Note}{chapter.9}% 105
+\BOOKMARK [0][-]{chapter.10}{Deep Learning 2}{}% 106
+\BOOKMARK [1][-]{subsection.10.0.1}{Altri utilizzi per le NN}{chapter.10}% 107
+\BOOKMARK [1][-]{section.10.1}{Layer e CNN}{chapter.10}% 108
+\BOOKMARK [2][-]{subsection.10.1.1}{CNN}{section.10.1}% 109
+\BOOKMARK [1][-]{section.10.2}{RNN: Recurrent Neural Networks}{chapter.10}% 110
+\BOOKMARK [2][-]{subsection.10.2.1}{Unfolding computational Graph}{section.10.2}% 111
+\BOOKMARK [2][-]{subsection.10.2.2}{RNN e training}{section.10.2}% 112
+\BOOKMARK [1][-]{section.10.3}{Training Deep Neural Networks}{chapter.10}% 113
+\BOOKMARK [1][-]{section.10.4}{Regularization}{chapter.10}% 114
+\BOOKMARK [1][-]{section.10.5}{Modern Architecture and Tricks}{chapter.10}% 115
+\BOOKMARK [2][-]{subsection.10.5.1}{Batch Normalization}{section.10.5}% 116
+\BOOKMARK [2][-]{subsection.10.5.2}{Attention}{section.10.5}% 117
+\BOOKMARK [2][-]{subsection.10.5.3}{Tips and Tricks}{section.10.5}% 118
+\BOOKMARK [0][-]{chapter.11}{Dimension Reduction}{}% 119
+\BOOKMARK [1][-]{subsection.11.0.1}{Unsupervised Learning}{chapter.11}% 120
+\BOOKMARK [2][-]{subsection.11.0.2}{Dimensionality Reduction}{subsection.11.0.1}% 121
+\BOOKMARK [1][-]{section.11.1}{Principal Component Analysis}{chapter.11}% 122
+\BOOKMARK [1][-]{section.11.2}{Probabilistic PCA}{chapter.11}% 123
+\BOOKMARK [2][-]{subsection.11.2.1}{Un esempio}{section.11.2}% 124
+\BOOKMARK [1][-]{section.11.3}{PPCA: Learning Step}{chapter.11}% 125
+\BOOKMARK [2][-]{subsection.11.3.1}{Verso la MLE}{section.11.3}% 126
+\BOOKMARK [2][-]{subsection.11.3.2}{Usare MLE con la PPCA}{section.11.3}% 127
+\BOOKMARK [1][-]{section.11.4}{PPCA: Inference Step}{chapter.11}% 128
+\BOOKMARK [2][-]{subsection.11.4.1}{PCA e PPCA: pro e contro}{section.11.4}% 129
+\BOOKMARK [1][-]{section.11.5}{Singular Value Decomposition: SVD}{chapter.11}% 130
+\BOOKMARK [1][-]{section.11.6}{Dimensionality Reduction con Low Rank Approximation}{chapter.11}% 131
+\BOOKMARK [1][-]{section.11.7}{Un'alta interpretazione dell'SVD}{chapter.11}% 132
+\BOOKMARK [2][-]{subsection.11.7.1}{Approximation}{section.11.7}% 133
+\BOOKMARK [2][-]{subsection.11.7.2}{Best Low Rank Approximation - Proof}{section.11.7}% 134
+\BOOKMARK [2][-]{subsection.11.7.3}{SVD - Complessit\340}{section.11.7}% 135
+\BOOKMARK [1][-]{section.11.8}{Confronto tra PCA e SVD}{chapter.11}% 136
+\BOOKMARK [1][-]{section.11.9}{Matrix Factorization}{chapter.11}% 137
+\BOOKMARK [2][-]{subsection.11.9.1}{L'esempio di Netflix}{section.11.9}% 138
+\BOOKMARK [1][-]{section.11.10}{Altri metodi per fattorizzare le matrici}{chapter.11}% 139
+\BOOKMARK [1][-]{section.11.11}{AutoEncoders}{chapter.11}% 140
+\BOOKMARK [0][-]{chapter.12}{Clustering}{}% 141
+\BOOKMARK [1][-]{section.12.1}{K-Means}{chapter.12}% 142
+\BOOKMARK [1][-]{section.12.2}{Guassian Mixture Model}{chapter.12}% 143
+\BOOKMARK [1][-]{section.12.3}{Expectation Maximization}{chapter.12}% 144
+\BOOKMARK [0][-]{chapter.13}{Introduction to PyTorch}{}% 145
+\BOOKMARK [1][-]{section.13.1}{Manually Setup the Affine Layer}{chapter.13}% 146
+\BOOKMARK [1][-]{section.13.2}{Declare the layer using PyTorch}{chapter.13}% 147
+\BOOKMARK [2][-]{subsection.13.2.1}{nn.Linear}{section.13.2}% 148
+\BOOKMARK [2][-]{subsection.13.2.2}{Torch.optim}{section.13.2}% 149
+\BOOKMARK [2][-]{subsection.13.2.3}{DataLoader}{section.13.2}% 150
+\BOOKMARK [1][-]{section.13.3}{Validation}{chapter.13}% 151
+\BOOKMARK [1][-]{section.13.4}{Implement a CNN using PyTorch}{chapter.13}% 152
+\BOOKMARK [2][-]{subsection.13.4.1}{nn.Sequential}{section.13.4}% 153
+\BOOKMARK [0][-]{chapter.14}{Math Refresh}{}% 154
+\BOOKMARK [1][-]{section.14.1}{Loss function}{chapter.14}% 155
+\BOOKMARK [1][-]{section.14.2}{0-1 Loss}{chapter.14}% 156
+\BOOKMARK [1][-]{section.14.3}{Lagrange Multipliers}{chapter.14}% 157
+\BOOKMARK [1][-]{section.14.4}{Probability Distribution}{chapter.14}% 158
+\BOOKMARK [2][-]{subsection.14.4.1}{Bernoulli Distribution}{section.14.4}% 159
+\BOOKMARK [2][-]{subsection.14.4.2}{Normal Distribution}{section.14.4}% 160
+\BOOKMARK [2][-]{subsection.14.4.3}{Beta Distribution}{section.14.4}% 161
+\BOOKMARK [2][-]{subsection.14.4.4}{Categorical Distribution}{section.14.4}% 162
+\BOOKMARK [1][-]{section.14.5}{Propriet\340 dei logaritmi}{chapter.14}% 163
+\BOOKMARK [1][-]{section.14.6}{Derivate}{chapter.14}% 164
+\BOOKMARK [1][-]{section.14.7}{Integrali}{chapter.14}% 165
+\BOOKMARK [1][-]{section.14.8}{Derivate di matrici e Vettori}{chapter.14}% 166
