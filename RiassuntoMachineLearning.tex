@@ -13,12 +13,10 @@
 \usepackage{listings}
 \begin{document}
 
-
 % Name of your university/college
 \begin{center}
 	
 \textsc{\Large \textbf{Machine Learning\\}}
-
 
 \textsc{\Large \textbf{Academic Year 2019-2020 \\}}
 
@@ -3557,9 +3555,9 @@ Se la $-\nabla f_0(\Theta^*)$ è combinazione lineare degli altri vettori allora
 Un esempio: abbiamo due iperpiani, ciascun iperpiano mi indica le possibili direzioni in cui possiamo andare per trovare il minimo della funzione. Se
 ci muoviamo sul piano può ancora andare bene la soluzione che troviamo.
 
-Ora noi consideriamo l'intersezione dei due iperpiani che è la linea che collega A con B nella figura.Se consideriamo un punto su questa linea
+Ora noi consideriamo l'intersezione dei due iperpiani che è la linea che collega A con B nella figura. Se consideriamo un punto su questa linea
 possiamo dire che è possibile muoverci a destra o a sinistra della linea rimanendo comunque nel feasible set. Quello che ci dice se possiamo andare a
-destra o a sinistra èil gradiente dell'objective function. Quando troviamo un gradiente che è perpendicolare a questa linea vuol dire che non possiamo
+destra o a sinistra è il gradiente dell'objective function. Quando troviamo un gradiente che è perpendicolare a questa linea vuol dire che non possiamo
 migliorare ancora la nostra soluzione.
 \begin{figure}[H]
 \centering
@@ -3782,7 +3780,7 @@ Lagrange se e solo se (quindi se abbiamo una optimal solution vale questa condiz
 \item Primal feasability: $f_i(\Theta^*) \leq 0$
 \item Dual feasability: $\alpha_i \geq 0$
 \item Complementary slackness: $\alpha_i^*f_i(\Theta^*) = 0$
-\item $\Theta^*$ minimizes Lagrangian, la derivata del Lagranfiano rispetto al primale deve essere 0: $\nabla_\Theta L(\Theta^*, \alpha^*) = 0$
+\item $\Theta^*$ minimizes Lagrangian, la derivata del Lagrangiano rispetto al primale deve essere 0: $\nabla_\Theta L(\Theta^*, \alpha^*) = 0$
 \end{itemize}
 
 Quello che si fa in pratica è cercare di prevedere la soluzione poi dopo dobbiamo far vedere che questa soluzione è valida. Per quanto riguarda il
@@ -3875,8 +3873,8 @@ troviamo nel piano sia tra i nuovi iperpiani e il vecchio.
 \end{figure}
 
 Le equazioni dei nuovi iperpiani quindi sono le seguenti, per l'iperpiano sopra a quello originale abbiamo $w^Tx+(b-s)=0$ per quello sotto invece
-$w^Tx+(b+s)=0$. Nell'esempio di prima in cui avevamo $b=-2$ possiamo dire che la s sarà uguale a $s=1$ nel caso dell'iperpiano sopra e $s=-1$ nel caso
-dell'iperpiano sotto.
+$w^Tx+(b+s)=0$. Se consideriamo $b=-2$ possiamo dire che la s sarà uguale a $s=1$ in modo che nell'iperpiano sopra otteniamo $b-s=-3$ e nell'iperpiano sotto
+otteniamo $b+s = -1$.
 
 Quello che vogliamo è che i punti blu siano sopra all'iperpiano ovvero $w^Tx+(b+s)>0$ e i punti verdi sotto ovvero $w^Tx+(b+s)<0$.
 
@@ -3887,7 +3885,7 @@ sopra al margine e i verdi sotto e allo stesso tempo vorremmo anche che la dista
 
 Come prima cosa consideriamo la distanza dell'iperpiano dall'origine (la distanza dell'iperpiano dal normal vector che passa per l'origine), la
 distanza possiamo indicarla come $\-\frac{b}{||w||}$. Con lo stesso ragionamento possiamo calcolare la distanza dall'iperpiano superiore e
-dall'iperpiano inferiore. Quindi avremmo: $d_{blue} = -\frac{b-s}{||w||}$ e $d_green = -\frac{b+s}{||w||}$.
+dall'iperpiano inferiore. Quindi avremmo: $d_{blue} = -\frac{b-s}{||w||}$ e $d_{green} = -\frac{b+s}{||w||}$.
 
 Da tutte queste formule possiamo ricavare la dimensione del margine che è dato dalla distanza dell'iperpiano blu meno la distanza dall'iperpiano
 verde. Quindi abbiamo:
@@ -4114,6 +4112,11 @@ siamo vicini al decision boundary, più ci avviciniamo e più è vicino a 1.
 \item Se il punto viene classificato nel modo scorretto, quindi si trova dalla parte sbagliata abbiamo che la $epsilon > 1$ e il valore di questa
 variabile tenderà a crescere a mano a mano che ci allontaniamo dal margine. 
 \end{itemize}
+
+\begin{figure}[H]
+\centering
+  \includegraphics[width=0.7\linewidth]{567.jpeg}
+\end{figure}
 
 C'è da notare che questo framework sente anche la presenza degli outlier perchè il valore che assegnamo alla $\epsilon$ in quel caso sarà molto
 grande. Questo metodo che rilassa le constraint del problema originale si chiama soft margin e quindi ci consente di avere alcuni punti non
@@ -4386,7 +4389,7 @@ Alcuni esempi di kernel che possiamo definire sono i seguenti:
 \centering
 \includegraphics[width=0.4\linewidth]{344.jpeg}
 \end{figure}
-In questo caos abbiamo $\Phi(x): R^0 -> R^\infty$.
+In questo caso abbiamo $\Phi(x): R^0 -> R^\infty$.
 \item Sigmoid:\begin{figure}[H]
 \centering
 \includegraphics[width=0.5\linewidth]{345.jpeg}
@@ -4408,7 +4411,7 @@ Consideriamo di nuovo l'equazione del Lagrangiano.
 \includegraphics[width=0.7\linewidth]{350.jpeg}
 \end{figure}
 
-Per la KTT e la complementary slackness condition deve valore che $$\sum_{i=1}^N \mu_i \epsilon_i = 0$$
+Per la KTT e la complementary slackness condition deve valere che $$\sum_{i=1}^N \mu_i \epsilon_i = 0$$
 
 Questo vuol dire che o $\mu_i = 0$ oppure $\epsilon_i=0$.
 
@@ -4423,8 +4426,9 @@ Tenendo bene a mente questo riprendiamo la definizione di support vector: $$0 \l
 \begin{itemize}
 \item Se vale $0 < \alpha_i < C$ allora possiamo dire che $\mu_i > 0$ perchè se inseriamo questo valore della $\alpha$ all'interno del gradiente
 vediamo che $\mu_i$ è maggiore di 0. Se $\mu_i > 0$ vuol dire che $\epsilon_i = 0$.
-\item Al contrario se invece abbiamo $\alpha_i = C$ sostituendo il valore nell'equazione del gradiente vediamo che $\mu_i = 0$ e quindi possiamo dire
-che la $\epsilon_i > 0$ perchè nella sommatoria c'è già $\mu_i = 0$.
+\item Al contrario se invece abbiamo $\alpha_i = C$ sostituendo il valore nell'equazione $\sum_{i=1}^N \alpha_i[y_i(w^Tx_i+b)-1+\epsilon_i]$ e notiamo che questa equazione
+deve essere 0 per la complementary slackness. Quindi essendo $\alpha_i = C$ sarà la parte $[y_i(w^Tx_i+b)-1+\epsilon_i]$ che dovrà essere uguale a 0 e quindi quello che otteniamo
+è che la $\epsilon_i > 0$.
 \end{itemize}
 
 Ricordiamo inoltre che vale: $$w = \sum_{i=1}^N \alpha_i y_i \Phi(x_i)$$
