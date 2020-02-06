@@ -5723,7 +5723,7 @@ Per minimizzare la cost function aggiungiamo la norma al quadrato della weight m
 della regolarizzazione, aggiungendo questo termine riusciamo a ridurre il valore della matrice w.
 Riducendo il valore della matrice dei pesi w allora riduciamo anche $z = w^Tx + b$ e questo comporta che poi si riduce anche 
 l'effetto dell'activation function.
-
+Anche il parametro $\lambda$ è un parametro che possiamo avere all'interno della nn e su cui possiamo fare il learning.
 
 
 Uno dei metodi più semplici per la regolarizzazione è l'utilizzo della norm penalty $L^2$
@@ -5783,7 +5783,7 @@ Possiamo o partire con vari valori random e trovare la soluzione migliore per i 
 
 La Batch normalization è un metodo che possiamo utilizzare per migliorare il training di
 una deep neural network. In particolare l'idea è quella di stabilizzare (quindi di normalizzare) 
-la distribuzione di ognuno dei layer della nostra rete neurale. Possiamo notare che questo metodo può
+la distribuzione di ognuna delle activation dei layer della nostra rete neurale. Possiamo notare che questo metodo può
 essere utile se consideriamo l'input layer, se abbiamo una serie di parametri con valore compreso tra 0 e 1 
 e una serie di parametri con valore compreso tra 0 e 1000 vediamo che normalizzando le performance del modello migliorano.
 
@@ -5833,6 +5833,44 @@ $$y = \gamma x^{'} + \beta$$
 Applicando la Batch Normalization accade quello che vediamo nella figura, la parte blu è quella
 in cui viene usata la Batch Normalization e vediamo che il gradiente è più basso come valore e quindi è più stabile.
 
+
+\textbf{Altri appunti sulla Batch Normalization:}
+
+Abbiamo visto con la logistic regression che se svolgiamo la normalizzazione dei parametri che abbiamo in input 
+risulta poi più semplice eseguire il training di $w$ e di $b$.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{568.jpeg}
+\end{figure}
+
+Vorremmo applicare lo stesso ragionamento anche alle neural network. Supponiamo di avere una neural network come quella dell'immagine 
+qua sotto e abbiamo due activation function nei primi due layer e poi vogliamo stimare i parametri $w$ e $b$ del terzo layer.
+Ora noi vorremmo normalizzare l'activation function dei layer per fare in modo che risulti più semplice eseguire il training 
+di $w$ e di $b$.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{569.jpeg}
+\end{figure}
+
+Solitamente non si fa la normalizzazione direttamente sull'activation function ma si fa sulla $z$ che viene calcolata prima 
+dell'activation function.
+Quindi abbiamo una z di partenza che sarebbe l'output del layer senza activation function e normalizziamo la z.
+
+$z_{norm} = \frac{z^{i} - \mu}{\sqrt{\sigma^2 + \epsilon }}$
+
+Otteniamo una z normalizzata con media 0 e varianza 1. Ora questa z normalizzata la trasformiamo nella $z^{'}$ finale che abbiamo 
+$$z^{'} = \lambda Z_{norm} + \beta$$
+
+Dove i parametri $\lambda$ e $\beta$ sono due parametri su cui possiamo fare il learning all'interno del nostro modello.
+Notare che scegliendo la $\lambda$ e la $\beta$ in modo accurato possiamo anche invertire l'operazione di normalizzazione e tornare alla 
+z che avevamo in partenza.
+
+L'intuizione è che normalizzare l'input feature X può aiutare ad eseguire il training.
+Ci sono anche alcuni casi in cui la normalizzazione non mi aiuta, ad esempio se normalizziamo e otteniamo media 0 e varianza 1,
+con la sigmoid function non possiamo utilizzare i valori normalizzati ed è per questa ragione che si utilizza $\lambda$ e $\beta$ per 
+fare in modo che i valori della $z$ siano diversi rispetto alla versione normalizzata e possano essere utilizzati anche con la sigmoid function.
 
 \subsection{Attention}
 
