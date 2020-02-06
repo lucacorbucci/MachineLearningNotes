@@ -4952,7 +4952,7 @@ volte gli stessi parametri e questo è un problema perchè potremmo riutilizzarl
 \item Automatic differentiation: l'idea che abbiamo qua è quella di decomporre una computazione grande in una sequenza di computazioni più piccole.
 Questo metodo nel caso delle Neural Network prende il nome di BackPropagation e mi permette di calcolare il gradiente della cost function ($\nabla_W
 E$) in modo efficiente. L'efficienza è data dal fatto che ogni neurone qua viene visitato solamente due volte e quindi abbiamo una complessità di
-$O(W)$. Questo metodo permette di trovaare automaticamente il gradiente in una specifica posizione.
+$O(W)$. Questo metodo permette di trovare automaticamente il gradiente in una specifica posizione.
 \end{itemize}
 
 \subsubsection{Jacobian}
@@ -4984,7 +4984,7 @@ $$y = f(x)$$
 $$z = g(y)$$
 $$z = g(f(x))$$ Ora cerchiamo di derivare la formula per il calcolo della derivata di z rispetto a x:
 
-$$\frac{dz}{dx}=\frac{d(g(f((x)))}{d(f(x))}*\frac{d(f(x))}{dx} = \frac{dz}{dx}*\frac{dy}{dx}$$ Il primo passaggio è giustificato dal fatto che qua
+$$\frac{dz}{dx}=\frac{d(g(f((x)))}{d(f(x))}*\frac{d(f(x))}{dx} = \frac{dz}{dy}*\frac{dy}{dx}$$ Il primo passaggio è giustificato dal fatto che qua
 abbiamo una funzione composta e quindi stiamo calcolando la derivata della funzione composta e per farlo calcoliamo la derivata di tutta la funzione
 moltiplicata però per la derivata della parte interna alla funzione. Poi il passaggio successivo è solamente un passaggio di sostituzione dei vari
 valori.
@@ -5142,7 +5142,7 @@ Nel confronto notiamo che nel computational graph i vari pesi vengono rappresent
 come input che viene moltiplicata per la matrice $W_0$ di pesi e si ottiene $a_1$, questo lo vediamo solo nel computational graph mentre nell'NN graph
 vediamo solamente la $z_1$ che è il risultato dell'activation function. Ora questo risultato dell'activation function viene passato al layer
 successivo quindi si moltiplica per $W_1$ e si ottiene la $a_2$, poi si applica l'activation function per ottenere $z_2$ visibile nelll'NN Graph. Alla
-fine, siamo nell'outpu layer e quindi facciamo l'ultima moltiplicazione e successivamente calcoliamo la loss.
+fine, siamo nell'output layer e quindi facciamo l'ultima moltiplicazione e successivamente calcoliamo la loss.
 
 Il nostro obiettivo è trovare il gradiente rispetto a $W_0$, $W_1$ e $W_2$.
 
@@ -5330,7 +5330,7 @@ Quali sono i punti di forza delle CNN:
 		\end{figure}
 	Nell'esempio sopra abbiamo in grassetto l'utilizzo di un particolare parametro e possiamo vedere come viene usato quel parametro nei due differenti modelli.
 	La seconda nn è una classica nn e quindi l'elemento centrale della matrice dei pesi $W$ viene utilizzato solamente una volta perchè non c'è il parameter sharing.
-	Al contrario possiamo vedere che lo stesso parametro w viene usato per il calcolo di ciascun output nel momento in cui vinee utilizzata una CNN. 
+	Al contrario possiamo vedere che lo stesso parametro w viene usato per il calcolo di ciascun output nel momento in cui viene utilizzata una CNN. 
 	\item Equivariance: due funzioni si dicono equivarianti se, al variare dell'input, l'output varia nello stesso modo ovvero se $f(g(x)) = g(f(x))$.
 	Nel caso delle CNN a causa del parameter sharing i layer hanno anche la proprietà di equivariance.
 \end{itemize}
@@ -5547,7 +5547,7 @@ Un esempio di rappresentazione della RNN, qua abbiamo che per ogni nuovo input c
 \includegraphics[width=0.7\linewidth]{415.jpeg}
 \end{figure}
 
-Ogni variabile in ognuno degli step temperali viene rappresentata come un nuovo nodo all'interno del computational graph, quello che chiamiamo unfolding è il passaggio da un 
+Ogni variabile in ognuno degli step temporali viene rappresentata come un nuovo nodo all'interno del computational graph, quello che chiamiamo unfolding è il passaggio da un 
 computational graph come quello a sinistra ad uno come quello a destra in cui abbiamo delle parti che vengono ripetute di continuo.
 
 Possiamo rappresentare la $h^{(t)}$ anche in questo modo:
@@ -5712,10 +5712,24 @@ dell'overfitting e vorremmo avere un modo per prevenirlo.
 Uno dei metodi classici per prevenire l'overfitting è la Regularization, in questo metodo
 quello che si fa è aggiungere un nuovo parametro che fa da penalty all'objective function.
 
+
+In una neural network vogliamo minimizzare la seguente funzione: 
+$$\frac{1}{m}\sum_{i=1}^m L(y_{real}^{(i)},y_{pred}^{(i)}) + \frac{\lambda}{2m}\sum_{l=1}^L ||w^L||^2$$
+
+Qua abbiamo la $\lambda$ che è un parametro che mi regola il valore di $w$.
+Se la $\lambda$ è alta allora verranno penalizzati i pesi più grandi mentre se la $\lambda$ è bassa allora 
+l'effetto della regolarizzazione sarà inferiore.
+Per minimizzare la cost function aggiungiamo la norma al quadrato della weight matrix e poi moltiplichiamo per il parametro 
+della regolarizzazione, aggiungendo questo termine riusciamo a ridurre il valore della matrice w.
+Riducendo il valore della matrice dei pesi w allora riduciamo anche $z = w^Tx + b$ e questo comporta che poi si riduce anche 
+l'effetto dell'activation function.
+
+
+
 Uno dei metodi più semplici per la regolarizzazione è l'utilizzo della norm penalty $L^2$
 chiamato anche weight decay o ridge regression o Tikhonov Regularization.
 Questa strategia di regolarizzazione porta il peso il più vicino possibile all'origine e 
-il termine che viene aggiunto all'objective function è $\Omega(\Theta) = \frac{1}{2}||w||_2?2$.
+il termine che viene aggiunto all'objective function è $\Omega(\Theta) = \frac{1}{2}||w||_2^2$.
 
 Un'alternativa consiste nell'uso della $L_1$ norm penalty.
 
@@ -5745,6 +5759,9 @@ Ci sono anche altri metodi che possono essere utilizzati per avere un modello ch
 		\includegraphics[width=0.7\linewidth]{428.jpeg}
 		\end{figure}
 	Quello che facciamo quindi è fare un sampling tra le $2^H$ possibili architetture che possiamo avere nella nostra nn.
+	Perchè dropout funziona? Funziona perchè dato che ogni nodo ogni volta ha una certa probabilità di non essere preso in considerazione 
+	allora la neural network non tenderà a dare troppa importanza ad un nodo piuttosto che ad un altro e quindi eviterà di dare ad un certo nodo
+	un peso maggiore perchè non può farci affidamento dato che in una iterazione potrebbe essere attivo e in una iterazione no. 
 \end{itemize}
 
 \subsubsection{Ottimizzazione degli iperparametri}
