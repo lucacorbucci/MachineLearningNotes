@@ -4775,6 +4775,52 @@ un valore a scelta minore di 0. Sia in questo caso che nel caso di Relu abbiamo 
 Solitamente si utilizza Relu o Leaky Relu e tutto funziona correttamente, l'idea è che applichiamo questa activation function ad un vettore di
 dimensione m.
 
+\subsection{Approfondimento sulle Activation function e sulle loro proprietà}
+
+Quando si parla di reti neurali e di activation function possono capitare dei problemi che dobbiamo sempre considerare e dobbiamo 
+cercare di risolvere:
+\begin{itemize}
+\item Saturation problem: un neurone viene considerato saturato se raggiunge il suo valore massimo. Ad esempio con la sigmoid function
+che ha come range $(0,1)$, il neurone sarà saturato se $f(x)=0$ o $f(x)=1$ perchè la $f^{'}(x)=0$.
+Questo vuol dire che non ci saranno aggiornamento per il peso perchè il gradiente è 0.
+\item Vanishing gradient: questo problema si verifica quando il gradiente va sempre a 0 e quindi in pratica la rete si rifiuta di 
+eseguire il learning oppure continua a fare il learning ma molto lentamente.
+\item Se la funzione che prendiamo come activation function non è zero centered possono capitare altri problemi. Una funzione è zero
+centered se con la stessa probabilità otteniamo valori positivi o negativi. Ad esempio la sigmoid non è zero centered perchè mi restituisce
+sempre valori positivi. Questo vuol dire che quando calcoliamo il gradiente possiamo avere un neurone che ha delle connessioni con vari 
+neuroni del precedente hidden layer. Vorremmo modificare i pesi associati a queste connessioni ma il problema è che tutti questi pesi 
+hanno una parte in comune nel calcolo del gradiente che potrà essere positiva o negativa ma poi hanno tutti come output del neurone un valore
+positivo perchè l'activation function mi restituisce solamente valori positivi. Quindi tutti i pesi saranno aggiornati considerando solamente 
+alcune delle possibili direzioni del gradiente e questo può essere un problema.
+\end{itemize}
+
+Vediamo ora nel dettaglio quali sono le caratteristiche delle varie activation functions:
+
+\begin{itemize}
+\item Logistic/Sigmoid function: in questo caso abbiamo la funzione $$f(x) = \frac{1}{1+e^{-x}}$$ e il range è $(0,1)$, la derivata di questa 
+activation function è $$f^{'}(x) = \frac{1}{1+e^{-x}}(1-\frac{1}{1+e^{-x}})$$
+Qua abbiamo il saturation problem perchè il range è limitato tra 0 e 1 e quindi se otteniamo questi valori poi la derivata è 0 (la derivata
+diventa 0 perchè una delle due parti è 0, se avessi un valore diverso della $f(x)$ avrei anche un valore diverso per la derivata).
+La sigmoid function non è nemmeno zero centered e quindi abbiamo anche questo problema.
+Usata per la classificazione ma soffre dei problemi appena descritti.
+\item Tanh: In questo caso il range della funzione è $(-1,1)$ e $f^{'}(x) = 1 - f(x)^2$ qui la funzione è zero centered, quindi 
+risolviamo almeno un problema ma poi abbiamo lo stesso problema con la saturazione dei neuroni e il vaninshing gradient.
+Usata per la classificazione ma soffre dei problemi appena descritti.
+Usata anche nelle RNN.
+\item Relu: qua il range della funzione non è limitato superiormente perchè se la $x>0$ allora restituiamo direttamente x.
+Quindi qua si risolve il problema della saturazione (almeno nella parte positiva) ma abbiamo che la funzione non è zero centered.
+Questo fatto di non essere zero centered comporta che se inizializziamo la funzione con una $b$ che è molto piccola ci troviamo con 
+l'activation function che restituisce 0 e quindi questo vuol dire che il neurone non viene attivato e quindi muore.
+La soluzione per questo problema è usare un bias b più grande oppure usare Leaky Relu.
+Relu è usata nelle CNN e viene usata negli hidden layer.
+\item Leaky Relu: è la versione che risolve i problemi di Relu. In particolare abbiamo che se la x è negativa il valore restituito
+viene scalato di $0.01$ e quindi non abbiamo il problema dei neuroni che muoiono, inoltre non abbiamo neanche il problema 
+della saturazione e la funzione è anche zero centered.
+\item Softmax: se abbiamo un problema di classificazione con più classi usiamo la softmax che mi restituisce le probabilità delle varie 
+classi. Quindi è simile alla sigmoid ma con più classi. Usata per la classificazione ma soffre dei problemi che ha la sigmoid.
+La softmax viene usata nell'output layer.
+\end{itemize}
+
 \subsection{Universal Approximation Theorem}
 
 L'idea intuitiva di questo teorema è che se abbiamo una neural network con un layer nascosto allora è possibile approssimare una funzione continua
@@ -5916,7 +5962,7 @@ La cosa migliore da fare è usare solamente layer differenziabili.
 Quando cerchiamo di sviluppare una deep learning Architecture dovremmo seguire i seguenti passaggi:
 \begin{itemize}
 \item Il primo step consiste nel fare overfit, quindi prendiamo un singolo batch di training.
-\item Poi cerchiamo di regularizzare 
+\item Poi cerchiamo di regolarizzare 
 \item Inizialmente si parte con poca complessità del modello e poi si cerca di aggiungere complessità.
 \item È una sorta di debugging, aggiungiamo di step in step della complessità e vediamo come le performance variano
 
