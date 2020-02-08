@@ -6601,7 +6601,7 @@ $$W_{ML} = U_K\Lambda_K^{1/2} = WW^T + \sigma^2I = U_K\Lambda_K^{1/2}(U_K\Lambda
 
 $$U_K\Lambda_K^{1/2}\Lambda_K^{1/2}U_{K}^{T} = U_K \Lambda_K U_K^T$$
 
-Vantaggi di PCA:
+Vantaggi di Probabilistic PCA:
 
 \begin{itemize}
 	\item Possiamo ottimizzare il modello senza dover calcolare in modo esplicito la covariance matrix. (Massimizzando la likelihood function).
@@ -6754,7 +6754,7 @@ L'obiettivo è trovare la matrice B che minimizza la differenza tra le due matri
 \includegraphics[width=0.7\linewidth]{502.jpeg}
 \end{figure}
 
-\section{Un'alta interpretazione dell'SVD}
+\section{Un'altra interpretazione dell'SVD}
 
 Rimanendo sempre con l'esempio del ranking dei film ci chiediamo in che modo possiamo scoprire che i nostri dati dei film hanno solamente due concept principali
 e un terzo meno importante che quindi possiamo rimuovere. L'obiettivo quindi è trovare questi due concept principali ed eseguire quindi la dimensionality reduction.
@@ -6802,7 +6802,7 @@ colonna, questo è dovuto al fatto che nella matrice $\Sigma$ noi stiamo dando m
 
 \subsection{Approximation}
 
-Ora che abbiamo eseguito la nostra decomposizione con SVD vorremmo andare a trovare una approssimazione della matrice originale che mi permetta di avere meno una 
+Ora che abbiamo eseguito la nostra decomposizione con SVD vorremmo andare a trovare una approssimazione della matrice originale che mi permetta di avere una 
 quantità di dimensions minore rispetto alla matrice originale.
 
 \begin{figure}[H] 
@@ -6883,7 +6883,7 @@ della SVD decomposition.
 \subsection{L'esempio di Netflix}
 
 Qualche anno fa Netflix ha avviato una challenge in cui chiedeva di migliorare il recommendation system.
-C'erano a disposizioen 100 milioni di dati, 480.000 utenti e 17.770 film, il databaset era stato diviso tra training set e tests set e in particolare per 
+C'erano a disposizioen 100 milioni di dati, 480.000 utenti e 17.770 film, il dataset era stato diviso tra training set e tests set e in particolare per 
 valutare le previsioni effettuate sul test set veniva utilizzata la formula Root Mean Square Error:
 
 
@@ -6962,7 +6962,7 @@ Nella formula in particolare abbiamo:
 
 \subsubsection{Alternating Optimization}
 
-Come facciamo a minimizzare il problema visto sopra? Possiamo utilizzare un metodo chiamato Alternative Optimization.
+Come facciamo a minimizzare il problema visto sopra? Possiamo utilizzare un metodo chiamato Alternating Optimization.
 
 \begin{figure}[H] 
 \centering
@@ -7144,7 +7144,7 @@ Come funziona questo metodo?
 \item Noi partiamo con una matrice $A$ che deve essere $\geq 0$ e abbiamo un intero k come parametro 
 \item Il nostro obiettivo è trovare due matrici $P \in R^{n*k}$ e $Q \in R^{k*d}$ tale che $$||A - PQ||_F$$ sia minimizzata 
 \item I vincoli che poniamo sono due ovvero vogliamo che $P \geq 0$ e  $Q \geq 0$
-\item A noi interessa risolvere questo problema di minimo e per risolverlo possiamo usare il projected gradint descent.
+\item A noi interessa risolvere questo problema di minimo e per risolverlo possiamo usare il projected gradient descent.
 \end{itemize}
 
 
@@ -7223,7 +7223,7 @@ della immagine iniziale.
 \includegraphics[width=0.7\linewidth]{534.jpeg}
 \end{figure}
 
-Consideriamo l'immagine di partenza e il nostro encoder che la trasforma in 10 pixel che possono essere o bianchi o neri ovvero ogni pixel è $\in \{0,1\}$, q
+Consideriamo l'immagine di partenza e il nostro encoder che la trasforma in 10 pixel che possono essere o bianchi o neri ovvero ogni pixel è $\in \{0,1\}$, 
 questa compressione può essere utile se vogliamo codificare i nostri dati.
 Poi abbiamo il decoder che prende questi 10 pixel e ricostruisce l'immagine iniziale.
 La parte del decoder la possiamo considerare come un probabilistic model o come un generative model, l'encoder però rimane escluso da questo probabilistic model.
@@ -7256,7 +7256,7 @@ Consideriamo questo caso:
 Abbiamo che il rank della matrice $W_1W_2$ sarà $l$ perchè le dimensioni originali delle due matrici sono $W_1 \in R^{D*L}$ e $W_2 \in R^{L*D}$ (questo lo 
 possiamo vedere anche se consideriamo che con la decomposizione dell'SVD abbiamo $A = U \Sigma V^{T}$ e possiamo dire che il rank della matrice A corrisponde 
 alla dimensione di U).
-Guardando la matrice W della formula sopra abbiamo che $W$ è una matrice di dimensioen $D*D$ e in particolare possiamo dire che questa matrice 
+Guardando la matrice W della formula sopra abbiamo che $W$ è una matrice di dimensione $D*D$ e in particolare possiamo dire che questa matrice 
 non può essere la matrice identità perchè avrebbe rank D, cosa non possibile perchè noi abbiamo detto che questa matrice può avere al più rank $L$.
 
 \chapter{Clustering}
