@@ -6050,7 +6050,7 @@ Qua in questa figura possiamo vedere un esempio di una riduzione da 2D a 1D.
 \includegraphics[width=0.7\linewidth]{436.jpeg}
 \end{figure}
 \item Possiamo poi considerare il tipo di analisi che vogliamo effettuare e andare ad eliminare quelle dimension che non 
-sono interessati per il nostro scopo. In questo caso è più complicato perchè sono necessarie conoscenze maggiori e c'è il rischio di 
+sono interessanti per il nostro scopo. In questo caso è più complicato perchè sono necessarie conoscenze maggiori e c'è il rischio di 
 giudicare poco utili delle feature che in realtà mi servono.
 \end{itemize} 
 
@@ -6449,6 +6449,59 @@ L'ultima figura invece mostra la distribuzione di $P(x)$ e in particolare quello
 che andiamo a perdere eliminando quella dimension.
 Anche da questa ultima figura (ellissi verde) possiamo vedere che più ci allontaniamo dalla $\mu$ più la likelihood di trovare quel punto diminuisce, quindi il punto
 centrale è più probabile rispetto a quello sull'ellissi più esterna.
+
+\section{Approfondimento sulla Probablisitc PCA}
+
+
+
+Supponiamo di avere dei dati in un piano 2D, quindi sono dati con due dimensioni.
+Nell'esempio abbiamo il prezzo del gelato in base all'andamento delle temperature, vediamo che i due dati sono correlati.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{571.jpeg}
+\end{figure}
+
+Possiamo notare che i dati sono tutti messi vicini ad una linea e possiamo proiettare questi dati sulla linea ottenendo quello che 
+vediamo nella seguente immagine:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{572.jpeg}
+\end{figure}
+
+Ora quello che possiamo dire è che dalla proiezione della foto precedente possiamo arrivare ad avere una proiezione 
+dei nostri punti in un piano con una dimensione e quindi rimuoviamo l'altra perchè le due sono molto correlate.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{573.jpeg}
+\end{figure}
+
+
+Nel caso della Probabilistic PCA noi abbiamo quella che chiamiamo latent variable $z_i$ che è la proiezione dei nostri data point 
+nel piano 1D dal piano 2D iniziale. Questa $z_i$ è qualcosa che noi non conosciamo e che non osserviamo, quello che sappiamo è che 
+la posizione nel piano 1D influenza la posizione del punto nel piano 2D.
+
+Quello che possiamo fare è scegliere una prior distribution per la latent variable $z_i$ ovvero $$P(z_i) = N(0,I)$$ 
+questo vuol dire che la prior distribution per la $z_i$ è una standard normal con media 0 e varianza 1.
+
+Possiamo poi rappresentare i punti nel data space trasformato (data space 1D, i punti arancioni) utilizzando la seguente
+funzione lineare: $$x_i = W z_i + b$$ 
+dove W e b sono parametri.
+
+Noi però vorremmo trovare i punti nel data space originale ma non sappiamo come trovarli perchè non sappiamo quanta informazione
+si è persa nel momento in cui abbiamo fatto la trasformazione da 2D a 1D.
+Per trovare la posizione originale del punto, possiamo utilizzare la seguente formula: 
+ 
+$$x_i = W z_i + b + \epsilon_i$$
+
+dove $\epsilon_i$ è il rumore che aggiungiamo e che viene preso dalla distribuzione $\epsilon = N(0, \Sigma)$.
+Questo si può fare perchè noi non sappiamo dove sia il punto originale (punto blu) ma sappiamo che sarà vicino al punto 
+arancione ed è per questo che aggiungiamo il rumore.
+
+
+
 
 \section{PPCA: Learning Step}
 
@@ -7969,6 +8022,20 @@ davanti alla $\alpha$. Quindi qua possiamo utilizzare la stessa funzione di prim
 dei vincoli: $$g(x) \geq 0$$ $$\alpha \geq 0$$ $$\alpha g(x) = 0$$ Queste condizioni prendono il nome di KKT conditions
 \end{itemize}
 
+\section{Marginalisation}
+
+La marginalizzazione è una tecnica che ci permette di "ignorare" delle variabili:
+
+\begin{itemize}
+\item Se abbiamo una variabile X discreta e una variabile Y discreta
+allora, conoscendo la joint probability delle due variabili possiamo scrivere:
+$$P(x) = \sum_i P(x_i, Y_i) = \sum_i P(x_i|y_i)P(y_i)$$
+
+\item Se abbiamo una variabile continua invece la definizione di marginalizzazione è la seguente:
+
+$$P(X) = \int P(X,Y) = \int P(X|Y)P(Y)$$
+
+\end{itemize}
 
 \section{Probability Distribution}
 
