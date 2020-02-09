@@ -6439,7 +6439,7 @@ In particolare notiamo che:
 	\centering
 	\includegraphics[width=0.7\linewidth]{484.jpeg}
 	\end{figure}
-	\item Allo stesso modo i punti diminuiscono se ci allontaniamo in "larghezza" dalla linea blu, in particoalre questo lo vediamo grazie all'isotropic gaussian
+	\item Allo stesso modo i punti diminuiscono se ci allontaniamo in "larghezza" dalla linea blu, in particolare questo lo vediamo grazie all'isotropic gaussian
 	distribution (il cerchio rosso), più siamo lontani dalla linea e meno probabile diventa trovare un data point.
 	\item I punti che si trovano sulla linea blu possiamo indicarli come:
 	$L = \{P \in R^2 | \exists\ z\ \in R \ : \ P=Wz+\mu\}$
@@ -7517,15 +7517,23 @@ Un esempio di come funziona l'inferenza:
 \includegraphics[width=0.7\linewidth]{546.jpeg}
 \end{figure}
 
+
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\linewidth]{575.jpeg}
+\end{figure}
 \begin{itemize}
 \item La prima immagine mostra come andrebbero suddivisi i punti nei vari cluster con una clusterizzazione ideale.
 \item La seconda immagine mostra quello che effettivamente vediamo ovvero dei punti non labellati che quindi sono tutti uguali tra loro, possiamo
 anche notare che ci sono delle regioni che si sovrappongono e quindi in questi casi abbiamo una insicurezza nel momento in cui assegnamo i punti ai cluster.
-\item L'ultima immagine mostra l'assegnamento probabilistico dei vari punti ai vari cluster, in particoalre per ogni punto abbiamo che con una certa probabilità
+\item L'ultima immagine mostra l'assegnamento probabilistico dei vari punti ai vari cluster, in particolare per ogni punto abbiamo che con una certa probabilità
 il punto verrà assegnato ad un cluster e con una certa probabilità verrà assegnato ad un altro. Alla fine assegnamo il punto al cluster che è più probabile.
 Qua la probabilità di appartenza ai cluster viene calcolata tramite la posterior distribution $P(Z|X,\Pi, \mu, \Sigma)$ dove i parametri sono noti e dobbiamo
 solamente inferire il cluster di appartenenza.
 \end{itemize}
+
+
 
 Notare che per avere una suddivisione in cluster tramite un decision boundary lineare è necessario che le $\Sigma$ siano condivise tra tutti i clsuter, per avere invece un 
 decision boundary quadratico dovremmo avere una $\Sigma$ che deve essere diagonale.
