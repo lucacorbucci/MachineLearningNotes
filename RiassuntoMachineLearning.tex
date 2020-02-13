@@ -1309,7 +1309,7 @@ modello che non fitta bene i dati.
 \includegraphics[width=0.6\linewidth]{89.jpeg}
 \end{figure}
 
-Notare che se scegliamo $\lambda = \inf$ è come se non usassimo la regularization e quindi abbiamo il modello iniziale con l'overfitting. Questo lo
+Notare che se scegliamo $\lambda = - \infty$ è come se non usassimo la regularization e quindi abbiamo il modello iniziale con l'overfitting. Questo lo
 notiamo se consideriamo il grafico con i valori della $w$ al variare della $\lambda$.
 
 \begin{figure}[H]
@@ -7446,7 +7446,7 @@ La probabilità di ottenere un singolo sample $x$ all'interno di un Gaussian Mix
 \includegraphics[width=0.7\linewidth]{540.jpeg}
 \end{figure}
 
-Questa è la likelihood function e in particolare mi indica la probaiblità che un punto $x$ appartenga 
+Questa è la likelihood function e in particolare mi indica la probabilità che un punto $x$ appartenga 
 ad una classe specifica.
 
 Possiamo calcolare la likelihood anche considerando l'intero dataset e applicando il logaritmo, avremmo:
@@ -7523,6 +7523,8 @@ Un esempio di come funziona l'inferenza:
 \centering
 \includegraphics[width=0.7\linewidth]{575.jpeg}
 \end{figure}
+
+
 \begin{itemize}
 \item La prima immagine mostra come andrebbero suddivisi i punti nei vari cluster con una clusterizzazione ideale.
 \item La seconda immagine mostra quello che effettivamente vediamo ovvero dei punti non labellati che quindi sono tutti uguali tra loro, possiamo

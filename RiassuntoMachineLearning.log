@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.27)  9 FEB 2020 15:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.27)  11 FEB 2020 08:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -3469,26 +3469,26 @@ Package pdftex.def Info: 575.jpeg  used on input line 7524.
 <548.jpeg, id=3567, 622.325pt x 97.36375pt>
 File: 548.jpeg Graphic file (type jpg)
 <use 548.jpeg>
-Package pdftex.def Info: 548.jpeg  used on input line 7549.
+Package pdftex.def Info: 548.jpeg  used on input line 7551.
 (pdftex.def)             Requested size: 300.99869pt x 47.0921pt.
  [360 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/548.jpeg>]
 <549.jpeg, id=3575, 574.145pt x 82.3075pt>
 File: 549.jpeg Graphic file (type jpg)
 <use 549.jpeg>
-Package pdftex.def Info: 549.jpeg  used on input line 7563.
+Package pdftex.def Info: 549.jpeg  used on input line 7565.
 (pdftex.def)             Requested size: 300.99869pt x 43.15053pt.
 <550.jpeg, id=3576, 441.65pt x 52.195pt>
 File: 550.jpeg Graphic file (type jpg)
 <use 550.jpeg>
-Package pdftex.def Info: 550.jpeg  used on input line 7572.
+Package pdftex.def Info: 550.jpeg  used on input line 7574.
 (pdftex.def)             Requested size: 300.99869pt x 35.57416pt.
 <551.jpeg, id=3577, 534.99875pt x 101.37875pt>
 File: 551.jpeg Graphic file (type jpg)
 <use 551.jpeg>
-Package pdftex.def Info: 551.jpeg  used on input line 7581.
+Package pdftex.def Info: 551.jpeg  used on input line 7583.
 (pdftex.def)             Requested size: 300.99869pt x 57.03932pt.
 
-Overfull \hbox (4.49716pt too wide) in paragraph at lines 7587--7588
+Overfull \hbox (4.49716pt too wide) in paragraph at lines 7589--7590
 []\T1/cmr/m/n/14.4 Nello step di ex-pec-ta-tion va-lu-ti-amo la pos-te-rior dis-tri-bu-tion rispetto
  []
 
@@ -3496,85 +3496,85 @@ Overfull \hbox (4.49716pt too wide) in paragraph at lines 7587--7588
 <552.jpeg, id=3589, 1031.855pt x 94.3525pt>
 File: 552.jpeg Graphic file (type jpg)
 <use 552.jpeg>
-Package pdftex.def Info: 552.jpeg  used on input line 7593.
+Package pdftex.def Info: 552.jpeg  used on input line 7595.
 (pdftex.def)             Requested size: 300.99869pt x 27.52275pt.
 <553.jpeg, id=3590, 633.36626pt x 139.52126pt>
 File: 553.jpeg Graphic file (type jpg)
 <use 553.jpeg>
-Package pdftex.def Info: 553.jpeg  used on input line 7607.
+Package pdftex.def Info: 553.jpeg  used on input line 7609.
 (pdftex.def)             Requested size: 300.99869pt x 66.30734pt.
 <554.jpeg, id=3591, 440.64626pt x 117.43875pt>
 File: 554.jpeg Graphic file (type jpg)
 <use 554.jpeg>
-Package pdftex.def Info: 554.jpeg  used on input line 7616.
+Package pdftex.def Info: 554.jpeg  used on input line 7618.
 (pdftex.def)             Requested size: 300.99869pt x 80.22284pt.
  [362 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/552.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/553.jpeg>]
 <555.jpeg, id=3600, 685.56125pt x 95.35625pt>
 File: 555.jpeg Graphic file (type jpg)
 <use 555.jpeg>
-Package pdftex.def Info: 555.jpeg  used on input line 7623.
+Package pdftex.def Info: 555.jpeg  used on input line 7625.
 (pdftex.def)             Requested size: 300.99869pt x 41.8681pt.
 <556.jpeg, id=3601, 553.06625pt x 104.39pt>
 File: 556.jpeg Graphic file (type jpg)
 <use 556.jpeg>
-Package pdftex.def Info: 556.jpeg  used on input line 7631.
+Package pdftex.def Info: 556.jpeg  used on input line 7633.
 (pdftex.def)             Requested size: 300.99869pt x 56.81256pt.
 <557.jpeg, id=3602, 540.0175pt x 670.505pt>
 File: 557.jpeg Graphic file (type jpg)
 <use 557.jpeg>
-Package pdftex.def Info: 557.jpeg  used on input line 7644.
+Package pdftex.def Info: 557.jpeg  used on input line 7646.
 (pdftex.def)             Requested size: 300.99869pt x 373.74097pt.
  [363 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/554.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/555.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/556.jpeg>] [364 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/557.jpeg>]
 <558.jpeg, id=3619, 501.875pt x 84.315pt>
 File: 558.jpeg Graphic file (type jpg)
 <use 558.jpeg>
-Package pdftex.def Info: 558.jpeg  used on input line 7664.
+Package pdftex.def Info: 558.jpeg  used on input line 7666.
 (pdftex.def)             Requested size: 300.99869pt x 50.57007pt.
 <559.jpeg, id=3620, 373.395pt x 89.33376pt>
 File: 559.jpeg Graphic file (type jpg)
 <use 559.jpeg>
-Package pdftex.def Info: 559.jpeg  used on input line 7669.
+Package pdftex.def Info: 559.jpeg  used on input line 7671.
 (pdftex.def)             Requested size: 300.99869pt x 72.01642pt.
 
-Overfull \hbox (35.13551pt too wide) in paragraph at lines 7671--7672
+Overfull \hbox (35.13551pt too wide) in paragraph at lines 7673--7674
 []\T1/cmr/m/n/14.4 Questo lo fac-ciamo per-ch� nel nos-tro caso ab-bi-amo $\OML/cmm/m/it/14.4 P\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 X\OMS/cmsy/m/n/14.4 j\OT1/cmr/m/n/14.4 ^^B)\OML/cmm/m/it/14.4 P\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 Z\OMS/cmsy/m/n/14.4 j\OML/cmm/m/it/14.4 X; \OT1/cmr/m/n/14.4 ^^B) =
  []
 
 <560.jpeg, id=3621, 460.72125pt x 97.36375pt>
 File: 560.jpeg Graphic file (type jpg)
 <use 560.jpeg>
-Package pdftex.def Info: 560.jpeg  used on input line 7675.
+Package pdftex.def Info: 560.jpeg  used on input line 7677.
 (pdftex.def)             Requested size: 300.99869pt x 63.60954pt.
 <561.jpeg, id=3622, 710.655pt x 96.36pt>
 File: 561.jpeg Graphic file (type jpg)
 <use 561.jpeg>
-Package pdftex.def Info: 561.jpeg  used on input line 7681.
+Package pdftex.def Info: 561.jpeg  used on input line 7683.
 (pdftex.def)             Requested size: 300.99869pt x 40.81497pt.
 [365 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/558.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/559.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/560.jpeg>]
 <563.jpeg, id=3633, 670.505pt x 131.49126pt>
 File: 563.jpeg Graphic file (type jpg)
 <use 563.jpeg>
-Package pdftex.def Info: 563.jpeg  used on input line 7690.
+Package pdftex.def Info: 563.jpeg  used on input line 7692.
 (pdftex.def)             Requested size: 300.99869pt x 59.02805pt.
 <562.jpeg, id=3634, 158.5925pt x 144.54pt>
 File: 562.jpeg Graphic file (type jpg)
 <use 562.jpeg>
-Package pdftex.def Info: 562.jpeg  used on input line 7696.
+Package pdftex.def Info: 562.jpeg  used on input line 7698.
 (pdftex.def)             Requested size: 300.99869pt x 274.37738pt.
  [366 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/561.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/563.jpeg>]
 <565.jpeg, id=3643, 541.02126pt x 61.22874pt>
 File: 565.jpeg Graphic file (type jpg)
 <use 565.jpeg>
-Package pdftex.def Info: 565.jpeg  used on input line 7711.
+Package pdftex.def Info: 565.jpeg  used on input line 7713.
 (pdftex.def)             Requested size: 300.99869pt x 34.06549pt.
  [367 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/562.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/565.jpeg>]
 <566.jpeg, id=3653, 864.22874pt x 113.42375pt>
 File: 566.jpeg Graphic file (type jpg)
 <use 566.jpeg>
-Package pdftex.def Info: 566.jpeg  used on input line 7721.
+Package pdftex.def Info: 566.jpeg  used on input line 7723.
 (pdftex.def)             Requested size: 300.99869pt x 39.50333pt.
 
-Overfull \hbox (30.04842pt too wide) in paragraph at lines 7733--7734
+Overfull \hbox (30.04842pt too wide) in paragraph at lines 7735--7736
 []$\OML/cmm/m/it/14.4 \OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 q; \OT1/cmr/m/n/14.4 ^^B)$ \T1/cmr/m/n/14.4 au-menta rispetto a $\OML/cmm/m/it/14.4 log\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 P\OMS/cmsy/m/n/14.4 j\OT1/cmr/m/n/14.4 ^^B)$ \T1/cmr/m/n/14.4 e dob-bi-amo con-tin-uare l'iterazione. 
  []
 
@@ -3585,47 +3585,47 @@ Chapter 13.
 ] (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
 )
-Overfull \hbox (17.98366pt too wide) in paragraph at lines 7839--7843
+Overfull \hbox (17.98366pt too wide) in paragraph at lines 7841--7845
 []\T1/cmr/m/n/14.4 All'interno della li-bre-ria $\OML/cmm/m/it/14.4 nn$ \T1/cmr/m/n/14.4 di Py-Torch ci sono poi $\OML/cmm/m/it/14.4 Module$ \T1/cmr/m/n/14.4 e $\OML/cmm/m/it/14.4 Parameter$
  []
 
 [370]
-Overfull \hbox (7.43558pt too wide) in paragraph at lines 7847--7848
+Overfull \hbox (7.43558pt too wide) in paragraph at lines 7849--7850
 []$\OML/cmm/m/it/14.4 Parameters\OT1/cmr/m/n/14.4 ()$\T1/cmr/m/n/14.4 : pos-si-amo us-are questa fun-zione per l'inizializzazione
  []
 
 
-Overfull \hbox (1.39018pt too wide) in paragraph at lines 7855--7858
+Overfull \hbox (1.39018pt too wide) in paragraph at lines 7857--7860
 \T1/cmr/m/n/14.4 definirlo man-ual-mente. Pos-si-amo definire il nos-tro mod-ello us-ando questa
  []
 
 
-Overfull \hbox (15.56166pt too wide) in paragraph at lines 7864--7867
+Overfull \hbox (15.56166pt too wide) in paragraph at lines 7866--7869
 \T1/cmr/m/n/14.4 che vogliamo uti-liz-zare all'interno del nos-tro mod-ello (ad es-em-pio potremmo
  []
 
 
-Overfull \hbox (32.67427pt too wide) in paragraph at lines 7864--7867
+Overfull \hbox (32.67427pt too wide) in paragraph at lines 7866--7869
 \T1/cmr/m/n/14.4 sem-plice-mente chia-marte la fun-zione $\OML/cmm/m/it/14.4 optimizer:zerograd\OT1/cmr/m/n/14.4 ()$ \T1/cmr/m/n/14.4 e $\OML/cmm/m/it/14.4 optimizer:step\OT1/cmr/m/n/14.4 ()$
  []
 
 [371] [372]
-Overfull \hbox (39.79602pt too wide) in paragraph at lines 7893--7894
+Overfull \hbox (39.79602pt too wide) in paragraph at lines 7895--7896
 []\T1/cmr/m/n/14.4 Conv2d as-sume un in-put del tipo $\OT1/cmr/m/n/14.4 [\OML/cmm/m/it/14.4 batchSize; numChannels; height; width\OT1/cmr/m/n/14.4 ]$
  []
 
 
-Overfull \hbox (71.68163pt too wide) in paragraph at lines 7916--7917
+Overfull \hbox (71.68163pt too wide) in paragraph at lines 7918--7919
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (79.90591pt too wide) in paragraph at lines 7918--7919
+Overfull \hbox (79.90591pt too wide) in paragraph at lines 7920--7921
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 [373]
-Overfull \hbox (79.90591pt too wide) in paragraph at lines 7920--7921
+Overfull \hbox (79.90591pt too wide) in paragraph at lines 7922--7923
 [][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -3634,7 +3634,7 @@ Chapter 14.
 <330.jpeg, id=3715, 1332.98pt x 656.4525pt>
 File: 330.jpeg Graphic file (type jpg)
 <use 330.jpeg>
-Package pdftex.def Info: 330.jpeg  used on input line 7958.
+Package pdftex.def Info: 330.jpeg  used on input line 7960.
 (pdftex.def)             Requested size: 215.0pt x 105.87593pt.
 [375
 
@@ -3642,59 +3642,59 @@ Package pdftex.def Info: 330.jpeg  used on input line 7958.
 <329.jpeg, id=3721, 1256.695pt x 660.4675pt>
 File: 329.jpeg Graphic file (type jpg)
 <use 329.jpeg>
-Package pdftex.def Info: 329.jpeg  used on input line 7966.
+Package pdftex.def Info: 329.jpeg  used on input line 7968.
 (pdftex.def)             Requested size: 215.0pt x 112.99352pt.
 <331.jpeg, id=3722, 1419.3025pt x 1061.9675pt>
 File: 331.jpeg Graphic file (type jpg)
 <use 331.jpeg>
-Package pdftex.def Info: 331.jpeg  used on input line 7973.
+Package pdftex.def Info: 331.jpeg  used on input line 7975.
 (pdftex.def)             Requested size: 215.0pt x 160.86006pt.
  [376 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/329.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/331.jpeg>]
 <348.jpeg, id=3729, 604.2575pt x 608.2725pt>
 File: 348.jpeg Graphic file (type jpg)
 <use 348.jpeg>
-Package pdftex.def Info: 348.jpeg  used on input line 7993.
+Package pdftex.def Info: 348.jpeg  used on input line 7995.
 (pdftex.def)             Requested size: 215.0pt x 216.42552pt.
  [377 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/348.jpeg>]
 <349.jpeg, id=3735, 672.5125pt x 540.0175pt>
 File: 349.jpeg Graphic file (type jpg)
 <use 349.jpeg>
-Package pdftex.def Info: 349.jpeg  used on input line 8015.
+Package pdftex.def Info: 349.jpeg  used on input line 8017.
 (pdftex.def)             Requested size: 215.0pt x 172.64432pt.
  [378 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/349.jpeg>] [379]
 <95.jpeg, id=3747, 467.7475pt x 126.4725pt>
 File: 95.jpeg Graphic file (type jpg)
 <use 95.jpeg>
-Package pdftex.def Info: 95.jpeg  used on input line 8067.
+Package pdftex.def Info: 95.jpeg  used on input line 8069.
 (pdftex.def)             Requested size: 129.00131pt x 34.87943pt.
  [380]
 <96.jpeg, id=3752, 1112.155pt x 702.625pt>
 File: 96.jpeg Graphic file (type jpg)
 <use 96.jpeg>
-Package pdftex.def Info: 96.jpeg  used on input line 8077.
+Package pdftex.def Info: 96.jpeg  used on input line 8079.
 (pdftex.def)             Requested size: 215.0pt x 135.82663pt.
 <97.jpeg, id=3753, 377.41pt x 146.5475pt>
 File: 97.jpeg Graphic file (type jpg)
 <use 97.jpeg>
-Package pdftex.def Info: 97.jpeg  used on input line 8087.
+Package pdftex.def Info: 97.jpeg  used on input line 8089.
 (pdftex.def)             Requested size: 129.00131pt x 50.08934pt.
  [381 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/95.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/96.jpeg>]
 <124.jpeg, id=3760, 807.015pt x 242.9075pt>
 File: 124.jpeg Graphic file (type jpg)
 <use 124.jpeg>
-Package pdftex.def Info: 124.jpeg  used on input line 8098.
+Package pdftex.def Info: 124.jpeg  used on input line 8100.
 (pdftex.def)             Requested size: 215.0pt x 64.71487pt.
 <125.jpeg, id=3761, 295.1025pt x 100.375pt>
 File: 125.jpeg Graphic file (type jpg)
 <use 125.jpeg>
-Package pdftex.def Info: 125.jpeg  used on input line 8104.
+Package pdftex.def Info: 125.jpeg  used on input line 8106.
 (pdftex.def)             Requested size: 171.99738pt x 58.50394pt.
 File: 125.jpeg Graphic file (type jpg)
 <use 125.jpeg>
-Package pdftex.def Info: 125.jpeg  used on input line 8110.
+Package pdftex.def Info: 125.jpeg  used on input line 8112.
 (pdftex.def)             Requested size: 171.99738pt x 58.50394pt.
  [382 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/97.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/124.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/125.jpeg>] [383]
-Underfull \hbox (badness 10000) in paragraph at lines 8151--8152
+Underfull \hbox (badness 10000) in paragraph at lines 8153--8154
 
  []
 
@@ -3702,39 +3702,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 8151--8152
 <71.jpeg, id=3778, 835.12pt x 1198.4775pt>
 File: 71.jpeg Graphic file (type jpg)
 <use 71.jpeg>
-Package pdftex.def Info: 71.jpeg  used on input line 8173.
+Package pdftex.def Info: 71.jpeg  used on input line 8175.
 (pdftex.def)             Requested size: 171.99738pt x 246.82329pt.
 <73.jpeg, id=3779, 1312.905pt x 861.2175pt>
 File: 73.jpeg Graphic file (type jpg)
 <use 73.jpeg>
-Package pdftex.def Info: 73.jpeg  used on input line 8177.
+Package pdftex.def Info: 73.jpeg  used on input line 8179.
 (pdftex.def)             Requested size: 300.99869pt x 197.44508pt.
 <72.jpeg, id=3780, 222.8325pt x 142.5325pt>
 File: 72.jpeg Graphic file (type jpg)
 <use 72.jpeg>
-Package pdftex.def Info: 72.jpeg  used on input line 8181.
+Package pdftex.def Info: 72.jpeg  used on input line 8183.
 (pdftex.def)             Requested size: 85.99869pt x 55.00893pt.
  [385 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/71.jpeg>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 8185.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 8187.
  [386 </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/73.jpeg> </Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/72.jpeg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 8185.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 8187.
  (/Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/RiassuntoMachineLearning.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 8185.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 8185.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 8187.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 8187.
 Package rerunfilecheck Info: File `RiassuntoMachineLearning.out' has not changed.
 (rerunfilecheck)             Checksum: 0C06C32915EFDAD3A13F9B1AECB08BE5;12489.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 8185.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 8187.
  ) 
 Here is how much of TeX's memory you used:
  13648 strings out of 492616
  193656 string characters out of 6129481
- 450988 words of memory out of 5000000
+ 450989 words of memory out of 5000000
  15769 multiletter control sequences out of 15000+600000
  17918 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  36i,13n,42p,528b,1832s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfti2074.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb>
-Output written on "/Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/RiassuntoMachineLearning.pdf" (386 pages, 30122991 bytes).
+Output written on "/Users/lucacorbucci/Dropbox/Università/Magistrale/Corsi Erasmus/Machine Learning/Riassunti Machine Learning/RiassuntoMachineLearning.pdf" (386 pages, 30122435 bytes).
 PDF statistics:
  4114 PDF objects out of 4296 (max. 8388607)
  3034 compressed objects within 31 object streams
